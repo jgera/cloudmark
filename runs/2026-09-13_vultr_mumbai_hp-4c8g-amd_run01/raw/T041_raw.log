@@ -1,0 +1,79 @@
+﻿=========================================
+=== CBP-1.0 / T041: CLIENT RTT TO 65.20.88.154 ===
+=== Client Timestamp:  ===
+=== Target IP: 65.20.88.154 ===
+=========================================
+
+Pinging 65.20.88.154 with 32 bytes of data:
+Reply from 65.20.88.154: bytes=32 time=36ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=37ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=41ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=35ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=34ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=65ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=48ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=45ms TTL=56
+Request timed out.
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=34ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=37ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=34ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=34ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=35ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=36ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=40ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=108ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=80ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=43ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=74ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=41ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=32ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=46ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=85ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=35ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=34ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=35ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=32ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=42ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=43ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=37ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=35ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=32ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=49ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=39ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=36ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=34ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=36ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=32ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=32ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=84ms TTL=56
+Reply from 65.20.88.154: bytes=32 time=33ms TTL=56
+
+Ping statistics for 65.20.88.154:
+    Packets: Sent = 50, Received = 49, Lost = 1 (2% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 32ms, Maximum = 108ms, Average = 42ms
+
+--- TRACEROUTE ---
+
+Tracing route to 65.20.88.154 over a maximum of 20 hops
+
+  1     2 ms     6 ms     5 ms  192.168.1.1 
+  2     7 ms     7 ms     9 ms  10.240.9.204 
+  3     *        *        *     Request timed out.
+  4   164 ms     7 ms     7 ms  125.18.168.173 
+  5    32 ms    32 ms    32 ms  182.79.211.35 
+  6    84 ms    58 ms    70 ms  182.72.21.62 
+  7    33 ms    33 ms    34 ms  10.90.0.18 
+  8    37 ms    33 ms    32 ms  169.254.1.1 
+  9    32 ms    32 ms    36 ms  10.90.100.36 
+ 10    85 ms   188 ms   284 ms  65.20.88.154 
+
+Trace complete.

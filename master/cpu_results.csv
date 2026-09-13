@@ -2,3 +2,6 @@ run_id,test_id,tool,thread_count,events_per_sec,mean_latency_ms,p95_latency_ms,s
 2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T010,sysbench_cpu,1,472.04,2.12,2.18,N/A,T010_raw.log
 2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T011,sysbench_cpu,4,1888.52,2.12,2.18,1.0002,T011_raw.log
 2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T012,sysbench_cpu,4,1887.48,2.12,2.18,"Burst/Sust=1.0, CV=0.34%",T012_raw.log
+2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T010,sysbench_cpu,1,1348.07,0.74,0.77,N/A,T010_raw.log
+2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T011,sysbench_cpu,4,5412.28,0.74,0.75,1.0037,T011_raw.log
+2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T012,sysbench_cpu,4,5393.78,0.74,0.77,"Burst/Sust=1.01, CV=0.64%",T012_raw.log

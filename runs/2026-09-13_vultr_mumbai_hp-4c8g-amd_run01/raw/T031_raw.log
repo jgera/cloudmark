@@ -1,0 +1,75 @@
+=========================================
+=== CBP-1.0 / T031: SEQUENTIAL STORAGE THROUGHPUT ===
+=== Timestamp (UTC): 2026-09-13 18:50:20 UTC ===
+=========================================
+
+--- Part 1: Sequential Write (1MB, iodepth=16, direct=1) ---
+seq_write: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=libaio, iodepth=16
+fio-3.36
+Starting 1 process
+seq_write: Laying out IO file (1 file / 4096MiB)
+
+seq_write: (groupid=0, jobs=1): err= 0: pid=5897: Sun Sep 13 18:51:20 2026
+  write: IOPS=2878, BW=2878MiB/s (3018MB/s)(169GiB/60003msec); 0 zone resets
+    slat (usec): min=49, max=4213, avg=85.66, stdev=32.87
+    clat (usec): min=1175, max=88847, avg=5471.68, stdev=5416.01
+     lat (usec): min=1266, max=88916, avg=5557.34, stdev=5416.54
+    clat percentiles (usec):
+     |  1.00th=[ 2900],  5.00th=[ 3621], 10.00th=[ 3884], 20.00th=[ 4178],
+     | 30.00th=[ 4359], 40.00th=[ 4490], 50.00th=[ 4686], 60.00th=[ 4883],
+     | 70.00th=[ 5080], 80.00th=[ 5342], 90.00th=[ 5997], 95.00th=[ 7767],
+     | 99.00th=[27395], 99.50th=[57410], 99.90th=[72877], 99.95th=[76022],
+     | 99.99th=[82314]
+   bw (  MiB/s): min= 1732, max= 3520, per=99.99%, avg=2877.98, stdev=441.02, samples=119
+   iops        : min= 1732, max= 3520, avg=2877.98, stdev=441.02, samples=119
+  lat (msec)   : 2=0.13%, 4=13.37%, 10=83.55%, 20=1.81%, 50=0.54%
+  lat (msec)   : 100=0.60%
+  cpu          : usr=7.91%, sys=18.08%, ctx=110884, majf=0, minf=13
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=100.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,172711,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+  WRITE: bw=2878MiB/s (3018MB/s), 2878MiB/s-2878MiB/s (3018MB/s-3018MB/s), io=169GiB (181GB), run=60003-60003msec
+
+Disk stats (read/write):
+  vda: ios=0/344731, sectors=0/352805776, merge=0/121, ticks=0/1864478, in_queue=1864484, util=74.24%
+
+--- Part 2: Sequential Read (1MB, iodepth=16, direct=1) ---
+seq_read: (g=0): rw=read, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=libaio, iodepth=16
+fio-3.36
+Starting 1 process
+
+seq_read: (groupid=0, jobs=1): err= 0: pid=5905: Sun Sep 13 18:52:21 2026
+  read: IOPS=6460, BW=6460MiB/s (6774MB/s)(379GiB/60002msec)
+    slat (usec): min=45, max=1751, avg=65.29, stdev=23.37
+    clat (usec): min=581, max=11728, avg=2410.40, stdev=588.45
+     lat (usec): min=639, max=11888, avg=2475.70, stdev=586.08
+    clat percentiles (usec):
+     |  1.00th=[ 1303],  5.00th=[ 1614], 10.00th=[ 1795], 20.00th=[ 2008],
+     | 30.00th=[ 2147], 40.00th=[ 2278], 50.00th=[ 2376], 60.00th=[ 2474],
+     | 70.00th=[ 2606], 80.00th=[ 2737], 90.00th=[ 2966], 95.00th=[ 3195],
+     | 99.00th=[ 4359], 99.50th=[ 5145], 99.90th=[ 8094], 99.95th=[ 9241],
+     | 99.99th=[10552]
+   bw (  MiB/s): min= 5318, max= 6688, per=100.00%, avg=6466.00, stdev=281.43, samples=119
+   iops        : min= 5318, max= 6688, avg=6466.00, stdev=281.43, samples=119
+  lat (usec)   : 750=0.01%, 1000=0.08%
+  lat (msec)   : 2=19.22%, 4=79.26%, 10=1.42%, 20=0.02%
+  cpu          : usr=1.41%, sys=52.04%, ctx=102990, majf=0, minf=4106
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=100.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=387642,0,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+   READ: bw=6460MiB/s (6774MB/s), 6460MiB/s-6460MiB/s (6774MB/s-6774MB/s), io=379GiB (406GB), run=60002-60002msec
+
+Disk stats (read/write):
+  vda: ios=749669/120, sectors=792373248/1256, merge=0/28, ticks=1701500/107, in_queue=1701614, util=54.04%
+
+=========================================
+=== T031 COMPLETE ===
+=========================================

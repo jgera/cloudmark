@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-13_vultr_mumbai_hp-4c8g-amd_run01",
+  "machine_id": "vultr-mumbai-vhp-4c-8gb-amd-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Vultr",
+  "region": "Mumbai",
+  "plan_name": "vhp-4c-8gb-amd",
+  "created_utc": "2026-09-13 18:39:55 UTC",
+  "pricing": {
+    "monthly_usd": 48.0,
+    "promotional_credit": true,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "vhp",
+  "cpu_arch": "x86_64",
+  "cpu_model": "AMD EPYC-Rome Processor",
+  "exposed_vcpu": 4,
+  "ram_gb": 7.75,
+  "root_disk_type": "NVMe/SSD",
+  "root_disk_size_gb": "180G",
+  "virt_type": "Microsoft",
+  "kernel_version": "6.8.0-138-generic",
+  "os_distro": "Ubuntu 24.04.4 LTS"
+}

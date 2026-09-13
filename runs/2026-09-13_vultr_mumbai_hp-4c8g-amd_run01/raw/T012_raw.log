@@ -1,0 +1,100 @@
+=========================================
+=== CBP-1.0 / T012: CPU SUSTAINED TEST (300s) ===
+=== Timestamp (UTC): 2026-09-13 18:45:12 UTC ===
+=========================================
+Running 300s sustained sysbench CPU test with 5s progress reporting...
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Report intermediate results every 5 second(s)
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+[ 5s ] thds: 4 eps: 5399.12 lat (ms,95%): 0.75
+[ 10s ] thds: 4 eps: 5419.85 lat (ms,95%): 0.75
+[ 15s ] thds: 4 eps: 5413.00 lat (ms,95%): 0.75
+[ 20s ] thds: 4 eps: 5415.59 lat (ms,95%): 0.75
+[ 25s ] thds: 4 eps: 5430.00 lat (ms,95%): 0.75
+[ 30s ] thds: 4 eps: 5426.77 lat (ms,95%): 0.75
+[ 35s ] thds: 4 eps: 5421.23 lat (ms,95%): 0.75
+[ 40s ] thds: 4 eps: 5424.01 lat (ms,95%): 0.75
+[ 45s ] thds: 4 eps: 5428.79 lat (ms,95%): 0.75
+[ 50s ] thds: 4 eps: 5416.59 lat (ms,95%): 0.75
+[ 55s ] thds: 4 eps: 5416.61 lat (ms,95%): 0.75
+[ 60s ] thds: 4 eps: 5409.00 lat (ms,95%): 0.75
+[ 65s ] thds: 4 eps: 5391.39 lat (ms,95%): 0.77
+[ 70s ] thds: 4 eps: 5268.81 lat (ms,95%): 0.83
+[ 75s ] thds: 4 eps: 5366.20 lat (ms,95%): 0.78
+[ 80s ] thds: 4 eps: 5405.25 lat (ms,95%): 0.75
+[ 85s ] thds: 4 eps: 5416.95 lat (ms,95%): 0.75
+[ 90s ] thds: 4 eps: 5396.60 lat (ms,95%): 0.77
+[ 95s ] thds: 4 eps: 5362.58 lat (ms,95%): 0.80
+[ 100s ] thds: 4 eps: 5374.80 lat (ms,95%): 0.80
+[ 105s ] thds: 4 eps: 5369.21 lat (ms,95%): 0.80
+[ 110s ] thds: 4 eps: 5372.82 lat (ms,95%): 0.78
+[ 115s ] thds: 4 eps: 5358.39 lat (ms,95%): 0.80
+[ 120s ] thds: 4 eps: 5412.01 lat (ms,95%): 0.75
+[ 125s ] thds: 4 eps: 5412.77 lat (ms,95%): 0.75
+[ 130s ] thds: 4 eps: 5417.24 lat (ms,95%): 0.75
+[ 135s ] thds: 4 eps: 5376.28 lat (ms,95%): 0.78
+[ 140s ] thds: 4 eps: 5388.13 lat (ms,95%): 0.77
+[ 145s ] thds: 4 eps: 5406.00 lat (ms,95%): 0.75
+[ 150s ] thds: 4 eps: 5424.19 lat (ms,95%): 0.75
+[ 155s ] thds: 4 eps: 5422.79 lat (ms,95%): 0.75
+[ 160s ] thds: 4 eps: 5385.21 lat (ms,95%): 0.77
+[ 165s ] thds: 4 eps: 5396.39 lat (ms,95%): 0.77
+[ 170s ] thds: 4 eps: 5332.22 lat (ms,95%): 0.81
+[ 175s ] thds: 4 eps: 5357.39 lat (ms,95%): 0.81
+[ 180s ] thds: 4 eps: 5381.80 lat (ms,95%): 0.77
+[ 185s ] thds: 4 eps: 5412.00 lat (ms,95%): 0.75
+[ 190s ] thds: 4 eps: 5425.99 lat (ms,95%): 0.75
+[ 195s ] thds: 4 eps: 5406.40 lat (ms,95%): 0.75
+[ 200s ] thds: 4 eps: 5418.19 lat (ms,95%): 0.75
+[ 205s ] thds: 4 eps: 5423.80 lat (ms,95%): 0.75
+[ 210s ] thds: 4 eps: 5420.42 lat (ms,95%): 0.75
+[ 215s ] thds: 4 eps: 5424.78 lat (ms,95%): 0.75
+[ 220s ] thds: 4 eps: 5409.60 lat (ms,95%): 0.75
+[ 225s ] thds: 4 eps: 5403.60 lat (ms,95%): 0.75
+[ 230s ] thds: 4 eps: 5397.40 lat (ms,95%): 0.77
+[ 235s ] thds: 4 eps: 5414.99 lat (ms,95%): 0.75
+[ 240s ] thds: 4 eps: 5401.73 lat (ms,95%): 0.75
+[ 245s ] thds: 4 eps: 5298.88 lat (ms,95%): 0.81
+[ 250s ] thds: 4 eps: 5316.60 lat (ms,95%): 0.81
+[ 255s ] thds: 4 eps: 5295.60 lat (ms,95%): 0.83
+[ 260s ] thds: 4 eps: 5407.81 lat (ms,95%): 0.75
+[ 265s ] thds: 4 eps: 5424.21 lat (ms,95%): 0.75
+[ 270s ] thds: 4 eps: 5389.13 lat (ms,95%): 0.77
+[ 275s ] thds: 4 eps: 5412.66 lat (ms,95%): 0.75
+[ 280s ] thds: 4 eps: 5371.04 lat (ms,95%): 0.78
+[ 285s ] thds: 4 eps: 5380.95 lat (ms,95%): 0.77
+[ 290s ] thds: 4 eps: 5368.36 lat (ms,95%): 0.78
+[ 295s ] thds: 4 eps: 5373.84 lat (ms,95%): 0.77
+[ 300s ] thds: 4 eps: 5413.61 lat (ms,95%): 0.75
+CPU speed:
+    events per second:  5393.78
+
+General statistics:
+    total time:                          300.0013s
+    total number of events:              1618143
+
+Latency (ms):
+         min:                                    0.71
+         avg:                                    0.74
+         max:                                   35.44
+         95th percentile:                        0.77
+         sum:                              1199133.78
+
+Threads fairness:
+    events (avg/stddev):           404535.7500/366.64
+    execution time (avg/stddev):   299.7834/0.02
+
+=========================================
+=== T012 COMPLETE ===
+=========================================
