@@ -2,21 +2,23 @@
 .SYNOPSIS
     CloudMark Vultr Orchestration Helper Script
 .DESCRIPTION
-    Wraps vultr-cli to automate listing, provisioning, SSH benchmark execution, and teardown.
+    Wraps vultr-cli to automate listing, provisioning, SSH key management, benchmark execution, and teardown.
 #>
 
 param (
     [Parameter(Mandatory=$false)]
-    [ValidateSet("list-regions", "list-plans", "list-ssh-keys", "create-instance", "get-instance", "delete-instance", "exec-test")]
+    [ValidateSet("list-regions", "list-plans", "list-os", "list-ssh-keys", "create-ssh-key", "create-instance", "get-instance", "delete-instance", "exec-test")]
     [string]$Action = "list-plans",
 
     [string]$Region = "del", # Delhi NCR
     [string]$Plan = "vhp-4c-8gb-amd",
-    [string]$OsId = "1743", # Ubuntu 24.04 x64 default (or query)
+    [string]$OsId = "1743", # Ubuntu 24.04 x64
     [string]$Label = "cloudmark-vultr-del-run01",
     [string]$InstanceId = "",
     [string]$SshKeyId = "",
-    [string]$SshKeyPath = "$HOME\.ssh\id_rsa",
+    [string]$SshKeyName = "cloudmark-key",
+    [string]$SshPubKeyPath = "$HOME\.ssh\id_ed25519.pub",
+    [string]$SshKeyPath = "$HOME\.ssh\id_ed25519",
     [string]$HostIp = "",
     [string]$ScriptPath = "",
     [string]$RunId = "",
@@ -40,12 +42,27 @@ switch ($Action) {
     }
 
     "list-plans" {
-        Write-Host "Fetching available plans in region: $Region..."
+        Write-Host "Fetching available plans..."
         & $VultrCli plans list
+    }
+
+    "list-os" {
+        Write-Host "Fetching operating systems..."
+        & $VultrCli os list
     }
 
     "list-ssh-keys" {
         & $VultrCli ssh-key list
+    }
+
+    "create-ssh-key" {
+        if (-not (Test-Path $SshPubKeyPath)) {
+            Write-Error "Public key not found at $SshPubKeyPath. Generate one with: ssh-keygen -t ed25519"
+            exit 1
+        }
+        $pubKey = (Get-Content $SshPubKeyPath -Raw).Trim()
+        Write-Host "Registering SSH key '$SshKeyName' with Vultr..."
+        & $VultrCli ssh-key create --name $SshKeyName --key "$pubKey"
     }
 
     "create-instance" {
@@ -89,10 +106,9 @@ switch ($Action) {
         Write-Host "Executing $ScriptPath on $HostIp for Test $TestId..."
         Write-Host "Raw output will be logged to: $rawOutputFile"
 
-        # Execute remote script stream via SSH and save unbuffered raw log
         $sshArgs = @(
             "-o", "StrictHostKeyChecking=accept-new",
-            "-o", "ConnectTimeout=10",
+            "-o", "ConnectTimeout=15",
             "root@$HostIp",
             "bash -s"
         )

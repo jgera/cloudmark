@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 CBP-1.0 Parser for T001 (Machine and Environment Characterization).
-Parses raw T001 log, updates metadata.json, and appends to master/machines.csv.
+Parses raw T001 log, updates metadata.json, updates master/runs.csv,
+and appends to master/machines.csv.
 """
 
 import sys
@@ -30,7 +31,6 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
     if mem_match:
         ram_gb = round(int(mem_match.group(1)) / (1024 * 1024), 2)
     else:
-        # Fallback to free -h output
         mem_free_match = re.search(r"Mem:\s+([0-9\.]+[GMK]i?)", log_content)
         ram_gb = mem_free_match.group(1) if mem_free_match else "unknown"
 
@@ -46,6 +46,13 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
         if virt_line:
             virt_type = virt_line.group(1).strip()
 
+    # Extract OS and Kernel
+    kernel_match = re.search(r"Linux\s+\S+\s+([\d\.\-\w]+)", log_content)
+    kernel_ver = kernel_match.group(1) if kernel_match else "unknown"
+
+    os_name_match = re.search(r'PRETTY_NAME="([^"]+)"', log_content)
+    os_distro = os_name_match.group(1) if os_name_match else "Linux"
+
     parsed = {
         "machine_id": machine_id,
         "provider": provider,
@@ -59,10 +66,23 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
         "ram_gb": ram_gb,
         "root_disk_type": "NVMe/SSD",
         "root_disk_size_gb": root_disk_size,
-        "virt_type": virt_type
+        "virt_type": virt_type,
+        "kernel_version": kernel_ver,
+        "os_distro": os_distro
     }
 
-    # Append to master/machines.csv if not present
+    # 1. Update run metadata.json if present
+    run_dir = Path("d:/Projects/CloudMark/runs") / run_id
+    meta_path = run_dir / "metadata.json"
+    if meta_path.exists():
+        try:
+            curr_meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            curr_meta.update(parsed)
+            meta_path.write_text(json.dumps(curr_meta, indent=2), encoding="utf-8")
+        except Exception as e:
+            print(f"Warning: Could not update metadata.json: {e}")
+
+    # 2. Append to master/machines.csv if machine_id not present
     master_csv = Path("d:/Projects/CloudMark/master/machines.csv")
     existing_ids = set()
     if master_csv.exists():
@@ -81,6 +101,26 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
                 parsed["ram_gb"], parsed["root_disk_type"], parsed["root_disk_size_gb"],
                 parsed["virt_type"]
             ])
+
+    # 3. Update OS / Kernel in master/runs.csv
+    runs_csv = Path("d:/Projects/CloudMark/master/runs.csv")
+    if runs_csv.exists():
+        rows = []
+        updated = False
+        with open(runs_csv, mode="r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            fieldnames = reader.fieldnames
+            for r in reader:
+                if r.get("run_id") == run_id:
+                    r["os_distro"] = os_distro
+                    r["kernel_version"] = kernel_ver
+                    updated = True
+                rows.append(r)
+        if updated:
+            with open(runs_csv, mode="w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(rows)
 
     print(json.dumps(parsed, indent=2))
     return parsed

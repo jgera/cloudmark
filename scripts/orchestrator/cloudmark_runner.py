@@ -6,7 +6,7 @@ Automates:
 - Remote benchmark execution via SSH
 - Unmodified raw log preservation (Principle 2.2)
 - Automated metric parsing into master datasets
-- Run reporting and burst vs sustained analysis
+- Run status checking and comparison reporting
 """
 
 import sys
@@ -114,7 +114,6 @@ def execute_remote(host_ip, script_path, raw_log_path, ssh_key=None):
     )
 
     with open(raw_log_path, "w", encoding="utf-8") as raw_f:
-        # Write stdin script
         proc.stdin.write(script_content)
         proc.stdin.close()
 
@@ -139,9 +138,8 @@ def run_test(run_id, test_id, host_ip, ssh_key=None):
 
     success = execute_remote(host_ip, script_path, raw_log, ssh_key)
     if not success:
-        print(f"Warning: Test {test_id} finished with errors. Parsing raw log for diagnostic evidence.")
+        print(f"Warning: Test {test_id} returned non-zero. Parsing raw log for available evidence.")
 
-    # Automatically invoke appropriate parser
     trigger_parser(run_id, test_id, raw_log)
     return success
 
@@ -162,6 +160,10 @@ def trigger_parser(run_id, test_id, raw_log):
         cmd = [sys.executable, str(PARSERS_DIR / "parse_cpu.py"), str(raw_log), run_id, test_id]
         subprocess.run(cmd)
 
+    elif test_id == "T020":
+        cmd = [sys.executable, str(PARSERS_DIR / "parse_memory.py"), str(raw_log), run_id, test_id]
+        subprocess.run(cmd)
+
     elif test_id in ("T031", "T032", "T033"):
         cmd = [sys.executable, str(PARSERS_DIR / "parse_storage.py"), str(raw_log), run_id, test_id]
         subprocess.run(cmd)
@@ -169,6 +171,102 @@ def trigger_parser(run_id, test_id, raw_log):
     elif test_id in ("T052", "T053"):
         cmd = [sys.executable, str(PARSERS_DIR / "parse_postgres.py"), str(raw_log), run_id, test_id]
         subprocess.run(cmd)
+
+def run_client_rtt(run_id, host_ip, count=50):
+    ps_script = SCRIPTS_DIR / "t041_client_rtt.ps1"
+    raw_log = RUNS_DIR / run_id / "raw" / "T041_raw.log"
+    cmd = ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(ps_script), "-HostIp", host_ip, "-RunId", run_id, "-Count", str(count)]
+    print(f"Running client RTT probe to {host_ip}...")
+    subprocess.run(cmd)
+
+    # Trigger network parser
+    p_cmd = [sys.executable, str(PARSERS_DIR / "parse_network.py"), str(raw_log), run_id, "T041"]
+    subprocess.run(p_cmd)
+
+def check_status(run_id):
+    raw_dir = RUNS_DIR / run_id / "raw"
+    print(f"\n=========================================")
+    print(f"=== CBP-1.0 RUN STATUS: {run_id} ===")
+    print(f"=========================================")
+
+    all_tests = [
+        ("T001", "Characterization"),
+        ("T002", "Idle Baseline"),
+        ("T010", "CPU Single-Thread"),
+        ("T011", "CPU Multi-Thread"),
+        ("T012", "CPU Sustained (300s)"),
+        ("T020", "Memory Read/Write"),
+        ("T030", "Storage Identification"),
+        ("T031", "Sequential Storage Throughput"),
+        ("T032", "Random Storage IOPS"),
+        ("T033", "Sustained Storage (300s)"),
+        ("T040", "Network Throughput"),
+        ("T041", "Client End-User RTT"),
+        ("T050", "PostgreSQL Environment"),
+        ("T051", "PostgreSQL Scale 10 Init"),
+        ("T052", "Mixed OLTP Concurrency Scaling"),
+        ("T053", "SELECT-Only Concurrency Scaling"),
+        ("T054", "PostgreSQL Scale 100 Init"),
+        ("T055", "PostgreSQL System Monitored"),
+    ]
+
+    for tid, desc in all_tests:
+        log_file = raw_dir / f"{tid}_raw.log"
+        if log_file.exists():
+            sz = log_file.stat().st_size
+            status = f"[DONE] ({sz} bytes)"
+        else:
+            status = "[PENDING]"
+        print(f"  {tid:<6} {desc:<35} {status}")
+    print("=========================================\n")
+
+def generate_report(run_id):
+    report_file = RUNS_DIR / run_id / "derived" / "summary.md"
+    report_file.parent.mkdir(parents=True, exist_ok=True)
+
+    lines = [
+        f"# CloudMark Benchmark Summary: {run_id}",
+        f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}\n",
+        "## 1. System Metadata",
+    ]
+
+    meta_file = RUNS_DIR / run_id / "metadata.json"
+    if meta_file.exists():
+        meta = json.loads(meta_file.read_text(encoding="utf-8"))
+        for k, v in meta.items():
+            lines.append(f"- **{k}**: `{v}`")
+
+    # Read CPU
+    lines.append("\n## 2. CPU Performance")
+    cpu_csv = MASTER_DIR / "cpu_results.csv"
+    if cpu_csv.exists():
+        with open(cpu_csv, mode="r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            cpu_rows = [r for r in reader if r.get("run_id") == run_id]
+            if cpu_rows:
+                lines.append("| Test ID | Threads | Events/sec | Mean Latency (ms) | P95 Latency (ms) | Scaling / Burst Metric |")
+                lines.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
+                for r in cpu_rows:
+                    lines.append(f"| {r['test_id']} | {r['thread_count']} | {r['events_per_sec']} | {r['mean_latency_ms']} | {r['p95_latency_ms']} | {r['scaling_efficiency']} |")
+
+    # Read PostgreSQL
+    lines.append("\n## 3. PostgreSQL OLTP Performance")
+    pg_csv = MASTER_DIR / "postgres_results.csv"
+    if pg_csv.exists():
+        with open(pg_csv, mode="r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            pg_rows = [r for r in reader if r.get("run_id") == run_id]
+            if pg_rows:
+                lines.append("| Test ID | Workload | Scale | Clients | Whole-run TPS | Sustained TPS | Latency (ms) | Failures |")
+                lines.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+                for r in pg_rows:
+                    lines.append(f"| {r['test_id']} | {r['workload_type']} | {r['scale']} | {r['clients']} | {r['whole_run_tps']} | {r['sustained_tps']} | {r['sustained_latency_ms']} | {r['failed_txns']} |")
+
+    # Write report
+    report_content = "\n".join(lines)
+    report_file.write_text(report_content, encoding="utf-8")
+    print(f"Report generated at: {report_file}")
+    print("\n" + report_content)
 
 def main():
     parser = argparse.ArgumentParser(description="CloudMark Benchmark Orchestrator")
@@ -193,6 +291,17 @@ def main():
     setup_p.add_argument("host_ip")
     setup_p.add_argument("--key-path", default=None)
 
+    rtt_p = subparsers.add_parser("run-client-rtt")
+    rtt_p.add_argument("run_id")
+    rtt_p.add_argument("host_ip")
+    rtt_p.add_argument("--count", type=int, default=50)
+
+    status_p = subparsers.add_parser("status")
+    status_p.add_argument("run_id")
+
+    rep_p = subparsers.add_parser("report")
+    rep_p.add_argument("run_id")
+
     args = parser.parse_args()
 
     if args.command == "init-run":
@@ -202,6 +311,12 @@ def main():
         execute_remote(args.host_ip, SCRIPTS_DIR / "setup_node.sh", raw_log, args.key_path)
     elif args.command == "run-test":
         run_test(args.run_id, args.test_id, args.host_ip, args.key_path)
+    elif args.command == "run-client-rtt":
+        run_client_rtt(args.run_id, args.host_ip, args.count)
+    elif args.command == "status":
+        check_status(args.run_id)
+    elif args.command == "report":
+        generate_report(args.run_id)
     else:
         parser.print_help()
 
