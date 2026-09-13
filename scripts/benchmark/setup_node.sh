@@ -11,12 +11,15 @@ echo "=== Timestamp (UTC): $(date -u '+%Y-%m-%d %H:%M:%S UTC') ==="
 echo "========================================="
 
 export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
+
+APT_OPTS="-o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"
 
 echo -e "\n[1/4] Updating package lists..."
-apt-get update -y
+apt-get update -y $APT_OPTS
 
 echo -e "\n[2/4] Installing diagnostic and synthetic benchmark tools..."
-apt-get install -y --no-install-recommends \
+apt-get install -y $APT_OPTS --no-install-recommends \
     sysstat \
     sysbench \
     fio \
@@ -34,15 +37,15 @@ echo -e "\n[3/4] Installing PostgreSQL 18 (or latest stable available in officia
 if ! grep -q "apt.postgresql.org" /etc/apt/sources.list.d/* 2>/dev/null; then
     curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
     echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-    apt-get update -y
+    apt-get update -y $APT_OPTS
 fi
 
 # Attempt to install postgresql-18, falling back gracefully if repository is preparing 18
 if apt-cache show postgresql-18 &>/dev/null; then
-    apt-get install -y postgresql-18 postgresql-contrib-18
+    apt-get install -y $APT_OPTS postgresql-18 postgresql-contrib-18
 else
     echo "postgresql-18 package not directly found, installing default repo postgresql..."
-    apt-get install -y postgresql postgresql-contrib
+    apt-get install -y $APT_OPTS postgresql postgresql-contrib
 fi
 
 systemctl enable postgresql

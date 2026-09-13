@@ -1,0 +1,86 @@
+=========================================
+=== CBP-1.0 / T020: MEMORY PERFORMANCE ===
+=== Timestamp (UTC): 2026-09-13 11:55:45 UTC ===
+=========================================
+
+--- Part 1: Memory Write Throughput (threads=4) ---
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1024KiB
+  total size: 65536MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 65536 (47792.01 per second)
+
+65536.00 MiB transferred (47792.01 MiB/sec)
+
+
+General statistics:
+    total time:                          1.3698s
+    total number of events:              65536
+
+Latency (ms):
+         min:                                    0.06
+         avg:                                    0.08
+         max:                                    0.62
+         95th percentile:                        0.10
+         sum:                                 5446.69
+
+Threads fairness:
+    events (avg/stddev):           16384.0000/0.00
+    execution time (avg/stddev):   1.3617/0.00
+
+
+--- Part 2: Memory Read Throughput (threads=4) ---
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1024KiB
+  total size: 65536MiB
+  operation: read
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 65536 (91955.48 per second)
+
+65536.00 MiB transferred (91955.48 MiB/sec)
+
+
+General statistics:
+    total time:                          0.7112s
+    total number of events:              65536
+
+Latency (ms):
+         min:                                    0.04
+         avg:                                    0.04
+         max:                                    5.87
+         95th percentile:                        0.05
+         sum:                                 2718.63
+
+Threads fairness:
+    events (avg/stddev):           16384.0000/0.00
+    execution time (avg/stddev):   0.6797/0.02
+
+
+=========================================
+=== T020 COMPLETE ===
+=========================================

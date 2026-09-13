@@ -9,6 +9,7 @@ echo "=== CBP-1.0 / T051: POSTGRESQL INIT SCALE 10 ==="
 echo "=== Timestamp (UTC): $(date -u '+%Y-%m-%d %H:%M:%S UTC') ==="
 echo "========================================="
 
+sudo -u postgres psql -c "CREATE DATABASE cloudmark;" 2>/dev/null || true
 echo "Initializing pgbench database (scale 10) on database 'cloudmark'..."
 sudo -u postgres pgbench -i -s 10 -I dtgvp cloudmark
 

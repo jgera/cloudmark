@@ -1,0 +1,99 @@
+=========================================
+=== CBP-1.0 / T012: CPU SUSTAINED TEST (300s) ===
+=== Timestamp (UTC): 2026-09-13 11:50:45 UTC ===
+=========================================
+Running 300s sustained sysbench CPU test with 5s progress reporting...
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Report intermediate results every 5 second(s)
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+[ 5s ] thds: 4 eps: 1884.76 lat (ms,95%): 2.14
+[ 10s ] thds: 4 eps: 1881.36 lat (ms,95%): 2.18
+[ 15s ] thds: 4 eps: 1888.37 lat (ms,95%): 2.18
+[ 20s ] thds: 4 eps: 1890.42 lat (ms,95%): 2.14
+[ 25s ] thds: 4 eps: 1895.41 lat (ms,95%): 2.14
+[ 30s ] thds: 4 eps: 1890.20 lat (ms,95%): 2.14
+[ 35s ] thds: 4 eps: 1885.62 lat (ms,95%): 2.18
+[ 40s ] thds: 4 eps: 1890.99 lat (ms,95%): 2.14
+[ 45s ] thds: 4 eps: 1886.39 lat (ms,95%): 2.18
+[ 50s ] thds: 4 eps: 1887.38 lat (ms,95%): 2.18
+[ 55s ] thds: 4 eps: 1887.98 lat (ms,95%): 2.14
+[ 60s ] thds: 4 eps: 1893.46 lat (ms,95%): 2.14
+[ 65s ] thds: 4 eps: 1891.99 lat (ms,95%): 2.14
+[ 70s ] thds: 4 eps: 1885.60 lat (ms,95%): 2.18
+[ 75s ] thds: 4 eps: 1892.80 lat (ms,95%): 2.18
+[ 80s ] thds: 4 eps: 1887.40 lat (ms,95%): 2.18
+[ 85s ] thds: 4 eps: 1890.00 lat (ms,95%): 2.18
+[ 90s ] thds: 4 eps: 1882.57 lat (ms,95%): 2.18
+[ 95s ] thds: 4 eps: 1885.19 lat (ms,95%): 2.18
+[ 100s ] thds: 4 eps: 1887.44 lat (ms,95%): 2.18
+[ 105s ] thds: 4 eps: 1887.96 lat (ms,95%): 2.22
+[ 110s ] thds: 4 eps: 1900.22 lat (ms,95%): 2.11
+[ 115s ] thds: 4 eps: 1900.63 lat (ms,95%): 2.11
+[ 120s ] thds: 4 eps: 1899.37 lat (ms,95%): 2.11
+[ 125s ] thds: 4 eps: 1899.43 lat (ms,95%): 2.11
+[ 130s ] thds: 4 eps: 1900.57 lat (ms,95%): 2.11
+[ 135s ] thds: 4 eps: 1899.63 lat (ms,95%): 2.11
+[ 140s ] thds: 4 eps: 1890.40 lat (ms,95%): 2.14
+[ 145s ] thds: 4 eps: 1888.97 lat (ms,95%): 2.14
+[ 150s ] thds: 4 eps: 1890.03 lat (ms,95%): 2.14
+[ 155s ] thds: 4 eps: 1888.75 lat (ms,95%): 2.14
+[ 160s ] thds: 4 eps: 1881.03 lat (ms,95%): 2.18
+[ 165s ] thds: 4 eps: 1872.42 lat (ms,95%): 2.22
+[ 170s ] thds: 4 eps: 1891.56 lat (ms,95%): 2.14
+[ 175s ] thds: 4 eps: 1894.24 lat (ms,95%): 2.14
+[ 180s ] thds: 4 eps: 1885.00 lat (ms,95%): 2.14
+[ 185s ] thds: 4 eps: 1881.78 lat (ms,95%): 2.18
+[ 190s ] thds: 4 eps: 1887.03 lat (ms,95%): 2.18
+[ 195s ] thds: 4 eps: 1893.75 lat (ms,95%): 2.14
+[ 200s ] thds: 4 eps: 1880.82 lat (ms,95%): 2.18
+[ 205s ] thds: 4 eps: 1881.02 lat (ms,95%): 2.18
+[ 210s ] thds: 4 eps: 1880.18 lat (ms,95%): 2.18
+[ 215s ] thds: 4 eps: 1885.42 lat (ms,95%): 2.18
+[ 220s ] thds: 4 eps: 1884.61 lat (ms,95%): 2.18
+[ 225s ] thds: 4 eps: 1877.78 lat (ms,95%): 2.18
+[ 230s ] thds: 4 eps: 1886.03 lat (ms,95%): 2.18
+[ 235s ] thds: 4 eps: 1884.35 lat (ms,95%): 2.18
+[ 240s ] thds: 4 eps: 1878.80 lat (ms,95%): 2.18
+[ 245s ] thds: 4 eps: 1882.45 lat (ms,95%): 2.18
+[ 250s ] thds: 4 eps: 1887.37 lat (ms,95%): 2.18
+[ 255s ] thds: 4 eps: 1885.63 lat (ms,95%): 2.18
+[ 260s ] thds: 4 eps: 1868.20 lat (ms,95%): 2.22
+[ 265s ] thds: 4 eps: 1880.80 lat (ms,95%): 2.18
+[ 270s ] thds: 4 eps: 1889.17 lat (ms,95%): 2.14
+[ 275s ] thds: 4 eps: 1889.43 lat (ms,95%): 2.14
+[ 280s ] thds: 4 eps: 1882.40 lat (ms,95%): 2.18
+[ 285s ] thds: 4 eps: 1883.20 lat (ms,95%): 2.18
+[ 290s ] thds: 4 eps: 1888.77 lat (ms,95%): 2.18
+[ 295s ] thds: 4 eps: 1892.03 lat (ms,95%): 2.14
+CPU speed:
+    events per second:  1887.48
+
+General statistics:
+    total time:                          300.0026s
+    total number of events:              566252
+
+Latency (ms):
+         min:                                    2.09
+         avg:                                    2.12
+         max:                                   11.87
+         95th percentile:                        2.18
+         sum:                              1199797.83
+
+Threads fairness:
+    events (avg/stddev):           141563.0000/288.19
+    execution time (avg/stddev):   299.9495/0.00
+
+=========================================
+=== T012 COMPLETE ===
+=========================================

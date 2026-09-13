@@ -1,0 +1,51 @@
+=========================================
+=== CBP-1.0 / T050: POSTGRESQL ENVIRONMENT CAPTURE ===
+=== Timestamp (UTC): 2026-09-13 12:02:10 UTC ===
+=========================================
+
+--- Versions ---
+psql (PostgreSQL) 18.6 (Ubuntu 18.6-1.pgdg24.04+2)
+pgbench (PostgreSQL) 18.6 (Ubuntu 18.6-1.pgdg24.04+2)
+
+--- Service Status ---
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; preset: enabled)
+     Active: active (exited) since Sun 2026-09-13 11:48:35 UTC; 13min ago
+   Main PID: 4969 (code=exited, status=0/SUCCESS)
+        CPU: 848us
+
+Sep 13 11:48:35 vultr systemd[1]: Starting postgresql.service - PostgreSQL RDBMS...
+Sep 13 11:48:35 vultr systemd[1]: Finished postgresql.service - PostgreSQL RDBMS.
+
+--- PostgreSQL Engine Version ---
+PostgreSQL 18.6 (Ubuntu 18.6-1.pgdg24.04+2) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit
+
+--- Data Directory & Mount ---
+Data Directory: /var/lib/postgresql/18/main
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/vda2      ext4  169G   13G  149G   8% /
+
+--- Key PostgreSQL Performance Settings (Out-of-the-Box Defaults) ---
+              name               | setting | unit |       source       
+---------------------------------+---------+------+--------------------
+ checkpoint_completion_target    | 0.9     |      | default
+ effective_cache_size            | 524288  | 8kB  | default
+ fsync                           | on      |      | default
+ maintenance_work_mem            | 65536   | kB   | default
+ max_connections                 | 100     |      | configuration file
+ max_parallel_workers            | 8       |      | default
+ max_parallel_workers_per_gather | 2       |      | default
+ max_wal_size                    | 1024    | MB   | configuration file
+ max_worker_processes            | 8       |      | default
+ min_wal_size                    | 80      | MB   | configuration file
+ shared_buffers                  | 16384   | 8kB  | configuration file
+ synchronous_commit              | on      |      | default
+ wal_buffers                     | 512     | 8kB  | default
+ work_mem                        | 4096    | kB   | default
+(14 rows)
+
+CREATE DATABASE
+
+=========================================
+=== T050 COMPLETE ===
+=========================================

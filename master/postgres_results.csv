@@ -4,3 +4,13 @@ LEGACY-GCP-001,T052,mixed_tpc_b,10,4,4,180,397.1,180.6,22.0,0,legacy_gcp_baselin
 LEGACY-GCP-001,T052,mixed_tpc_b,10,8,8,180,435.6,191.0,43.0,0,legacy_gcp_baseline
 LEGACY-GCP-001,T052,mixed_tpc_b,10,16,16,180,413.8,180.1,93.5,0,legacy_gcp_baseline
 LEGACY-GCP-001,T053,select_only,10,1,1,120,2030.0,746.6,1.35,0,legacy_gcp_baseline
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T052,mixed_tpc_b,10,1,1,180,2326.355556,2360.4,0.42,0,T052_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T052,mixed_tpc_b,10,4,4,180,6007.56094,5976.0,0.67,0,T052_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T052,mixed_tpc_b,10,8,4,180,8190.970216,8279.7,0.97,0,T052_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T052,mixed_tpc_b,10,16,4,180,7753.427222,7788.8,2.05,0,T052_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T052,mixed_tpc_b,10,32,4,180,6900.151128,6933.0,4.62,0,T052_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T053,select_only,10,1,1,120,20714.027131,20778.7,0.05,0,T053_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T053,select_only,10,4,4,120,86652.683141,86816.8,0.04,0,T053_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T053,select_only,10,8,4,120,69418.1938,69477.1,0.11,0,T053_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T053,select_only,10,16,4,120,63172.519435,63268.7,0.25,0,T053_raw.log
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T053,select_only,10,32,4,120,64720.038781,64260.1,0.5,0,T053_raw.log

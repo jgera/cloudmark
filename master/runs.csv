@@ -1,3 +1,3 @@
 run_id,machine_id,protocol_version,profile,start_utc,end_utc,os_distro,os_version,kernel_version,pg_version,notes
 LEGACY-GCP-001,gcp-uswest1a-e2micro-01,CBP-0,exploratory,unknown,unknown,unknown,unknown,unknown,18,Historical baseline from early exploratory test
-2026-09-13_vultr_delhi_hp-4c8g-intel_run01,vultr-delhi-vhp-4c-8gb-intel-01,CBP-1.0,standard,2026-09-13 11:32:43 UTC,,Ubuntu 24.04.4 LTS,24.04 LTS,6.8.0-138-generic,18,In progress
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,vultr-delhi-vhp-4c-8gb-intel-01,CBP-1.0,standard,2026-09-13 11:32:43 UTC,2026-09-13 12:28:05 UTC,Ubuntu 24.04.4 LTS,24.04 LTS,6.8.0-138-generic,18,Complete; instance destroyed

@@ -1,1 +1,2 @@
 run_id,test_id,endpoint_desc,client_location,direction,bitrate_mbps,retransmits,min_rtt_ms,avg_rtt_ms,max_rtt_ms,packet_loss_pct,raw_file
+2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T041,ping_to_139.84.169.177,North India,bidirectional_rtt,N/A,0,9.0,11.0,31.0,0.0,T041_raw.log
