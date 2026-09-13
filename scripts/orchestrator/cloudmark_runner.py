@@ -114,7 +114,7 @@ def execute_remote(host_ip, script_path, raw_log_path, ssh_key=None):
     )
 
     with open(raw_log_path, "w", encoding="utf-8") as raw_f:
-        proc.stdin.write(script_content)
+        proc.stdin.write(script_content.replace('\r\n', '\n'))
         proc.stdin.close()
 
         for line in proc.stdout:

@@ -116,7 +116,8 @@ switch ($Action) {
             $sshArgs = @("-i", $SshKeyPath) + $sshArgs
         }
 
-        Get-Content $ScriptPath -Raw | & ssh.exe @sshArgs 2>&1 | Tee-Object -FilePath $rawOutputFile
+        $script = (Get-Content $ScriptPath -Raw) -replace "\r\n", "`n"
+        $script | & ssh.exe @sshArgs 2>&1 | Tee-Object -FilePath $rawOutputFile
         Write-Host "`nTest $TestId execution finished. Log preserved at $rawOutputFile."
     }
 }

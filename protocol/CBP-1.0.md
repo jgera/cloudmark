@@ -1251,96 +1251,14 @@ First characterize the machine so that every later result has trustworthy infras
 
 ---
 
-# 19. Copy-Paste Handoff Prompt for the Next Agent
+# 19. Provenance & Baseline Documentation
 
-Use the following when handing this project to a new AI agent:
+### 19.1 Existing GCP Measurements
+The baseline values in `LEGACY-GCP-001` were extracted from the prior exploratory benchmark on GCP `e2-micro` (PostgreSQL 18, scale 10). They are intentionally preserved in `runs/LEGACY-GCP-001/` for historical continuity, sanity checking, and order-of-magnitude comparisons under protocol classification `CBP-0`.
 
-> You are taking over the CloudMark cross-provider benchmarking project.
-> 
-> Read this handoff document completely before issuing commands.
-> 
-> The project is building a provider-neutral infrastructure benchmark dataset for engineering comparison now and potential academic analysis later.
-> 
-> The current standardized methodology is **CBP-1.0**.
-> 
-> Important operating rules:
-> 
-> - work ONE TEST AT A TIME;
-> - preserve exact raw output;
-> - keep raw and derived data separate;
-> - do not optimize/tune the machine before establishing its default baseline;
-> - distinguish burst performance from sustained performance;
-> - do not silently change benchmark definitions between providers;
-> - record exact provider, region, plan, CPU, RAM, storage, OS, kernel, PostgreSQL version, time, and price;
-> - flag anomalies rather than deleting them;
-> - never overwrite old runs;
-> - do not treat `LEGACY-GCP-001` as equivalent to CBP-1.0 research-grade data;
-> - do not infer user capacity directly from generic benchmark TPS.
-> 
-> Existing historical baseline:
-> 
-> - GCP `e2-micro`
-> - PostgreSQL 18
-> - pgbench scale 10
-> - sustained mixed TPS approximately:
->   - c1: 90
->   - c4: 181
->   - c8: 191
->   - c16: 180
-> - SELECT-only c1 sustained: approximately 747 TPS
-> - all observed benchmark transactions: 0 failures
-> 
-> This baseline is `LEGACY-GCP-001 / CBP-0` and must be preserved only as a provisional historical baseline until GCP is rerun under CBP-1.0.
-> 
-> Current next target:
-> 
-> - Vultr
-> - Delhi NCR
-> - High Performance AMD class
-> - likely around 4 vCPU / 8 GB
-> - exact plan metadata must be captured after provisioning
-> 
-> Future targets include:
-> 
-> - standardized GCP e2-micro rerun;
-> - Oracle Cloud Always Free Ampere A1 ARM instance;
-> - Hetzner Singapore;
-> - comparable AWS/Azure instances;
-> - later dedicated/bare-metal systems.
-> 
-> Start with **CBP-1.0 / T001 — Machine and Environment Characterization** only.
-> 
-> Explain the purpose, provide only the commands for T001, tell me exactly what output to return/save, and then WAIT for my response.
+### 19.2 Oracle Free Tier Parameters
+Oracle Free Tier details in this document were checked against Oracle's official Always Free documentation on 2026-09-13:
+- `VM.Standard.A1.Flex` as ARM-based Ampere A1 (1,500 A1 OCPU-hours/month, 9,000 GB-hours/month, equivalent to 2 OCPUs + 12 GB RAM for an Always Free tenancy);
+- Up to two AMD `VM.Standard.E2.1.Micro` Always Free instances.
+These parameters serve as reference points for future ARM vs. x86 comparisons.
 
----
-
-# 20. Source/Provenance Notes
-
-## Existing GCP measurements
-
-The values in `LEGACY-GCP-001` were extracted from the prior benchmark conversation and the saved handoff titled:
-
-`Postgress benchmark on GCP Free instance.md`
-
-They are intentionally preserved as historical/provisional measurements.
-
-## Oracle Free Tier facts
-
-Oracle Free Tier details in this document were checked against Oracle's official Always Free documentation on 2026-09-13.
-
-At that time Oracle documented:
-
-- `VM.Standard.A1.Flex` as ARM-based Ampere A1;
-- 1,500 A1 OCPU-hours/month;
-- 9,000 GB-hours of memory/month;
-- equivalent to 2 OCPUs + 12 GB RAM for an Always Free tenancy;
-- up to two AMD `VM.Standard.E2.1.Micro` Always Free instances;
-- a separate time-limited Oracle Free Trial offering.
-
-These details are time-sensitive and must be re-verified before the Oracle benchmark is executed.
-
----
-
-## End of Handoff
-
-**Immediate next step:** provision Vultr Delhi candidate → record billing/plan metadata → run CBP-1.0 T001 only.
