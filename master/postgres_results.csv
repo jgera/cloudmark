@@ -1,0 +1,6 @@
+run_id,test_id,workload_type,scale,clients,threads,duration_sec,whole_run_tps,sustained_tps,sustained_latency_ms,failed_txns,raw_file
+LEGACY-GCP-001,T052,mixed_tpc_b,10,1,1,300,128.9,90.3,11.0,0,legacy_gcp_baseline
+LEGACY-GCP-001,T052,mixed_tpc_b,10,4,4,180,397.1,180.6,22.0,0,legacy_gcp_baseline
+LEGACY-GCP-001,T052,mixed_tpc_b,10,8,8,180,435.6,191.0,43.0,0,legacy_gcp_baseline
+LEGACY-GCP-001,T052,mixed_tpc_b,10,16,16,180,413.8,180.1,93.5,0,legacy_gcp_baseline
+LEGACY-GCP-001,T053,select_only,10,1,1,120,2030.0,746.6,1.35,0,legacy_gcp_baseline

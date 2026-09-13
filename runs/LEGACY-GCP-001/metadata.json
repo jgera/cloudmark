@@ -1,0 +1,31 @@
+{
+  "run_id": "LEGACY-GCP-001",
+  "machine_id": "gcp-uswest1a-e2micro-01",
+  "protocol_version": "CBP-0",
+  "status": "historical_provisional",
+  "provider": "Google Cloud Platform",
+  "region": "us-west1",
+  "zone": "us-west1-a",
+  "instance_family": "e2",
+  "exact_plan_or_shape": "e2-micro",
+  "exposed_vcpu_count": 2,
+  "provider_cpu_classification": "shared_core",
+  "cpu_model": "Intel Xeon / AMD EPYC (variable shared)",
+  "cpu_architecture": "x86_64",
+  "virtualization_type": "KVM",
+  "ram_gb": 1.0,
+  "root_disk_type": "pd-standard",
+  "root_disk_size_gb": 30,
+  "os_distribution": "unknown",
+  "os_version": "unknown",
+  "kernel_version": "unknown",
+  "pg_version": "18",
+  "pricing": {
+    "currency": "USD",
+    "hourly": 0.0,
+    "monthly_equivalent": 0.0,
+    "promotional_or_free_tier": true,
+    "notes": "Google Cloud Always Free Tier allocation"
+  },
+  "notes": "Provisional exploratory baseline. Valid for engineering ballpark; not formal CBP-1.0 statistical comparison."
+}

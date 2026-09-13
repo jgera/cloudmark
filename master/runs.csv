@@ -1,0 +1,2 @@
+run_id,machine_id,protocol_version,profile,start_utc,end_utc,os_distro,os_version,kernel_version,pg_version,notes
+LEGACY-GCP-001,gcp-uswest1a-e2micro-01,CBP-0,exploratory,unknown,unknown,unknown,unknown,unknown,18,Historical baseline from early exploratory test
