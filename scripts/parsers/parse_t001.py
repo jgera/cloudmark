@@ -82,25 +82,34 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
         except Exception as e:
             print(f"Warning: Could not update metadata.json: {e}")
 
-    # 2. Append to master/machines.csv if machine_id not present
+    # 2. Update or append to master/machines.csv
     master_csv = Path("d:/Projects/CloudMark/master/machines.csv")
-    existing_ids = set()
+    new_row = [
+        parsed["machine_id"], parsed["provider"], parsed["region"],
+        parsed["zone"], parsed["plan_name"], parsed["instance_family"],
+        parsed["cpu_arch"], parsed["cpu_model"], parsed["exposed_vcpu"],
+        parsed["ram_gb"], parsed["root_disk_type"], parsed["root_disk_size_gb"],
+        parsed["virt_type"]
+    ]
     if master_csv.exists():
+        rows = []
+        found = False
         with open(master_csv, mode="r", newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
+            reader = csv.reader(f)
+            header = next(reader, None)
+            if header:
+                rows.append(header)
             for row in reader:
-                existing_ids.add(row.get("machine_id"))
-
-    if machine_id not in existing_ids:
-        with open(master_csv, mode="a", newline="", encoding="utf-8") as f:
+                if row and row[0] == machine_id:
+                    rows.append(new_row)
+                    found = True
+                elif row:
+                    rows.append(row)
+        if not found:
+            rows.append(new_row)
+        with open(master_csv, mode="w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow([
-                parsed["machine_id"], parsed["provider"], parsed["region"],
-                parsed["zone"], parsed["plan_name"], parsed["instance_family"],
-                parsed["cpu_arch"], parsed["cpu_model"], parsed["exposed_vcpu"],
-                parsed["ram_gb"], parsed["root_disk_type"], parsed["root_disk_size_gb"],
-                parsed["virt_type"]
-            ])
+            writer.writerows(rows)
 
     # 3. Update OS / Kernel in master/runs.csv
     runs_csv = Path("d:/Projects/CloudMark/master/runs.csv")

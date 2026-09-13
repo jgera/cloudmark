@@ -18,6 +18,14 @@ import csv
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Fix Windows console UTF-8 encoding for unicode characters (e.g. lsblk box drawing)
+if sys.stdout.encoding != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 BASE_DIR = Path("d:/Projects/CloudMark")
 RUNS_DIR = BASE_DIR / "runs"
 SCRIPTS_DIR = BASE_DIR / "scripts" / "benchmark"
@@ -114,8 +122,10 @@ def execute_remote(host_ip, script_path, raw_log_path, ssh_key=None):
     )
 
     with open(raw_log_path, "w", encoding="utf-8") as raw_f:
-        proc.stdin.write(script_content.replace('\r\n', '\n'))
-        proc.stdin.close()
+        clean_content = script_content.replace('\r\n', '\n').encode('utf-8')
+        proc.stdin.buffer.write(clean_content)
+        proc.stdin.buffer.flush()
+        proc.stdin.buffer.close()
 
         for line in proc.stdout:
             sys.stdout.write(line)
