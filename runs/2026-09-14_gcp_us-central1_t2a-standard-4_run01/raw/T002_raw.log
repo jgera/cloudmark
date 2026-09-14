@@ -1,0 +1,100 @@
+=========================================
+=== CBP-1.0 / T002: IDLE-SYSTEM BASELINE ===
+=== Timestamp (UTC): 2026-09-14 07:09:19 UTC ===
+=========================================
+
+--- UPTIME & LOAD AVERAGE ---
+ 07:09:19 up 2 min,  0 user,  load average: 0.19, 0.13, 0.05
+
+--- MEMORY & SWAP (free -h) ---
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       445Mi        14Gi        13Mi       990Mi        15Gi
+Swap:             0B          0B          0B
+
+--- VMSTAT SAMPLING (1s x 10 intervals) ---
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 2  0      0 15124608  36104 977880    0    0   890  2583  329  489  4  2 93  1  0
+ 1  0      0 15124608  36104 977880    0    0     0  1192  260  232  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0  139  161  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0   45   42  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0   44   42  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0    52  313  382  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0  104  127  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0  188  259  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0  240  300  0  0 100  0  0
+ 1  0      0 15124608  36104 977880    0    0     0     0   35   36  0  0 100  0  0
+
+--- IOSTAT SAMPLING (1s x 10 intervals) ---
+Linux 6.1.0-53-cloud-arm64 (cm-test-t2astandard4) 	09/14/26 	_aarch64_	(4 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.52    0.00    1.98    1.38    0.00   93.13
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+nvme0n1         91.35   3322.00    12.26  11.83    0.50    36.36  160.03   9645.85   151.38  48.61    5.15    60.27    3.82   3726.36     0.00   0.00    0.45   974.71   52.35    0.02    0.87   5.42
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+nvme0n1          0.00      0.00     0.00   0.00    0.00     0.00    6.00     80.00    14.00  70.00    0.83    13.33    0.00      0.00     0.00   0.00    0.00     0.00    1.00    1.00    0.01   0.00
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+nvme0n1          0.00      0.00     0.00   0.00    0.00     0.00    3.00     72.00     0.00   0.00    0.67    24.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+nvme0n1          0.00      0.00     0.00   0.00    0.00     0.00    2.00    188.00     0.00   0.00    1.50    94.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.00   0.00
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+nvme0n1          0.00      0.00     0.00   0.00    0.00     0.00   11.00     44.00     0.00   0.00    0.73     4.00    0.00      0.00     0.00   0.00    0.00     0.00    0.00    0.00    0.01   0.00
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.25    0.00    0.25    0.25    0.00   99.26
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+nvme0n1          0.00      0.00     0.00   0.00    0.00     0.00    2.00     36.00     7.00  77.78    1.00    18.00    0.00      0.00     0.00   0.00    0.00     0.00    1.00    0.00    0.00   0.00
+
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.00    0.00    0.00    0.00    0.00  100.00
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz     d/s     dkB/s   drqm/s  %drqm d_await dareq-sz     f/s f_await  aqu-sz  %util
+
+
+
+=========================================
+=== T002 IDLE BASELINE COMPLETE ===
+=========================================

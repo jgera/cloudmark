@@ -1,0 +1,125 @@
+=========================================
+=== CBP-1.0 / T001: SYSTEM CHARACTERIZATION ===
+=== Timestamp (UTC): 2026-09-14 07:08:53 UTC ===
+=========================================
+
+--- UNAME ---
+Linux cm-test-t2astandard4 6.1.0-53-cloud-arm64 #1 SMP Debian 6.1.187-1 (2026-09-07) aarch64 GNU/Linux
+
+--- OS RELEASE ---
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+--- CPU ARCHITECTURE & DETAILS (lscpu) ---
+Architecture:                            aarch64
+CPU op-mode(s):                          64-bit
+Byte Order:                              Little Endian
+CPU(s):                                  4
+On-line CPU(s) list:                     0-3
+Vendor ID:                               ARM
+Model name:                              Neoverse-N1
+Model:                                   1
+Thread(s) per core:                      1
+Core(s) per socket:                      4
+Socket(s):                               1
+Stepping:                                r3p1
+BogoMIPS:                                50.00
+Flags:                                   fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+L1d cache:                               256 KiB (4 instances)
+L1i cache:                               256 KiB (4 instances)
+L2 cache:                                4 MiB (4 instances)
+L3 cache:                                32 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-3
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; CSV2, BHB
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+
+--- DETECTED CORES (nproc) ---
+4
+
+--- MEMORY (free -h) ---
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       450Mi        14Gi        12Mi       988Mi        15Gi
+Swap:             0B          0B          0B
+
+--- MEMORY DETAILED (cat /proc/meminfo) ---
+MemTotal:       16362420 kB
+MemFree:        15119848 kB
+MemAvailable:   15900764 kB
+Buffers:           35944 kB
+Cached:           922088 kB
+SwapCached:            0 kB
+Active:           156076 kB
+Inactive:         937096 kB
+Active(anon):       1104 kB
+Inactive(anon):   147264 kB
+Active(file):     154972 kB
+Inactive(file):   789832 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:              1232 kB
+Writeback:             0 kB
+AnonPages:        134064 kB
+Mapped:           161944 kB
+Shmem:             13032 kB
+KReclaimable:      54088 kB
+Slab:              78752 kB
+SReclaimable:      54088 kB
+SUnreclaim:        24664 kB
+
+--- BLOCK DEVICES (lsblk) ---
+NAME          SIZE TYPE FSTYPE MOUNTPOINTS ROTA MODEL        DISC-MAX DISC-ZERO
+nvme0n1        50G disk                       0 nvme_card-pd       2T         0
+├─nvme0n1p1  49.9G part ext4   /              0                    2T         0
+└─nvme0n1p15  127M part vfat   /boot/efi      0                    2T         0
+
+--- FILESYSTEM DISK USAGE (df -hT) ---
+Filesystem      Type      Size  Used Avail Use% Mounted on
+udev            devtmpfs  7.8G     0  7.8G   0% /dev
+tmpfs           tmpfs     1.6G  484K  1.6G   1% /run
+/dev/nvme0n1p1  ext4       49G  2.3G   45G   5% /
+tmpfs           tmpfs     7.9G  1.1M  7.9G   1% /dev/shm
+tmpfs           tmpfs     5.0M     0  5.0M   0% /run/lock
+efivarfs        efivarfs  256K   17K  240K   7% /sys/firmware/efi/efivars
+/dev/nvme0n1p15 vfat      127M   13M  115M  10% /boot/efi
+tmpfs           tmpfs     1.6G     0  1.6G   0% /run/user/1001
+
+--- MOUNT DETAILS ---
+/dev/nvme0n1p1 on / type ext4 (rw,relatime,discard,errors=remount-ro)
+/dev/nvme0n1p15 on /boot/efi type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+--- VIRTUALIZATION DETECTION ---
+google
+
+--- DMI SYSTEM INFO (dmidecode proxy if readable) ---
+Product Name: Google Compute Engine
+Sys Vendor:   Google
+BIOS Version: Google
+
+=========================================
+=== T001 CHARACTERIZATION COMPLETE ===
+=========================================

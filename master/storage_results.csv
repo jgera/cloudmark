@@ -14,3 +14,18 @@ run_id,test_id,io_pattern,block_size,queue_depth,read_iops,write_iops,read_mb_s,
 2026-09-14_gcp_uswest1_e2-micro_run01,T032,"Random Read (4K, iodepth=32, numjobs=4)",4k,32,152.0,0.0,0.6,0.0,0.047,T032_raw.log
 2026-09-14_gcp_uswest1_e2-micro_run01,T032,"Random Write (4K, iodepth=32, numjobs=4)",4k,32,0.0,304.0,0.0,1.19,0.892,T032_raw.log
 2026-09-14_gcp_uswest1_e2-micro_run01,T032,"Mixed Random 70/30 (4K, iodepth=32, numjobs=4)",4k,32,124.0,55.0,0.49,0.21,4.39,T032_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T031,"Sequential Write (1MB, iodepth=16, direct=1)",1M,16,0.0,240.0,0.0,240.0,0.231,T031_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T031,"Sequential Read (1MB, iodepth=16, direct=1)",1M,16,240.0,0.0,240.0,0.0,0.074,T031_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T032,"Random Read (4K, iodepth=32, numjobs=4)",4k,32,7718.0,0.0,30.1,0.0,0.028,T032_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T032,"Random Write (4K, iodepth=32, numjobs=4)",4k,32,0.0,7542.0,0.0,29.5,0.023,T032_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T032,"Mixed Random 70/30 (4K, iodepth=32, numjobs=4)",4k,32,5275.0,2268.0,20.6,8.86,0.027,T032_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T031,"Sequential Write (1MB, iodepth=16, direct=1)",1M,16,0.0,240.0,0.0,240.0,0.135,T031_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T031,"Sequential Read (1MB, iodepth=16, direct=1)",1M,16,240.0,0.0,240.0,0.0,0.019,T031_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T032,"Random Read (4K, iodepth=32, numjobs=4)",4k,32,4115.0,0.0,16.1,0.0,31.089,T032_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T032,"Random Write (4K, iodepth=32, numjobs=4)",4k,32,0.0,4021.0,0.0,15.7,0.012,T032_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T032,"Mixed Random 70/30 (4K, iodepth=32, numjobs=4)",4k,32,2809.0,1211.0,11.0,4.73,31.84,T032_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T031,"Sequential Write (1MB, iodepth=16, direct=1)",1M,16,0.0,240.0,0.0,240.0,0.124,T031_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T031,"Sequential Read (1MB, iodepth=16, direct=1)",1M,16,240.0,0.0,240.0,0.0,0.043,T031_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T032,"Random Read (4K, iodepth=32, numjobs=4)",4k,32,7714.0,0.0,30.1,0.0,16.58,T032_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T032,"Random Write (4K, iodepth=32, numjobs=4)",4k,32,0.0,7537.0,0.0,29.4,16.97,T032_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T032,"Mixed Random 70/30 (4K, iodepth=32, numjobs=4)",4k,32,5271.0,2266.0,20.6,8.85,16.974,T032_raw.log

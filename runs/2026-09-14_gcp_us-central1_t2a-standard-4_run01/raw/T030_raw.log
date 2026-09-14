@@ -1,0 +1,36 @@
+=========================================
+=== CBP-1.0 / T030: STORAGE IDENTIFICATION ===
+=== Timestamp (UTC): 2026-09-14 07:18:48 UTC ===
+=========================================
+
+--- Block Device Hierarchy (lsblk) ---
+NAME          SIZE TYPE FSTYPE MOUNTPOINTS ROTA MODEL        DISC-MAX DISC-ZERO
+nvme0n1        50G disk                       0 nvme_card-pd       2T         0
+├─nvme0n1p1  49.9G part ext4   /              0                    2T         0
+└─nvme0n1p15  127M part vfat   /boot/efi      0                    2T         0
+
+--- Mount Options ---
+/dev/nvme0n1p1 on / type ext4 (rw,relatime,discard,errors=remount-ro)
+/dev/nvme0n1p15 on /boot/efi type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+--- Disk Free (df -hT) ---
+Filesystem      Type      Size  Used Avail Use% Mounted on
+udev            devtmpfs  7.8G     0  7.8G   0% /dev
+tmpfs           tmpfs     1.6G  484K  1.6G   1% /run
+/dev/nvme0n1p1  ext4       49G  2.3G   45G   5% /
+tmpfs           tmpfs     7.9G  1.1M  7.9G   1% /dev/shm
+tmpfs           tmpfs     5.0M     0  5.0M   0% /run/lock
+efivarfs        efivarfs  256K   17K  240K   7% /sys/firmware/efi/efivars
+/dev/nvme0n1p15 vfat      127M   13M  115M  10% /boot/efi
+tmpfs           tmpfs     1.6G     0  1.6G   0% /run/user/1001
+
+--- Sysfs Disk Queue & Scheduler ---
+Device: nvme0n1
+  scheduler: [none] mq-deadline 
+  nr_requests: 1023
+  rotational (0=SSD/NVMe, 1=HDD): 0
+  read_ahead_kb: 128
+
+=========================================
+=== T030 COMPLETE ===
+=========================================

@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-14_gcp_us-central1_t2a-standard-4_run01",
+  "machine_id": "google cloud platform-us-central1-t2a-standard-4-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Google Cloud Platform",
+  "region": "us-central1",
+  "plan_name": "t2a-standard-4",
+  "created_utc": "2026-09-14 07:06:54 UTC",
+  "pricing": {
+    "monthly_usd": 119.38,
+    "promotional_credit": false,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "t2a",
+  "cpu_arch": "aarch64",
+  "cpu_model": "Neoverse-N1",
+  "exposed_vcpu": 4,
+  "ram_gb": 15.6,
+  "root_disk_type": "NVMe",
+  "root_disk_size_gb": "50G",
+  "virt_type": "google",
+  "kernel_version": "6.1.0-53-cloud-arm64",
+  "os_distro": "Debian GNU/Linux 12 (bookworm)"
+}

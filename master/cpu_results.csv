@@ -8,3 +8,12 @@ run_id,test_id,tool,thread_count,events_per_sec,mean_latency_ms,p95_latency_ms,s
 2026-09-14_gcp_uswest1_e2-micro_run01,T010,sysbench_cpu,1,190.82,5.22,3.19,N/A,T010_raw.log
 2026-09-14_gcp_uswest1_e2-micro_run01,T011,sysbench_cpu,2,117.83,16.97,223.34,0.3087,T011_raw.log
 2026-09-14_gcp_uswest1_e2-micro_run01,T012,sysbench_cpu,2,75.75,26.4,223.34,"Burst/Sust=2.4, CV=83.5%",T012_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T010,sysbench_cpu,1,335.92,2.98,3.3,N/A,T010_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T011,sysbench_cpu,4,1114.29,3.59,3.96,0.8293,T011_raw.log
+2026-09-14_gcp_us-west1_e2-standard-4_run01,T012,sysbench_cpu,4,1102.99,3.62,4.1,"Burst/Sust=0.97, CV=2.35%",T012_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T010,sysbench_cpu,1,488.53,2.05,2.07,N/A,T010_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T011,sysbench_cpu,4,1654.07,2.42,2.43,0.8465,T011_raw.log
+2026-09-14_gcp_us-central1_c2-standard-4_run01,T012,sysbench_cpu,4,1654.07,2.42,2.43,"Burst/Sust=1.0, CV=0.04%",T012_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T010,sysbench_cpu,1,1292.32,0.77,0.78,N/A,T010_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T011,sysbench_cpu,4,5172.01,0.77,0.78,1.0005,T011_raw.log
+2026-09-14_gcp_us-central1_t2a-standard-4_run01,T012,sysbench_cpu,4,5171.62,0.77,0.78,"Burst/Sust=1.0, CV=0.05%",T012_raw.log

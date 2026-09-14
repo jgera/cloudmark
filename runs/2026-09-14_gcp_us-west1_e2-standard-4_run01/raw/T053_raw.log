@@ -1,0 +1,238 @@
+=========================================
+=== CBP-1.0 / T053: SELECT-ONLY SCALING (Scale 10) ===
+=== Duration per test: 120s, Interval: 5s ===
+=== Timestamp (UTC): 2026-09-14 06:02:21 UTC ===
+=========================================
+
+------------------------------------------------------------
+=== Running SELECT-Only: Clients=1, Threads=1, Duration=120s ===
+------------------------------------------------------------
+pgbench (15.19 (Debian 15.19-0+deb12u1))
+starting vacuum...end.
+progress: 5.0 s, 6625.0 tps, lat 0.150 ms stddev 0.089, 0 failed
+progress: 10.0 s, 7956.1 tps, lat 0.125 ms stddev 0.069, 0 failed
+progress: 15.0 s, 8403.0 tps, lat 0.118 ms stddev 0.071, 0 failed
+progress: 20.0 s, 10339.8 tps, lat 0.096 ms stddev 0.052, 0 failed
+progress: 25.0 s, 9870.8 tps, lat 0.101 ms stddev 0.052, 0 failed
+progress: 30.0 s, 7930.0 tps, lat 0.126 ms stddev 0.048, 0 failed
+progress: 35.0 s, 7488.9 tps, lat 0.133 ms stddev 0.043, 0 failed
+progress: 40.0 s, 8748.0 tps, lat 0.114 ms stddev 0.048, 0 failed
+progress: 45.0 s, 9089.6 tps, lat 0.110 ms stddev 0.049, 0 failed
+progress: 50.0 s, 8708.4 tps, lat 0.114 ms stddev 0.054, 0 failed
+progress: 55.0 s, 9163.7 tps, lat 0.109 ms stddev 0.056, 0 failed
+progress: 60.0 s, 8036.7 tps, lat 0.124 ms stddev 0.045, 0 failed
+progress: 65.0 s, 9876.6 tps, lat 0.101 ms stddev 0.057, 0 failed
+progress: 70.0 s, 10772.4 tps, lat 0.092 ms stddev 0.044, 0 failed
+progress: 75.0 s, 11403.6 tps, lat 0.087 ms stddev 0.038, 0 failed
+progress: 80.0 s, 11154.7 tps, lat 0.089 ms stddev 0.040, 0 failed
+progress: 85.0 s, 8695.3 tps, lat 0.115 ms stddev 0.045, 0 failed
+progress: 90.0 s, 7982.9 tps, lat 0.125 ms stddev 0.043, 0 failed
+progress: 95.0 s, 8591.5 tps, lat 0.116 ms stddev 0.045, 0 failed
+progress: 100.0 s, 10967.0 tps, lat 0.091 ms stddev 0.045, 0 failed
+progress: 105.0 s, 10563.5 tps, lat 0.094 ms stddev 0.047, 0 failed
+progress: 110.0 s, 8390.0 tps, lat 0.119 ms stddev 0.046, 0 failed
+progress: 115.0 s, 9089.6 tps, lat 0.110 ms stddev 0.056, 0 failed
+transaction type: <builtin: select only>
+scaling factor: 10
+query mode: simple
+number of clients: 1
+number of threads: 1
+maximum number of tries: 1
+duration: 120 s
+number of transactions actually processed: 1100057
+number of failed transactions: 0 (0.000%)
+latency average = 0.109 ms
+latency stddev = 0.054 ms
+initial connection time = 4.413 ms
+tps = 9167.465813 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0  \set aid random(1, 100000 * :scale)
+         0.108           0  SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+progress: 120.0 s, 10164.0 tps, lat 0.098 ms stddev 0.055, 0 failed
+
+------------------------------------------------------------
+=== Running SELECT-Only: Clients=4, Threads=4, Duration=120s ===
+------------------------------------------------------------
+pgbench (15.19 (Debian 15.19-0+deb12u1))
+starting vacuum...end.
+progress: 5.0 s, 31240.7 tps, lat 0.127 ms stddev 0.029, 0 failed
+progress: 10.0 s, 31348.7 tps, lat 0.127 ms stddev 0.032, 0 failed
+progress: 15.0 s, 31833.0 tps, lat 0.125 ms stddev 0.035, 0 failed
+progress: 20.0 s, 31206.7 tps, lat 0.128 ms stddev 0.040, 0 failed
+progress: 25.0 s, 31152.0 tps, lat 0.128 ms stddev 0.031, 0 failed
+progress: 30.0 s, 30911.4 tps, lat 0.129 ms stddev 0.031, 0 failed
+progress: 35.0 s, 31138.4 tps, lat 0.128 ms stddev 0.038, 0 failed
+progress: 40.0 s, 30642.8 tps, lat 0.130 ms stddev 0.048, 0 failed
+progress: 45.0 s, 31256.5 tps, lat 0.127 ms stddev 0.035, 0 failed
+progress: 50.0 s, 30637.7 tps, lat 0.130 ms stddev 0.049, 0 failed
+progress: 55.0 s, 31889.2 tps, lat 0.125 ms stddev 0.030, 0 failed
+progress: 60.0 s, 32101.7 tps, lat 0.124 ms stddev 0.025, 0 failed
+progress: 65.0 s, 32239.7 tps, lat 0.123 ms stddev 0.021, 0 failed
+progress: 70.0 s, 32166.2 tps, lat 0.124 ms stddev 0.020, 0 failed
+progress: 75.0 s, 32430.8 tps, lat 0.123 ms stddev 0.022, 0 failed
+progress: 80.0 s, 32200.6 tps, lat 0.124 ms stddev 0.023, 0 failed
+progress: 85.0 s, 31551.2 tps, lat 0.126 ms stddev 0.023, 0 failed
+progress: 90.0 s, 31630.9 tps, lat 0.126 ms stddev 0.027, 0 failed
+progress: 95.0 s, 32148.3 tps, lat 0.124 ms stddev 0.048, 0 failed
+progress: 100.0 s, 31909.5 tps, lat 0.125 ms stddev 0.030, 0 failed
+progress: 105.0 s, 32575.5 tps, lat 0.122 ms stddev 0.019, 0 failed
+progress: 110.0 s, 32412.0 tps, lat 0.123 ms stddev 0.023, 0 failed
+progress: 115.0 s, 32566.6 tps, lat 0.122 ms stddev 0.026, 0 failed
+transaction type: <builtin: select only>
+scaling factor: 10
+query mode: simple
+number of clients: 4
+number of threads: 4
+maximum number of tries: 1
+duration: 120 s
+number of transactions actually processed: 3805154
+number of failed transactions: 0 (0.000%)
+latency average = 0.126 ms
+latency stddev = 0.032 ms
+initial connection time = 9.223 ms
+tps = 31712.001673 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0  \set aid random(1, 100000 * :scale)
+         0.126           0  SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+
+------------------------------------------------------------
+=== Running SELECT-Only: Clients=8, Threads=4, Duration=120s ===
+------------------------------------------------------------
+pgbench (15.19 (Debian 15.19-0+deb12u1))
+starting vacuum...end.
+progress: 5.0 s, 28455.5 tps, lat 0.279 ms stddev 0.093, 0 failed
+progress: 10.0 s, 29066.9 tps, lat 0.274 ms stddev 0.095, 0 failed
+progress: 15.0 s, 28889.5 tps, lat 0.276 ms stddev 0.085, 0 failed
+progress: 20.0 s, 29969.3 tps, lat 0.266 ms stddev 0.057, 0 failed
+progress: 25.0 s, 30217.9 tps, lat 0.264 ms stddev 0.053, 0 failed
+progress: 30.0 s, 29848.5 tps, lat 0.267 ms stddev 0.055, 0 failed
+progress: 35.0 s, 29532.3 tps, lat 0.270 ms stddev 0.059, 0 failed
+progress: 40.0 s, 28948.8 tps, lat 0.276 ms stddev 0.075, 0 failed
+progress: 45.0 s, 29103.7 tps, lat 0.274 ms stddev 0.081, 0 failed
+progress: 50.0 s, 29460.3 tps, lat 0.271 ms stddev 0.062, 0 failed
+progress: 55.0 s, 29866.8 tps, lat 0.267 ms stddev 0.057, 0 failed
+progress: 60.0 s, 29713.6 tps, lat 0.269 ms stddev 0.084, 0 failed
+progress: 65.0 s, 29086.6 tps, lat 0.274 ms stddev 0.072, 0 failed
+progress: 70.0 s, 29423.3 tps, lat 0.271 ms stddev 0.071, 0 failed
+progress: 75.0 s, 29609.1 tps, lat 0.270 ms stddev 0.065, 0 failed
+progress: 80.0 s, 29702.8 tps, lat 0.269 ms stddev 0.057, 0 failed
+progress: 85.0 s, 29714.5 tps, lat 0.269 ms stddev 0.056, 0 failed
+progress: 90.0 s, 29609.4 tps, lat 0.270 ms stddev 0.069, 0 failed
+progress: 95.0 s, 29775.6 tps, lat 0.268 ms stddev 0.057, 0 failed
+progress: 100.0 s, 30443.3 tps, lat 0.262 ms stddev 0.049, 0 failed
+progress: 105.0 s, 30492.0 tps, lat 0.262 ms stddev 0.049, 0 failed
+progress: 110.0 s, 30063.7 tps, lat 0.265 ms stddev 0.058, 0 failed
+progress: 115.0 s, 30071.4 tps, lat 0.265 ms stddev 0.061, 0 failed
+progress: 120.0 s, 29875.8 tps, lat 0.267 ms stddev 0.081, 0 failed
+transaction type: <builtin: select only>
+scaling factor: 10
+query mode: simple
+number of clients: 8
+number of threads: 4
+maximum number of tries: 1
+duration: 120 s
+number of transactions actually processed: 3554706
+number of failed transactions: 0 (0.000%)
+latency average = 0.269 ms
+latency stddev = 0.068 ms
+initial connection time = 13.715 ms
+tps = 29623.375752 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0  \set aid random(1, 100000 * :scale)
+         0.272           0  SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+
+------------------------------------------------------------
+=== Running SELECT-Only: Clients=16, Threads=4, Duration=120s ===
+------------------------------------------------------------
+pgbench (15.19 (Debian 15.19-0+deb12u1))
+starting vacuum...end.
+progress: 5.0 s, 25888.7 tps, lat 0.613 ms stddev 0.305, 0 failed
+progress: 10.0 s, 27004.0 tps, lat 0.590 ms stddev 0.237, 0 failed
+progress: 15.0 s, 26659.9 tps, lat 0.598 ms stddev 0.267, 0 failed
+progress: 20.0 s, 26946.3 tps, lat 0.592 ms stddev 0.224, 0 failed
+progress: 25.0 s, 26752.3 tps, lat 0.596 ms stddev 0.269, 0 failed
+progress: 30.0 s, 27338.8 tps, lat 0.583 ms stddev 0.224, 0 failed
+progress: 35.0 s, 26417.4 tps, lat 0.604 ms stddev 0.279, 0 failed
+progress: 40.0 s, 26741.0 tps, lat 0.596 ms stddev 0.333, 0 failed
+progress: 45.0 s, 27427.8 tps, lat 0.582 ms stddev 0.232, 0 failed
+progress: 50.0 s, 27860.0 tps, lat 0.573 ms stddev 0.219, 0 failed
+progress: 55.0 s, 26939.4 tps, lat 0.592 ms stddev 0.250, 0 failed
+progress: 60.0 s, 27338.4 tps, lat 0.583 ms stddev 0.229, 0 failed
+progress: 65.0 s, 27218.3 tps, lat 0.586 ms stddev 0.230, 0 failed
+progress: 70.0 s, 27312.3 tps, lat 0.584 ms stddev 0.249, 0 failed
+progress: 75.0 s, 27793.0 tps, lat 0.574 ms stddev 0.195, 0 failed
+progress: 80.0 s, 28662.6 tps, lat 0.557 ms stddev 0.146, 0 failed
+progress: 85.0 s, 27560.8 tps, lat 0.579 ms stddev 0.258, 0 failed
+progress: 90.0 s, 28704.4 tps, lat 0.556 ms stddev 0.167, 0 failed
+progress: 95.0 s, 27663.6 tps, lat 0.576 ms stddev 0.226, 0 failed
+progress: 100.0 s, 27111.3 tps, lat 0.588 ms stddev 0.265, 0 failed
+progress: 105.0 s, 27138.0 tps, lat 0.588 ms stddev 0.249, 0 failed
+progress: 110.0 s, 27237.2 tps, lat 0.586 ms stddev 0.228, 0 failed
+progress: 115.0 s, 26568.8 tps, lat 0.601 ms stddev 0.264, 0 failed
+progress: 120.0 s, 23967.4 tps, lat 0.666 ms stddev 0.483, 0 failed
+transaction type: <builtin: select only>
+scaling factor: 10
+query mode: simple
+number of clients: 16
+number of threads: 4
+maximum number of tries: 1
+duration: 120 s
+number of transactions actually processed: 3251263
+number of failed transactions: 0 (0.000%)
+latency average = 0.589 ms
+latency stddev = 0.257 ms
+initial connection time = 26.285 ms
+tps = 27096.648611 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0  \set aid random(1, 100000 * :scale)
+         0.590           0  SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+
+------------------------------------------------------------
+=== Running SELECT-Only: Clients=32, Threads=4, Duration=120s ===
+------------------------------------------------------------
+pgbench (15.19 (Debian 15.19-0+deb12u1))
+starting vacuum...end.
+progress: 5.0 s, 21979.9 tps, lat 1.440 ms stddev 0.943, 0 failed
+progress: 10.0 s, 24066.8 tps, lat 1.329 ms stddev 0.631, 0 failed
+progress: 15.0 s, 22053.8 tps, lat 1.450 ms stddev 0.776, 0 failed
+progress: 20.0 s, 21030.4 tps, lat 1.520 ms stddev 1.009, 0 failed
+progress: 25.0 s, 17380.1 tps, lat 1.839 ms stddev 1.650, 0 failed
+progress: 30.0 s, 13526.4 tps, lat 2.362 ms stddev 3.074, 0 failed
+progress: 35.0 s, 12781.1 tps, lat 2.500 ms stddev 3.437, 0 failed
+progress: 40.0 s, 10636.7 tps, lat 3.003 ms stddev 5.497, 0 failed
+progress: 45.0 s, 12939.6 tps, lat 2.472 ms stddev 3.486, 0 failed
+progress: 50.0 s, 16354.2 tps, lat 1.955 ms stddev 2.026, 0 failed
+progress: 55.0 s, 15668.9 tps, lat 2.041 ms stddev 2.149, 0 failed
+progress: 60.0 s, 16424.8 tps, lat 1.946 ms stddev 1.952, 0 failed
+progress: 65.0 s, 17760.2 tps, lat 1.801 ms stddev 1.524, 0 failed
+progress: 70.0 s, 16571.5 tps, lat 1.929 ms stddev 1.860, 0 failed
+progress: 75.0 s, 22000.7 tps, lat 1.454 ms stddev 0.845, 0 failed
+progress: 80.0 s, 22657.9 tps, lat 1.411 ms stddev 0.766, 0 failed
+progress: 85.0 s, 20817.3 tps, lat 1.536 ms stddev 0.897, 0 failed
+progress: 90.0 s, 17674.6 tps, lat 1.809 ms stddev 1.529, 0 failed
+progress: 95.0 s, 16956.2 tps, lat 1.885 ms stddev 1.576, 0 failed
+progress: 100.0 s, 17638.4 tps, lat 1.812 ms stddev 1.566, 0 failed
+progress: 105.0 s, 18337.2 tps, lat 1.744 ms stddev 1.406, 0 failed
+progress: 110.0 s, 18849.2 tps, lat 1.696 ms stddev 1.506, 0 failed
+progress: 115.0 s, 17882.2 tps, lat 1.788 ms stddev 1.452, 0 failed
+progress: 120.0 s, 17049.8 tps, lat 1.875 ms stddev 1.637, 0 failed
+transaction type: <builtin: select only>
+scaling factor: 10
+query mode: simple
+number of clients: 32
+number of threads: 4
+maximum number of tries: 1
+duration: 120 s
+number of transactions actually processed: 2145211
+number of failed transactions: 0 (0.000%)
+latency average = 1.788 ms
+latency stddev = 1.906 ms
+initial connection time = 49.975 ms
+tps = 17880.972432 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.002           0  \set aid random(1, 100000 * :scale)
+         1.808           0  SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+
+=========================================
+=== T053 COMPLETE ===
+=========================================

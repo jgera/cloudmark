@@ -1,0 +1,130 @@
+=========================================
+=== CBP-1.0 / T001: SYSTEM CHARACTERIZATION ===
+=== Timestamp (UTC): 2026-09-14 05:24:30 UTC ===
+=========================================
+
+--- UNAME ---
+Linux cm-test-e2standard4 6.1.0-53-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.187-1 (2026-09-07) x86_64 GNU/Linux
+
+--- OS RELEASE ---
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+--- CPU ARCHITECTURE & DETAILS (lscpu) ---
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           46 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  4
+On-line CPU(s) list:                     0-3
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Xeon(R) CPU @ 2.20GHz
+CPU family:                              6
+Model:                                   79
+Thread(s) per core:                      2
+Core(s) per socket:                      2
+Socket(s):                               1
+Stepping:                                0
+BogoMIPS:                                4399.99
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt arat md_clear arch_capabilities
+Hypervisor vendor:                       KVM
+Virtualization type:                     full
+L1d cache:                               64 KiB (2 instances)
+L1i cache:                               64 KiB (2 instances)
+L2 cache:                                512 KiB (2 instances)
+L3 cache:                                55 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-3
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Mitigation; Aligned branch/return thunks
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Mitigation; PTE Inversion
+Vulnerability Mds:                       Mitigation; Clear CPU buffers; SMT Host state unknown
+Vulnerability Meltdown:                  Mitigation; PTI
+Vulnerability Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Mitigation; IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; IBRS; IBPB conditional; STIBP conditional; RSB filling; PBRSB-eIBRS Not affected; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Mitigation; Clear CPU buffers; SMT Host state unknown
+Vulnerability Vmscape:                   Not affected
+
+--- DETECTED CORES (nproc) ---
+4
+
+--- MEMORY (free -h) ---
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       550Mi        14Gi        13Mi       1.0Gi        15Gi
+Swap:             0B          0B          0B
+
+--- MEMORY DETAILED (cat /proc/meminfo) ---
+MemTotal:       16386272 kB
+MemFree:        15086232 kB
+MemAvailable:   15822480 kB
+Buffers:           35996 kB
+Cached:           939944 kB
+SwapCached:            0 kB
+Active:           182148 kB
+Inactive:         928992 kB
+Active(anon):       3852 kB
+Inactive(anon):   145532 kB
+Active(file):     178296 kB
+Inactive(file):   783460 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               636 kB
+Writeback:             0 kB
+AnonPages:        132800 kB
+Mapped:           171336 kB
+Shmem:             14176 kB
+KReclaimable:      55088 kB
+Slab:              84132 kB
+SReclaimable:      55088 kB
+SUnreclaim:        29044 kB
+
+--- BLOCK DEVICES (lsblk) ---
+NAME     SIZE TYPE FSTYPE MOUNTPOINTS ROTA MODEL          DISC-MAX DISC-ZERO
+sda       50G disk                       0 PersistentDisk       4G         0
+├─sda1  49.9G part ext4   /              0                      4G         0
+├─sda14    3M part                       0                      4G         0
+└─sda15  124M part vfat   /boot/efi      0                      4G         0
+
+--- FILESYSTEM DISK USAGE (df -hT) ---
+Filesystem     Type      Size  Used Avail Use% Mounted on
+udev           devtmpfs  7.8G     0  7.8G   0% /dev
+tmpfs          tmpfs     1.6G  484K  1.6G   1% /run
+/dev/sda1      ext4       49G  2.4G   45G   6% /
+tmpfs          tmpfs     7.9G  1.1M  7.9G   1% /dev/shm
+tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+efivarfs       efivarfs  256K   26K  226K  11% /sys/firmware/efi/efivars
+/dev/sda15     vfat      124M   12M  112M  10% /boot/efi
+tmpfs          tmpfs     1.6G     0  1.6G   0% /run/user/1001
+
+--- MOUNT DETAILS ---
+/dev/sda1 on / type ext4 (rw,relatime,discard,errors=remount-ro)
+/dev/sda15 on /boot/efi type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+--- VIRTUALIZATION DETECTION ---
+google
+
+--- DMI SYSTEM INFO (dmidecode proxy if readable) ---
+Product Name: Google Compute Engine
+Sys Vendor:   Google
+BIOS Version: Google
+
+=========================================
+=== T001 CHARACTERIZATION COMPLETE ===
+=========================================

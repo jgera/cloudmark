@@ -3,3 +3,6 @@ gcp-uswest1a-e2micro-01,Google Cloud Platform,us-west1,us-west1-a,e2-micro,e2,x8
 vultr-delhi-vhp-4c-8gb-intel-01,Vultr,Delhi,default,vhp-4c-8gb-intel,vhp,x86_64,Intel Xeon Processor (Cascadelake),4,7.75,NVMe/SSD,180G,Microsoft
 vultr-mumbai-vhp-4c-8gb-amd-01,Vultr,Mumbai,default,vhp-4c-8gb-amd,vhp,x86_64,AMD EPYC-Rome Processor,4,7.75,NVMe/SSD,180G,Microsoft
 google cloud platform-us-west1-e2-micro-01,Google Cloud Platform,us-west1,us-west1-a,e2-micro,e2,x86_64,Intel(R) Xeon(R) CPU @ 2.20GHz,2,0.95,pd-standard,30G,KVM
+google cloud platform-us-west1-e2-standard-4-01,Google Cloud Platform,us-west1,default,e2-standard-4,e2,x86_64,Intel(R) Xeon(R) CPU @ 2.20GHz,4,15.63,pd-standard,50G,KVM
+google cloud platform-us-central1-c2-standard-4-01,Google Cloud Platform,us-central1,default,c2-standard-4,c2,x86_64,Intel(R) Xeon(R) CPU @ 3.10GHz,4,15.63,pd-standard,50G,KVM
+google cloud platform-us-central1-t2a-standard-4-01,Google Cloud Platform,us-central1,default,t2a-standard-4,t2a,aarch64,Neoverse-N1,4,15.6,NVMe,50G,google

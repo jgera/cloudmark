@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-14_gcp_us-central1_c2-standard-4_run01",
+  "machine_id": "google cloud platform-us-central1-c2-standard-4-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Google Cloud Platform",
+  "region": "us-central1",
+  "plan_name": "c2-standard-4",
+  "created_utc": "2026-09-14 06:15:44 UTC",
+  "pricing": {
+    "monthly_usd": 158.4,
+    "promotional_credit": false,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "c2",
+  "cpu_arch": "x86_64",
+  "cpu_model": "Intel(R) Xeon(R) CPU @ 3.10GHz",
+  "exposed_vcpu": 4,
+  "ram_gb": 15.63,
+  "root_disk_type": "pd-standard",
+  "root_disk_size_gb": "50G",
+  "virt_type": "KVM",
+  "kernel_version": "6.1.0-53-cloud-amd64",
+  "os_distro": "Debian GNU/Linux 12 (bookworm)"
+}
