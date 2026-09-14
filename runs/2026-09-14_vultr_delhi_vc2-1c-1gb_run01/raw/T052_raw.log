@@ -1,0 +1,344 @@
+=========================================
+=== CBP-1.0 / T052: MIXED OLTP SCALING (Scale 10) ===
+=== Duration per test: 180s, Interval: 5s ===
+=== Timestamp (UTC): 2026-09-14 09:56:57 UTC ===
+=========================================
+
+------------------------------------------------------------
+=== Running Mixed OLTP: Clients=1, Threads=1, Duration=180s ===
+------------------------------------------------------------
+pgbench (18.6 (Debian 18.6-1.pgdg12+2))
+starting vacuum...end.
+progress: 5.0 s, 1934.0 tps, lat 0.516 ms stddev 0.180, 0 failed
+progress: 10.0 s, 1992.6 tps, lat 0.501 ms stddev 0.277, 0 failed
+progress: 15.0 s, 2065.2 tps, lat 0.484 ms stddev 0.137, 0 failed
+progress: 20.0 s, 2085.0 tps, lat 0.479 ms stddev 0.117, 0 failed
+progress: 25.0 s, 2083.2 tps, lat 0.479 ms stddev 0.129, 0 failed
+progress: 30.0 s, 2032.0 tps, lat 0.492 ms stddev 0.260, 0 failed
+progress: 35.0 s, 2046.2 tps, lat 0.488 ms stddev 0.139, 0 failed
+progress: 40.0 s, 1952.2 tps, lat 0.512 ms stddev 0.268, 0 failed
+progress: 45.0 s, 1904.0 tps, lat 0.525 ms stddev 0.177, 0 failed
+progress: 50.0 s, 1726.8 tps, lat 0.579 ms stddev 0.630, 0 failed
+progress: 55.0 s, 1944.4 tps, lat 0.514 ms stddev 0.297, 0 failed
+progress: 60.0 s, 1986.2 tps, lat 0.503 ms stddev 0.180, 0 failed
+progress: 65.0 s, 1873.4 tps, lat 0.533 ms stddev 0.181, 0 failed
+progress: 70.0 s, 2042.0 tps, lat 0.489 ms stddev 0.239, 0 failed
+progress: 75.0 s, 1982.8 tps, lat 0.504 ms stddev 0.159, 0 failed
+progress: 80.0 s, 1978.2 tps, lat 0.505 ms stddev 0.375, 0 failed
+progress: 85.0 s, 2009.6 tps, lat 0.497 ms stddev 0.355, 0 failed
+progress: 90.0 s, 1837.0 tps, lat 0.544 ms stddev 0.394, 0 failed
+progress: 95.0 s, 2042.4 tps, lat 0.489 ms stddev 0.235, 0 failed
+progress: 100.0 s, 1857.6 tps, lat 0.538 ms stddev 0.391, 0 failed
+progress: 105.0 s, 1974.2 tps, lat 0.506 ms stddev 0.260, 0 failed
+progress: 110.0 s, 2178.2 tps, lat 0.459 ms stddev 0.106, 0 failed
+progress: 115.0 s, 2169.2 tps, lat 0.461 ms stddev 0.165, 0 failed
+progress: 120.0 s, 2125.6 tps, lat 0.470 ms stddev 0.126, 0 failed
+progress: 125.0 s, 2051.0 tps, lat 0.487 ms stddev 0.262, 0 failed
+progress: 130.0 s, 2100.6 tps, lat 0.476 ms stddev 0.100, 0 failed
+progress: 135.0 s, 2148.0 tps, lat 0.465 ms stddev 0.093, 0 failed
+progress: 140.0 s, 2120.8 tps, lat 0.471 ms stddev 0.113, 0 failed
+progress: 145.0 s, 2160.2 tps, lat 0.462 ms stddev 0.216, 0 failed
+progress: 150.0 s, 2124.8 tps, lat 0.470 ms stddev 0.104, 0 failed
+progress: 155.0 s, 2032.0 tps, lat 0.492 ms stddev 0.143, 0 failed
+progress: 160.0 s, 1979.0 tps, lat 0.505 ms stddev 0.262, 0 failed
+progress: 165.0 s, 2139.0 tps, lat 0.467 ms stddev 0.210, 0 failed
+progress: 170.0 s, 2069.0 tps, lat 0.483 ms stddev 0.113, 0 failed
+progress: 175.0 s, 2146.4 tps, lat 0.465 ms stddev 0.128, 0 failed
+progress: 180.0 s, 2096.4 tps, lat 0.476 ms stddev 0.278, 0 failed
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 10
+query mode: simple
+number of clients: 1
+number of threads: 1
+maximum number of tries: 1
+duration: 180 s
+number of transactions actually processed: 364947
+number of failed transactions: 0 (0.000%)
+latency average = 0.493 ms
+latency stddev = 0.239 ms
+initial connection time = 5.168 ms
+tps = 2027.533841 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0 \set aid random(1, 100000 * :scale)
+         0.000           0 \set bid random(1, 1 * :scale)
+         0.000           0 \set tid random(1, 10 * :scale)
+         0.000           0 \set delta random(-5000, 5000)
+         0.016           0 BEGIN;
+         0.090           0 UPDATE pgbench_accounts SET abalance = abalance + :delta WHERE aid = :aid;
+         0.056           0 SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+         0.063           0 UPDATE pgbench_tellers SET tbalance = tbalance + :delta WHERE tid = :tid;
+         0.056           0 UPDATE pgbench_branches SET bbalance = bbalance + :delta WHERE bid = :bid;
+         0.045           0 INSERT INTO pgbench_history (tid, bid, aid, delta, mtime) VALUES (:tid, :bid, :aid, :delta, CURRENT_TIMESTAMP);
+         0.164           0 END;
+
+------------------------------------------------------------
+=== Running Mixed OLTP: Clients=4, Threads=1, Duration=180s ===
+------------------------------------------------------------
+pgbench (18.6 (Debian 18.6-1.pgdg12+2))
+starting vacuum...end.
+progress: 5.0 s, 1975.8 tps, lat 2.017 ms stddev 0.549, 0 failed
+progress: 10.0 s, 2107.2 tps, lat 1.898 ms stddev 0.432, 0 failed
+progress: 15.0 s, 2050.8 tps, lat 1.950 ms stddev 0.512, 0 failed
+progress: 20.0 s, 2124.2 tps, lat 1.883 ms stddev 0.570, 0 failed
+progress: 25.0 s, 2085.8 tps, lat 1.917 ms stddev 0.468, 0 failed
+progress: 30.0 s, 2181.8 tps, lat 1.833 ms stddev 0.535, 0 failed
+progress: 35.0 s, 1860.2 tps, lat 2.150 ms stddev 0.876, 0 failed
+progress: 40.0 s, 2028.0 tps, lat 1.972 ms stddev 0.587, 0 failed
+progress: 45.0 s, 2141.6 tps, lat 1.867 ms stddev 0.515, 0 failed
+progress: 50.0 s, 2087.0 tps, lat 1.914 ms stddev 0.472, 0 failed
+progress: 55.0 s, 2071.2 tps, lat 1.932 ms stddev 0.660, 0 failed
+progress: 60.0 s, 1959.4 tps, lat 2.041 ms stddev 1.157, 0 failed
+progress: 65.0 s, 1985.6 tps, lat 2.012 ms stddev 1.192, 0 failed
+progress: 70.0 s, 1959.8 tps, lat 2.042 ms stddev 1.031, 0 failed
+progress: 75.0 s, 2046.4 tps, lat 1.954 ms stddev 0.652, 0 failed
+progress: 80.0 s, 1879.4 tps, lat 2.128 ms stddev 0.944, 0 failed
+progress: 85.0 s, 1992.2 tps, lat 2.007 ms stddev 0.688, 0 failed
+progress: 90.0 s, 2030.4 tps, lat 1.969 ms stddev 0.449, 0 failed
+progress: 95.0 s, 1523.6 tps, lat 2.625 ms stddev 1.237, 0 failed
+progress: 100.0 s, 1827.6 tps, lat 2.188 ms stddev 0.787, 0 failed
+progress: 105.0 s, 1548.0 tps, lat 2.583 ms stddev 1.599, 0 failed
+progress: 110.0 s, 1684.2 tps, lat 2.374 ms stddev 1.491, 0 failed
+progress: 115.0 s, 1910.8 tps, lat 2.093 ms stddev 0.941, 0 failed
+progress: 120.0 s, 1977.8 tps, lat 2.022 ms stddev 0.665, 0 failed
+progress: 125.0 s, 2118.6 tps, lat 1.887 ms stddev 0.753, 0 failed
+progress: 130.0 s, 2043.8 tps, lat 1.957 ms stddev 0.675, 0 failed
+progress: 135.0 s, 2049.2 tps, lat 1.951 ms stddev 0.418, 0 failed
+progress: 140.0 s, 2055.4 tps, lat 1.945 ms stddev 0.578, 0 failed
+progress: 145.0 s, 2154.6 tps, lat 1.856 ms stddev 0.429, 0 failed
+progress: 150.0 s, 2181.4 tps, lat 1.833 ms stddev 0.431, 0 failed
+progress: 155.0 s, 1830.2 tps, lat 2.185 ms stddev 0.784, 0 failed
+progress: 160.0 s, 1923.4 tps, lat 2.079 ms stddev 0.771, 0 failed
+progress: 165.0 s, 2142.6 tps, lat 1.867 ms stddev 0.461, 0 failed
+progress: 170.0 s, 2105.4 tps, lat 1.899 ms stddev 0.423, 0 failed
+progress: 175.0 s, 2029.0 tps, lat 1.971 ms stddev 0.430, 0 failed
+progress: 180.0 s, 2055.6 tps, lat 1.945 ms stddev 0.408, 0 failedtransaction type: <builtin: TPC-B (sort of)>
+scaling factor: 10
+query mode: simple
+number of clients: 4
+number of threads: 1
+maximum number of tries: 1
+duration: 180 s
+number of transactions actually processed: 358644
+number of failed transactions: 0 (0.000%)
+latency average = 2.007 ms
+latency stddev = 0.768 ms
+initial connection time = 14.784 ms
+tps = 1992.519845 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0 \set aid random(1, 100000 * :scale)
+         0.000           0 \set bid random(1, 1 * :scale)
+         0.000           0 \set tid random(1, 10 * :scale)
+         0.000           0 \set delta random(-5000, 5000)
+         0.068           0 BEGIN;
+         0.113           0 UPDATE pgbench_accounts SET abalance = abalance + :delta WHERE aid = :aid;
+         0.243           0 SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+         0.360           0 UPDATE pgbench_tellers SET tbalance = tbalance + :delta WHERE tid = :tid;
+         0.397           0 UPDATE pgbench_branches SET bbalance = bbalance + :delta WHERE bid = :bid;
+         0.246           0 INSERT INTO pgbench_history (tid, bid, aid, delta, mtime) VALUES (:tid, :bid, :aid, :delta, CURRENT_TIMESTAMP);
+         0.577           0 END;
+
+
+------------------------------------------------------------
+=== Running Mixed OLTP: Clients=8, Threads=1, Duration=180s ===
+------------------------------------------------------------
+pgbench (18.6 (Debian 18.6-1.pgdg12+2))
+starting vacuum...end.
+progress: 5.0 s, 1832.6 tps, lat 4.339 ms stddev 1.035, 0 failed
+progress: 10.0 s, 1932.8 tps, lat 4.139 ms stddev 1.725, 0 failed
+progress: 15.0 s, 1960.0 tps, lat 4.081 ms stddev 1.268, 0 failed
+progress: 20.0 s, 1955.0 tps, lat 4.091 ms stddev 1.411, 0 failed
+progress: 25.0 s, 1939.8 tps, lat 4.124 ms stddev 1.146, 0 failed
+progress: 30.0 s, 1728.8 tps, lat 4.626 ms stddev 1.507, 0 failed
+progress: 35.0 s, 1871.6 tps, lat 4.274 ms stddev 0.856, 0 failed
+progress: 40.0 s, 1937.0 tps, lat 4.130 ms stddev 1.115, 0 failed
+progress: 45.0 s, 1899.2 tps, lat 4.212 ms stddev 1.635, 0 failed
+progress: 50.0 s, 1701.0 tps, lat 4.694 ms stddev 2.311, 0 failed
+progress: 55.0 s, 1789.2 tps, lat 4.478 ms stddev 1.310, 0 failed
+progress: 60.0 s, 1751.6 tps, lat 4.566 ms stddev 0.876, 0 failed
+progress: 65.0 s, 1797.2 tps, lat 4.451 ms stddev 0.840, 0 failed
+progress: 70.0 s, 1730.8 tps, lat 4.621 ms stddev 1.047, 0 failed
+progress: 75.0 s, 1807.2 tps, lat 4.426 ms stddev 1.394, 0 failed
+progress: 80.0 s, 1943.2 tps, lat 4.116 ms stddev 0.741, 0 failed
+progress: 85.0 s, 1903.4 tps, lat 4.203 ms stddev 0.773, 0 failed
+progress: 90.0 s, 1700.0 tps, lat 4.705 ms stddev 1.333, 0 failed
+progress: 95.0 s, 1821.0 tps, lat 4.393 ms stddev 1.326, 0 failed
+progress: 100.0 s, 1841.8 tps, lat 4.343 ms stddev 1.003, 0 failed
+progress: 105.0 s, 1950.4 tps, lat 4.101 ms stddev 0.628, 0 failed
+progress: 110.0 s, 1923.4 tps, lat 4.159 ms stddev 0.711, 0 failed
+progress: 115.0 s, 1741.2 tps, lat 4.592 ms stddev 2.006, 0 failed
+progress: 120.0 s, 1814.0 tps, lat 4.411 ms stddev 1.265, 0 failed
+progress: 125.0 s, 1765.8 tps, lat 4.529 ms stddev 1.812, 0 failed
+progress: 130.0 s, 1902.4 tps, lat 4.205 ms stddev 0.939, 0 failed
+progress: 135.0 s, 1837.4 tps, lat 4.340 ms stddev 1.193, 0 failed
+progress: 140.0 s, 1848.0 tps, lat 4.342 ms stddev 1.273, 0 failed
+progress: 145.0 s, 1842.4 tps, lat 4.342 ms stddev 1.215, 0 failed
+progress: 150.0 s, 1671.8 tps, lat 4.783 ms stddev 1.336, 0 failed
+progress: 155.0 s, 1850.2 tps, lat 4.324 ms stddev 1.186, 0 failed
+progress: 160.0 s, 1739.0 tps, lat 4.600 ms stddev 1.917, 0 failed
+progress: 165.0 s, 1802.4 tps, lat 4.437 ms stddev 1.365, 0 failed
+progress: 170.0 s, 1880.0 tps, lat 4.255 ms stddev 1.136, 0 failed
+progress: 175.0 s, 1801.2 tps, lat 4.442 ms stddev 0.920, 0 failed
+progress: 180.0 s, 1871.0 tps, lat 4.273 ms stddev 1.298, 0 failed
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 10
+query mode: simple
+number of clients: 8
+number of threads: 1
+maximum number of tries: 1
+duration: 180 s
+number of transactions actually processed: 330427
+number of failed transactions: 0 (0.000%)
+latency average = 4.357 ms
+latency stddev = 1.309 ms
+initial connection time = 26.764 ms
+tps = 1835.685893 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0 \set aid random(1, 100000 * :scale)
+         0.000           0 \set bid random(1, 1 * :scale)
+         0.000           0 \set tid random(1, 10 * :scale)
+         0.000           0 \set delta random(-5000, 5000)
+         0.153           0 BEGIN;
+         0.185           0 UPDATE pgbench_accounts SET abalance = abalance + :delta WHERE aid = :aid;
+         0.764           0 SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+         0.701           0 UPDATE pgbench_tellers SET tbalance = tbalance + :delta WHERE tid = :tid;
+         1.026           0 UPDATE pgbench_branches SET bbalance = bbalance + :delta WHERE bid = :bid;
+         0.560           0 INSERT INTO pgbench_history (tid, bid, aid, delta, mtime) VALUES (:tid, :bid, :aid, :delta, CURRENT_TIMESTAMP);
+         0.966           0 END;
+
+------------------------------------------------------------
+=== Running Mixed OLTP: Clients=16, Threads=1, Duration=180s ===
+------------------------------------------------------------
+pgbench (18.6 (Debian 18.6-1.pgdg12+2))
+starting vacuum...end.
+progress: 5.0 s, 1433.0 tps, lat 11.041 ms stddev 2.726, 0 failed
+progress: 10.0 s, 1536.0 tps, lat 10.417 ms stddev 2.322, 0 failed
+progress: 15.0 s, 1590.0 tps, lat 10.060 ms stddev 1.945, 0 failed
+progress: 20.0 s, 1555.0 tps, lat 10.291 ms stddev 1.844, 0 failed
+progress: 25.0 s, 1605.6 tps, lat 9.965 ms stddev 2.794, 0 failed
+progress: 30.0 s, 1738.2 tps, lat 9.204 ms stddev 1.302, 0 failed
+progress: 35.0 s, 1666.0 tps, lat 9.603 ms stddev 1.566, 0 failed
+progress: 40.0 s, 1662.4 tps, lat 9.624 ms stddev 1.617, 0 failed
+progress: 45.0 s, 1527.4 tps, lat 10.472 ms stddev 3.764, 0 failed
+progress: 50.0 s, 1414.4 tps, lat 11.313 ms stddev 3.277, 0 failed
+progress: 55.0 s, 1670.2 tps, lat 9.580 ms stddev 1.611, 0 failed
+progress: 60.0 s, 1594.4 tps, lat 10.032 ms stddev 1.902, 0 failed
+progress: 65.0 s, 1590.2 tps, lat 10.062 ms stddev 1.483, 0 failed
+progress: 70.0 s, 1656.2 tps, lat 9.661 ms stddev 2.174, 0 failed
+progress: 75.0 s, 1642.8 tps, lat 9.738 ms stddev 1.589, 0 failed
+progress: 80.0 s, 1573.0 tps, lat 10.171 ms stddev 1.903, 0 failed
+progress: 85.0 s, 1445.8 tps, lat 11.064 ms stddev 2.310, 0 failed
+progress: 90.0 s, 1453.4 tps, lat 11.005 ms stddev 2.064, 0 failed
+progress: 95.0 s, 1475.6 tps, lat 10.847 ms stddev 1.850, 0 failed
+progress: 100.0 s, 1509.8 tps, lat 10.594 ms stddev 2.160, 0 failed
+progress: 105.0 s, 1519.2 tps, lat 10.535 ms stddev 1.825, 0 failed
+progress: 110.0 s, 1429.4 tps, lat 11.192 ms stddev 4.354, 0 failed
+progress: 115.0 s, 1450.2 tps, lat 11.035 ms stddev 2.814, 0 failed
+progress: 120.0 s, 1641.6 tps, lat 9.743 ms stddev 1.777, 0 failed
+progress: 125.0 s, 1530.4 tps, lat 10.455 ms stddev 2.303, 0 failed
+progress: 130.0 s, 1609.6 tps, lat 9.939 ms stddev 1.492, 0 failed
+progress: 135.0 s, 1638.2 tps, lat 9.766 ms stddev 1.490, 0 failed
+progress: 140.0 s, 1597.4 tps, lat 10.016 ms stddev 2.041, 0 failed
+progress: 145.0 s, 1507.8 tps, lat 10.610 ms stddev 1.988, 0 failed
+progress: 150.0 s, 1663.2 tps, lat 9.620 ms stddev 1.280, 0 failed
+progress: 155.0 s, 1563.0 tps, lat 10.234 ms stddev 1.699, 0 failed
+progress: 160.0 s, 1649.4 tps, lat 9.702 ms stddev 1.335, 0 failed
+progress: 165.0 s, 1631.6 tps, lat 9.806 ms stddev 1.494, 0 failed
+progress: 170.0 s, 1492.8 tps, lat 10.713 ms stddev 1.819, 0 failed
+progress: 175.0 s, 1498.4 tps, lat 10.672 ms stddev 1.982, 0 failed
+progress: 180.0 s, 1379.8 tps, lat 11.604 ms stddev 4.153, 0 failed
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 10
+query mode: simple
+number of clients: 16
+number of threads: 1
+maximum number of tries: 1
+duration: 180 s
+number of transactions actually processed: 280722
+number of failed transactions: 0 (0.000%)
+latency average = 10.257 ms
+latency stddev = 2.290 ms
+initial connection time = 50.173 ms
+tps = 1559.527055 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0 \set aid random(1, 100000 * :scale)
+         0.000           0 \set bid random(1, 1 * :scale)
+         0.000           0 \set tid random(1, 10 * :scale)
+         0.000           0 \set delta random(-5000, 5000)
+         0.436           0 BEGIN;
+         0.364           0 UPDATE pgbench_accounts SET abalance = abalance + :delta WHERE aid = :aid;
+         1.866           0 SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+         1.790           0 UPDATE pgbench_tellers SET tbalance = tbalance + :delta WHERE tid = :tid;
+         2.847           0 UPDATE pgbench_branches SET bbalance = bbalance + :delta WHERE bid = :bid;
+         1.096           0 INSERT INTO pgbench_history (tid, bid, aid, delta, mtime) VALUES (:tid, :bid, :aid, :delta, CURRENT_TIMESTAMP);
+         1.857           0 END;
+
+------------------------------------------------------------
+=== Running Mixed OLTP: Clients=32, Threads=1, Duration=180s ===
+------------------------------------------------------------
+pgbench (18.6 (Debian 18.6-1.pgdg12+2))
+starting vacuum...end.
+progress: 5.0 s, 1255.8 tps, lat 24.903 ms stddev 5.260, 0 failed
+progress: 10.0 s, 1272.2 tps, lat 25.142 ms stddev 3.897, 0 failed
+progress: 15.0 s, 1192.4 tps, lat 26.831 ms stddev 4.387, 0 failed
+progress: 20.0 s, 1251.0 tps, lat 25.559 ms stddev 4.771, 0 failed
+progress: 25.0 s, 1169.6 tps, lat 27.368 ms stddev 7.637, 0 failed
+progress: 30.0 s, 1195.8 tps, lat 26.772 ms stddev 4.747, 0 failed
+progress: 35.0 s, 1299.0 tps, lat 24.650 ms stddev 3.633, 0 failed
+progress: 40.0 s, 1264.4 tps, lat 25.299 ms stddev 4.077, 0 failed
+progress: 45.0 s, 1228.8 tps, lat 26.032 ms stddev 3.997, 0 failed
+progress: 50.0 s, 1246.0 tps, lat 25.693 ms stddev 8.255, 0 failed
+progress: 55.0 s, 1275.0 tps, lat 25.087 ms stddev 3.810, 0 failed
+progress: 60.0 s, 1277.2 tps, lat 25.053 ms stddev 5.931, 0 failed
+progress: 65.0 s, 1208.6 tps, lat 26.465 ms stddev 8.006, 0 failed
+progress: 70.0 s, 1282.6 tps, lat 24.964 ms stddev 5.525, 0 failed
+progress: 75.0 s, 1274.8 tps, lat 25.104 ms stddev 5.179, 0 failed
+progress: 80.0 s, 1207.2 tps, lat 26.517 ms stddev 4.552, 0 failed
+progress: 85.0 s, 1278.8 tps, lat 25.031 ms stddev 3.785, 0 failed
+progress: 90.0 s, 1283.2 tps, lat 24.905 ms stddev 3.910, 0 failed
+progress: 95.0 s, 1151.4 tps, lat 27.800 ms stddev 5.664, 0 failed
+progress: 100.0 s, 1206.2 tps, lat 26.538 ms stddev 5.886, 0 failed
+progress: 105.0 s, 1137.0 tps, lat 28.115 ms stddev 5.376, 0 failed
+progress: 110.0 s, 1252.0 tps, lat 25.574 ms stddev 4.888, 0 failed
+progress: 115.0 s, 1251.0 tps, lat 25.587 ms stddev 3.843, 0 failed
+progress: 120.0 s, 1227.4 tps, lat 26.061 ms stddev 4.401, 0 failed
+progress: 125.0 s, 1079.0 tps, lat 29.665 ms stddev 10.986, 0 failed
+progress: 130.0 s, 1267.8 tps, lat 25.242 ms stddev 6.246, 0 failed
+progress: 135.0 s, 1312.0 tps, lat 24.391 ms stddev 3.543, 0 failed
+progress: 140.0 s, 1262.8 tps, lat 25.334 ms stddev 3.461, 0 failed
+progress: 145.0 s, 1184.6 tps, lat 26.970 ms stddev 4.514, 0 failed
+progress: 150.0 s, 1090.4 tps, lat 29.377 ms stddev 10.731, 0 failed
+progress: 155.0 s, 1197.0 tps, lat 26.738 ms stddev 6.324, 0 failed
+progress: 160.0 s, 1353.2 tps, lat 23.651 ms stddev 4.853, 0 failed
+progress: 165.0 s, 1182.6 tps, lat 27.061 ms stddev 5.232, 0 failed
+progress: 170.0 s, 1184.6 tps, lat 27.011 ms stddev 4.645, 0 failed
+progress: 175.0 s, 1264.2 tps, lat 25.313 ms stddev 3.965, 0 failed
+progress: 180.0 s, 1237.8 tps, lat 25.848 ms stddev 6.435, 0 failed
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 10
+query mode: simple
+number of clients: 32
+number of threads: 1
+maximum number of tries: 1
+duration: 180 s
+number of transactions actually processed: 221549
+number of failed transactions: 0 (0.000%)
+latency average = 25.992 ms
+latency stddev = 5.758 ms
+initial connection time = 101.659 ms
+tps = 1230.517715 (without initial connection time)
+statement latencies in milliseconds and failures:
+         0.001           0 \set aid random(1, 100000 * :scale)
+         0.001           0 \set bid random(1, 1 * :scale)
+         0.001           0 \set tid random(1, 10 * :scale)
+         0.000           0 \set delta random(-5000, 5000)
+         1.175           0 BEGIN;
+         0.829           0 UPDATE pgbench_accounts SET abalance = abalance + :delta WHERE aid = :aid;
+         4.264           0 SELECT abalance FROM pgbench_accounts WHERE aid = :aid;
+         5.245           0 UPDATE pgbench_tellers SET tbalance = tbalance + :delta WHERE tid = :tid;
+         8.921           0 UPDATE pgbench_branches SET bbalance = bbalance + :delta WHERE bid = :bid;
+         1.825           0 INSERT INTO pgbench_history (tid, bid, aid, delta, mtime) VALUES (:tid, :bid, :aid, :delta, CURRENT_TIMESTAMP);
+         3.730           0 END;
+
+=========================================
+=== T052 COMPLETE ===
+=========================================

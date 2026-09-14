@@ -1,0 +1,99 @@
+=========================================
+=== CBP-1.0 / T012: CPU SUSTAINED TEST (300s) ===
+=== Timestamp (UTC): 2026-09-14 09:45:20 UTC ===
+=========================================
+Running 300s sustained sysbench CPU test with 5s progress reporting...
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Report intermediate results every 5 second(s)
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+[ 5s ] thds: 1 eps: 440.70 lat (ms,95%): 2.57
+[ 10s ] thds: 1 eps: 437.63 lat (ms,95%): 2.57
+[ 15s ] thds: 1 eps: 444.39 lat (ms,95%): 2.48
+[ 20s ] thds: 1 eps: 443.01 lat (ms,95%): 2.48
+[ 25s ] thds: 1 eps: 445.00 lat (ms,95%): 2.39
+[ 30s ] thds: 1 eps: 446.00 lat (ms,95%): 2.43
+[ 35s ] thds: 1 eps: 441.41 lat (ms,95%): 2.52
+[ 40s ] thds: 1 eps: 444.39 lat (ms,95%): 2.43
+[ 45s ] thds: 1 eps: 423.60 lat (ms,95%): 2.81
+[ 50s ] thds: 1 eps: 430.60 lat (ms,95%): 2.57
+[ 55s ] thds: 1 eps: 443.59 lat (ms,95%): 2.48
+[ 60s ] thds: 1 eps: 445.60 lat (ms,95%): 2.43
+[ 65s ] thds: 1 eps: 445.61 lat (ms,95%): 2.39
+[ 70s ] thds: 1 eps: 451.00 lat (ms,95%): 2.35
+[ 75s ] thds: 1 eps: 451.40 lat (ms,95%): 2.30
+[ 80s ] thds: 1 eps: 448.80 lat (ms,95%): 2.35
+[ 85s ] thds: 1 eps: 446.60 lat (ms,95%): 2.39
+[ 90s ] thds: 1 eps: 450.20 lat (ms,95%): 2.35
+[ 95s ] thds: 1 eps: 449.80 lat (ms,95%): 2.35
+[ 100s ] thds: 1 eps: 446.19 lat (ms,95%): 2.39
+[ 105s ] thds: 1 eps: 447.41 lat (ms,95%): 2.35
+[ 110s ] thds: 1 eps: 452.40 lat (ms,95%): 2.30
+[ 115s ] thds: 1 eps: 448.80 lat (ms,95%): 2.35
+[ 120s ] thds: 1 eps: 444.60 lat (ms,95%): 2.43
+[ 125s ] thds: 1 eps: 439.19 lat (ms,95%): 2.52
+[ 130s ] thds: 1 eps: 443.00 lat (ms,95%): 2.48
+[ 135s ] thds: 1 eps: 440.60 lat (ms,95%): 2.61
+[ 140s ] thds: 1 eps: 430.20 lat (ms,95%): 2.71
+[ 145s ] thds: 1 eps: 433.40 lat (ms,95%): 2.71
+[ 150s ] thds: 1 eps: 449.81 lat (ms,95%): 2.35
+[ 155s ] thds: 1 eps: 448.40 lat (ms,95%): 2.35
+[ 160s ] thds: 1 eps: 445.00 lat (ms,95%): 2.48
+[ 165s ] thds: 1 eps: 428.00 lat (ms,95%): 3.19
+[ 170s ] thds: 1 eps: 441.80 lat (ms,95%): 2.57
+[ 175s ] thds: 1 eps: 439.80 lat (ms,95%): 2.52
+[ 180s ] thds: 1 eps: 445.39 lat (ms,95%): 2.43
+[ 185s ] thds: 1 eps: 434.21 lat (ms,95%): 2.71
+[ 190s ] thds: 1 eps: 425.60 lat (ms,95%): 2.81
+[ 195s ] thds: 1 eps: 446.00 lat (ms,95%): 2.43
+[ 200s ] thds: 1 eps: 448.60 lat (ms,95%): 2.35
+[ 205s ] thds: 1 eps: 442.79 lat (ms,95%): 2.48
+[ 210s ] thds: 1 eps: 443.60 lat (ms,95%): 2.39
+[ 215s ] thds: 1 eps: 445.00 lat (ms,95%): 2.48
+[ 220s ] thds: 1 eps: 441.60 lat (ms,95%): 2.57
+[ 225s ] thds: 1 eps: 440.99 lat (ms,95%): 2.48
+[ 230s ] thds: 1 eps: 439.99 lat (ms,95%): 2.52
+[ 235s ] thds: 1 eps: 434.01 lat (ms,95%): 2.61
+[ 240s ] thds: 1 eps: 440.20 lat (ms,95%): 2.57
+[ 245s ] thds: 1 eps: 439.40 lat (ms,95%): 2.57
+[ 250s ] thds: 1 eps: 445.79 lat (ms,95%): 2.48
+[ 255s ] thds: 1 eps: 446.01 lat (ms,95%): 2.43
+[ 260s ] thds: 1 eps: 446.20 lat (ms,95%): 2.48
+[ 265s ] thds: 1 eps: 445.00 lat (ms,95%): 2.48
+[ 270s ] thds: 1 eps: 447.59 lat (ms,95%): 2.39
+[ 275s ] thds: 1 eps: 447.80 lat (ms,95%): 2.39
+[ 280s ] thds: 1 eps: 430.33 lat (ms,95%): 2.86
+[ 285s ] thds: 1 eps: 397.86 lat (ms,95%): 3.62
+[ 290s ] thds: 1 eps: 418.59 lat (ms,95%): 2.81
+[ 295s ] thds: 1 eps: 427.41 lat (ms,95%): 2.86
+CPU speed:
+    events per second:   440.95
+
+General statistics:
+    total time:                          300.0008s
+    total number of events:              132287
+
+Latency (ms):
+         min:                                    2.16
+         avg:                                    2.27
+         max:                                   10.74
+         95th percentile:                        2.52
+         sum:                               299895.83
+
+Threads fairness:
+    events (avg/stddev):           132287.0000/0.00
+    execution time (avg/stddev):   299.8958/0.00
+
+=========================================
+=== T012 COMPLETE ===
+=========================================

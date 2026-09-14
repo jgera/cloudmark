@@ -1,0 +1,79 @@
+﻿=========================================
+=== CBP-1.0 / T041: CLIENT RTT TO 139.84.170.75 ===
+=== Client Timestamp:  ===
+=== Target IP: 139.84.170.75 ===
+=========================================
+
+Pinging 139.84.170.75 with 32 bytes of data:
+Request timed out.
+Reply from 139.84.170.75: bytes=32 time=17ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=18ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=50ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=13ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=56ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=12ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=16ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=22ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=9ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=27ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=47ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=17ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=21ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=18ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=13ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=9ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=20ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=18ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=22ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=20ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=13ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=11ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=27ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=16ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=72ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=15ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=27ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=12ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=10ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=188ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=14ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=12ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=12ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=11ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=95ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=12ms TTL=55
+Reply from 139.84.170.75: bytes=32 time=899ms TTL=55
+
+Ping statistics for 139.84.170.75:
+    Packets: Sent = 50, Received = 49, Lost = 1 (2% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 9ms, Maximum = 899ms, Average = 41ms
+
+--- TRACEROUTE ---
+
+Tracing route to 139.84.170.75 over a maximum of 20 hops
+
+  1     7 ms    49 ms     2 ms  192.168.1.1 
+  2    56 ms     7 ms     7 ms  10.240.9.204 
+  3     *        *        *     Request timed out.
+  4     8 ms     8 ms    11 ms  125.18.168.169 
+  5    19 ms    26 ms    22 ms  116.119.164.184 
+  6    14 ms    33 ms    17 ms  122.184.140.154 
+  7    28 ms    19 ms    45 ms  10.102.0.18 
+  8    12 ms    10 ms    10 ms  10.102.0.90 
+  9     9 ms     9 ms     9 ms  10.102.100.7 
+ 10    16 ms    11 ms    11 ms  139.84.170.75 
+
+Trace complete.

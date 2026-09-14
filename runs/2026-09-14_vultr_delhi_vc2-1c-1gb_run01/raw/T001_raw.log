@@ -1,0 +1,134 @@
+Warning: Permanently added '139.84.170.75' (ED25519) to the list of known hosts.
+=========================================
+=== CBP-1.0 / T001: SYSTEM CHARACTERIZATION ===
+=== Timestamp (UTC): 2026-09-14 09:42:03 UTC ===
+=========================================
+
+--- UNAME ---
+Linux vultr 6.1.0-52-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.180-1 (2026-08-03) x86_64 GNU/Linux
+
+--- OS RELEASE ---
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+--- CPU ARCHITECTURE & DETAILS (lscpu) ---
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           40 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  1
+On-line CPU(s) list:                     0
+Vendor ID:                               GenuineIntel
+BIOS Vendor ID:                          QEMU
+Model name:                              Intel Xeon Processor (Cascadelake)
+BIOS Model name:                         pc-q35-8.2  CPU @ 2.0GHz
+BIOS CPU family:                         1
+CPU family:                              6
+Model:                                   85
+Thread(s) per core:                      1
+Core(s) per socket:                      1
+Socket(s):                               1
+Stepping:                                6
+BogoMIPS:                                5985.84
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single ssbd ibrs ibpb ibrs_enhanced fsgsbase bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq clflushopt clwb avx512cd avx512bw avx512vl xsaveopt arat pku ospke avx512_vnni arch_capabilities
+Hypervisor vendor:                       Microsoft
+Virtualization type:                     full
+L1d cache:                               32 KiB (1 instance)
+L1i cache:                               32 KiB (1 instance)
+L2 cache:                                4 MiB (1 instance)
+L3 cache:                                16 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0
+Vulnerability Gather data sampling:      Unknown: Dependent on hypervisor status
+Vulnerability Indirect target selection: Mitigation; Aligned branch/return thunks
+Vulnerability Itlb multihit:             KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+
+--- DETECTED CORES (nproc) ---
+1
+
+--- MEMORY (free -h) ---
+               total        used        free      shared  buff/cache   available
+Mem:           954Mi       240Mi       712Mi       784Ki       146Mi       713Mi
+Swap:          2.3Gi          0B       2.3Gi
+
+--- MEMORY DETAILED (cat /proc/meminfo) ---
+MemTotal:         977848 kB
+MemFree:          729272 kB
+MemAvailable:     731164 kB
+Buffers:           19452 kB
+Cached:           108136 kB
+SwapCached:            0 kB
+Active:            62744 kB
+Inactive:          84084 kB
+Active(anon):        464 kB
+Inactive(anon):    28508 kB
+Active(file):      62280 kB
+Inactive(file):    55576 kB
+Unevictable:       19952 kB
+Mlocked:           19952 kB
+SwapTotal:       2457596 kB
+SwapFree:        2457596 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:              5312 kB
+Writeback:             0 kB
+AnonPages:         39244 kB
+Mapped:            35556 kB
+Shmem:               784 kB
+KReclaimable:      22800 kB
+Slab:              45760 kB
+
+--- BLOCK DEVICES (lsblk) ---
+NAME    SIZE TYPE FSTYPE MOUNTPOINTS ROTA MODEL        DISC-MAX DISC-ZERO
+sr0    1024M rom                        1 QEMU DVD-ROM       0B         0
+vda      25G disk                       1                    2G         0
+├─vda1  512M part vfat   /boot/efi      1                    2G         0
+└─vda2 24.5G part ext4   /              1                    2G         0
+
+--- FILESYSTEM DISK USAGE (df -hT) ---
+Filesystem     Type      Size  Used Avail Use% Mounted on
+udev           devtmpfs  439M     0  439M   0% /dev
+tmpfs          tmpfs      96M  780K   95M   1% /run
+/dev/vda2      ext4       23G  5.5G   17G  25% /
+tmpfs          tmpfs     478M     0  478M   0% /dev/shm
+tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+efivarfs       efivarfs  256K   19K  233K   8% /sys/firmware/efi/efivars
+/dev/vda1      vfat      511M   12M  500M   3% /boot/efi
+tmpfs          tmpfs      96M     0   96M   0% /run/user/0
+
+--- MOUNT DETAILS ---
+/dev/vda2 on / type ext4 (rw,relatime,errors=remount-ro)
+/dev/vda1 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+--- VIRTUALIZATION DETECTION ---
+microsoft
+
+--- DMI SYSTEM INFO (dmidecode proxy if readable) ---
+Product Name: VC2
+Sys Vendor:   Vultr
+BIOS Version: 
+
+=========================================
+=== T001 CHARACTERIZATION COMPLETE ===
+=========================================

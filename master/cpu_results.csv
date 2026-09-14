@@ -17,3 +17,9 @@ run_id,test_id,tool,thread_count,events_per_sec,mean_latency_ms,p95_latency_ms,s
 2026-09-14_gcp_us-central1_t2a-standard-4_run01,T010,sysbench_cpu,1,1292.32,0.77,0.78,N/A,T010_raw.log
 2026-09-14_gcp_us-central1_t2a-standard-4_run01,T011,sysbench_cpu,4,5172.01,0.77,0.78,1.0005,T011_raw.log
 2026-09-14_gcp_us-central1_t2a-standard-4_run01,T012,sysbench_cpu,4,5171.62,0.77,0.78,"Burst/Sust=1.0, CV=0.05%",T012_raw.log
+2026-09-14_gcp_asia-south2_e2-micro_run01,T010,sysbench_cpu,1,790.2,1.26,0.75,N/A,T010_raw.log
+2026-09-14_gcp_asia-south2_e2-micro_run01,T011,sysbench_cpu,2,269.75,7.41,1.37,0.1707,T011_raw.log
+2026-09-14_gcp_asia-south2_e2-micro_run01,T012,sysbench_cpu,2,206.78,9.66,1.47,"Burst/Sust=1.79, CV=51.54%",T012_raw.log
+2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T010,sysbench_cpu,1,440.77,2.27,2.52,N/A,T010_raw.log
+2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T011,sysbench_cpu,1,435.65,2.29,2.61,N/A,T011_raw.log
+2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T012,sysbench_cpu,1,440.95,2.27,2.52,"Burst/Sust=1.02, CV=2.1%",T012_raw.log

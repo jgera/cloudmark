@@ -237,6 +237,7 @@ def run_ephemeral_battery(machine_type, zone, disk_type="pd-ssd", disk_size="50G
             "--quiet",
             "--command",
             "echo 'iperf3 iperf3/start_daemon boolean false' | sudo debconf-set-selections && "
+            "(sudo swapon --show | grep -q /swapfile || (sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile)) && "
             "sudo DEBIAN_FRONTEND=noninteractive apt-get update -y && "
             "sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' "
             "sysbench fio sysstat iperf3 postgresql postgresql-contrib"

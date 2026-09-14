@@ -15,6 +15,16 @@ export NEEDRESTART_MODE=a
 
 APT_OPTS="-o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"
 
+echo -e "\n[0/4] Checking swap space for memory protection..."
+if ! swapon --show | grep -q "/swapfile"; then
+    echo "Creating 2GB swapfile..."
+    fallocate -l 2G /swapfile 2>/dev/null || dd if=/dev/zero of=/swapfile bs=1M count=2048
+    chmod 600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+    echo "Swapfile created and activated."
+fi
+
 echo -e "\n[1/4] Updating package lists..."
 apt-get update -y $APT_OPTS
 

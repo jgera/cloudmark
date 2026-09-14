@@ -1,0 +1,39 @@
+=========================================
+=== CBP-1.0 / T011: CPU MULTI-THREAD (1 CORES) ===
+=== Timestamp (UTC): 2026-09-14 09:44:19 UTC ===
+=========================================
+Running sysbench CPU test (threads=1, max-prime=20000, time=60s)...
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   435.65
+
+General statistics:
+    total time:                          60.0012s
+    total number of events:              26140
+
+Latency (ms):
+         min:                                    2.16
+         avg:                                    2.29
+         max:                                   13.56
+         95th percentile:                        2.61
+         sum:                                59977.98
+
+Threads fairness:
+    events (avg/stddev):           26140.0000/0.00
+    execution time (avg/stddev):   59.9780/0.00
+
+=========================================
+=== T011 COMPLETE ===
+=========================================
