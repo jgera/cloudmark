@@ -8,3 +8,4 @@ LEGACY-GCP-001,Google Cloud Platform,e2-micro,2026-09-13,USD,0.0,0.0,true,0.0,Go
 2026-09-14_gcp_us-central1_t2a-standard-4_run01,Google Cloud Platform,t2a-standard-4,2026-09-14,USD,0.1658,119.38,False,119.38,Standard on-demand rate
 2026-09-14_gcp_asia-south2_e2-micro_run01,Google Cloud Platform,e2-micro,2026-09-14,USD,0.0101,7.3,False,7.3,Standard on-demand rate
 2026-09-14_vultr_delhi_vc2-1c-1gb_run01,Vultr,vc2-1c-1gb,2026-09-14,USD,0.0069,5.0,False,5.0,Standard on-demand rate
+2026-09-14_vultr_delhi_vc2-1c-2gb_run01,Vultr,vc2-1c-2gb,2026-09-14,USD,0.0139,10.0,False,10.0,Standard on-demand rate

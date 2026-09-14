@@ -39,3 +39,8 @@ run_id,test_id,io_pattern,block_size,queue_depth,read_iops,write_iops,read_mb_s,
 2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T032,"Random Read (4K, iodepth=32, numjobs=4)",4k,32,144000.0,0.0,564.0,0.0,0.883,T032_raw.log
 2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T032,"Random Write (4K, iodepth=32, numjobs=4)",4k,32,0.0,102000.0,0.0,400.0,1.226,T032_raw.log
 2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T032,"Mixed Random 70/30 (4K, iodepth=32, numjobs=4)",4k,32,125000.0,53400.0,486.0,209.0,0.737,T032_raw.log
+2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T031,"Sequential Write (1MB, iodepth=16, direct=1)",1M,16,0.0,2697.0,0.0,2698.0,0.082,T031_raw.log
+2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T031,"Sequential Read (1MB, iodepth=16, direct=1)",1M,16,3253.0,0.0,3254.0,0.0,0.014,T031_raw.log
+2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T032,"Random Read (4K, iodepth=32, numjobs=4)",4k,32,210000.0,0.0,819.0,0.0,0.607,T032_raw.log
+2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T032,"Random Write (4K, iodepth=32, numjobs=4)",4k,32,0.0,193000.0,0.0,752.0,0.663,T032_raw.log
+2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T032,"Mixed Random 70/30 (4K, iodepth=32, numjobs=4)",4k,32,144000.0,61600.0,561.0,241.0,0.641,T032_raw.log
