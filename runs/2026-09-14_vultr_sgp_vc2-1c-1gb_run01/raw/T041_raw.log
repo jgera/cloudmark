@@ -1,0 +1,79 @@
+﻿=========================================
+=== CBP-1.0 / T041: CLIENT RTT TO 207.148.119.226 ===
+=== Client Timestamp:  ===
+=== Target IP: 207.148.119.226 ===
+=========================================
+
+Pinging 207.148.119.226 with 32 bytes of data:
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=78ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=75ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=78ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=75ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=81ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=76ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=75ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=72ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=76ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=78ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=78ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=107ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=78ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=80ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=76ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=77ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=78ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=94ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=91ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=80ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=75ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=87ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=81ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=77ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=80ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=77ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=77ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=75ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=73ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=76ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+Reply from 207.148.119.226: bytes=32 time=74ms TTL=56
+
+Ping statistics for 207.148.119.226:
+    Packets: Sent = 50, Received = 50, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 72ms, Maximum = 107ms, Average = 77ms
+
+--- TRACEROUTE ---
+
+Tracing route to 207.148.119.226 over a maximum of 20 hops
+
+  1     4 ms     7 ms     3 ms  192.168.1.1 
+  2    80 ms    10 ms    35 ms  10.240.9.204 
+  3     *        *        *     Request timed out.
+  4     9 ms     9 ms     8 ms  125.18.168.169 
+  5    82 ms   110 ms    87 ms  182.79.146.196 
+  6    85 ms    79 ms    82 ms  27.111.229.119 
+  7     *        *        *     Request timed out.
+  8     *        *        *     Request timed out.
+  9    75 ms    75 ms    72 ms  45.32.97.23 
+ 10    73 ms    77 ms    78 ms  207.148.119.226 
+
+Trace complete.

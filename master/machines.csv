@@ -9,3 +9,4 @@ google cloud platform-us-central1-t2a-standard-4-01,Google Cloud Platform,us-cen
 google cloud platform-asia-south2-e2-micro-01,Google Cloud Platform,asia-south2,default,e2-micro,e2,x86_64,AMD EPYC 7B12,2,0.95,pd-standard,30G,KVM
 vultr-delhi-vc2-1c-1gb-01,Vultr,Delhi,default,vc2-1c-1gb,vc2,x86_64,Intel Xeon Processor (Cascadelake),1,0.93,SSD,25G,Microsoft
 vultr-delhi-vc2-1c-2gb-01,Vultr,Delhi,default,vc2-1c-2gb,vc2,x86_64,Intel Xeon Processor (Cascadelake),1,1.92,SSD,55G,Microsoft
+vultr-sgp-vc2-1c-1gb-01,Vultr,Sgp,default,vc2-1c-1gb,vc2,x86_64,"Intel Core Processor (Broadwell, no TSX, IBRS)",1,0.93,SSD,25G,Microsoft
