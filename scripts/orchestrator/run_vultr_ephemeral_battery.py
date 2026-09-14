@@ -258,6 +258,13 @@ def run_vultr_battery(plan, region="del", monthly_price=5.0):
                 writer.writeheader()
                 writer.writerows(rows)
 
+        try:
+            import compile_all_reports
+            compile_all_reports.compile_reports()
+            log("All reports in reports/ and walkthrough.md updated.")
+        except Exception as ce:
+            log(f"Report compile note: {ce}")
+
         log(f"Run {run_id} finalized. Ephemeral Vultr VM destroyed. 0 runaway instances.")
 
 def main():
