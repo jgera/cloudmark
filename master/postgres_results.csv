@@ -24,3 +24,13 @@ LEGACY-GCP-001,T053,select_only,10,1,1,120,2030.0,746.6,1.35,0,legacy_gcp_baseli
 2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T053,select_only,10,8,4,120,36393.800302,36401.1,0.22,0,T053_raw.log
 2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T053,select_only,10,16,4,120,39053.896859,39028.9,0.41,0,T053_raw.log
 2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T053,select_only,10,32,4,120,38808.839309,38912.3,0.82,0,T053_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T052,mixed_tpc_b,10,1,1,180,211.255945,91.2,10.95,0,T052_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T052,mixed_tpc_b,10,4,2,180,180.499382,175.5,22.78,0,T052_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T052,mixed_tpc_b,10,8,2,180,191.738015,181.4,44.67,0,T052_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T052,mixed_tpc_b,10,16,2,180,191.373321,179.3,89.53,0,T052_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T052,mixed_tpc_b,10,32,2,180,158.909921,151.5,223.43,0,T052_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T053,select_only,10,1,1,120,1099.852422,789.7,1.24,0,T053_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T053,select_only,10,4,2,120,1822.547242,1717.0,2.29,0,T053_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T053,select_only,10,8,2,120,1754.032798,1650.1,4.8,0,T053_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T053,select_only,10,16,2,120,1616.382288,1487.6,11.61,0,T053_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T053,select_only,10,32,2,120,1414.149745,1439.4,22.09,0,T053_raw.log

@@ -1,0 +1,16 @@
+=========================================
+=== CBP-1.0 / T040: SERVER NETWORK THROUGHPUT ===
+=== Timestamp (UTC): 2026-09-14 04:17:10 UTC ===
+=========================================
+Attempting iperf3 to speedtest.serverius.net (port 5201)...
+iperf3: error - unable to connect to server: Connection timed out
+Server speedtest.serverius.net was busy or unreachable, trying next...
+Attempting iperf3 to bouygues.iperf.fr (port 5201)...
+iperf3: error - unable to connect to server: Connection timed out
+Server bouygues.iperf.fr was busy or unreachable, trying next...
+Public iperf3 servers busy. Performing fallback network speed test via curl download...
+Speed Download: 16255890 bytes/sec (104857600 bytes in 6.450437s)
+
+=========================================
+=== T040 COMPLETE ===
+=========================================

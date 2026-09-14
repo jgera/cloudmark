@@ -272,6 +272,32 @@ def generate_report(run_id):
                 for r in pg_rows:
                     lines.append(f"| {r['test_id']} | {r['workload_type']} | {r['scale']} | {r['clients']} | {r['whole_run_tps']} | {r['sustained_tps']} | {r['sustained_latency_ms']} | {r['failed_txns']} |")
 
+    # Read Memory
+    lines.append("\n## 4. Memory Throughput")
+    mem_csv = MASTER_DIR / "memory_results.csv"
+    if mem_csv.exists():
+        with open(mem_csv, mode="r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            mem_rows = [r for r in reader if r.get("run_id") == run_id]
+            if mem_rows:
+                lines.append("| Test ID | Operation | Threads | Block Size | Throughput (MiB/s) | Latency (ms) |")
+                lines.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
+                for r in mem_rows:
+                    lines.append(f"| {r['test_id']} | {r['operation']} | {r['threads']} | {r['block_size']} | {r['throughput_mb_s']} | {r['mean_latency_ms']} |")
+
+    # Read Storage
+    lines.append("\n## 5. Storage I/O Performance")
+    stor_csv = MASTER_DIR / "storage_results.csv"
+    if stor_csv.exists():
+        with open(stor_csv, mode="r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            stor_rows = [r for r in reader if r.get("run_id") == run_id]
+            if stor_rows:
+                lines.append("| Test ID | I/O Pattern | Block Size | Read IOPS | Write IOPS | Read (MB/s) | Write (MB/s) | Mean Latency (ms) |")
+                lines.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+                for r in stor_rows:
+                    lines.append(f"| {r['test_id']} | {r['io_pattern']} | {r['block_size']} | {r['read_iops']} | {r['write_iops']} | {r['read_mb_s']} | {r['write_mb_s']} | {r['mean_latency_ms']} |")
+
     # Write report
     report_content = "\n".join(lines)
     report_file.write_text(report_content, encoding="utf-8")

@@ -1,0 +1,39 @@
+=========================================
+=== CBP-1.0 / T010: CPU SINGLE-THREAD ===
+=== Timestamp (UTC): 2026-09-14 04:01:21 UTC ===
+=========================================
+Running sysbench CPU test (threads=1, max-prime=20000, time=60s)...
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   190.82
+
+General statistics:
+    total time:                          60.0030s
+    total number of events:              11450
+
+Latency (ms):
+         min:                                    2.87
+         avg:                                    5.22
+         max:                                  223.99
+         95th percentile:                        3.19
+         sum:                                59769.68
+
+Threads fairness:
+    events (avg/stddev):           11450.0000/0.00
+    execution time (avg/stddev):   59.7697/0.00
+
+=========================================
+=== T010 COMPLETE ===
+=========================================

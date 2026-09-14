@@ -1,0 +1,75 @@
+=========================================
+=== CBP-1.0 / T031: SEQUENTIAL STORAGE THROUGHPUT ===
+=== Timestamp (UTC): 2026-09-14 04:10:35 UTC ===
+=========================================
+
+--- Part 1: Sequential Write (1MB, iodepth=16, direct=1) ---
+seq_write: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=libaio, iodepth=16
+fio-3.33
+Starting 1 process
+seq_write: Laying out IO file (1 file / 4096MiB)
+
+seq_write: (groupid=0, jobs=1): err= 0: pid=50287: Mon Sep 14 04:11:36 2026
+  write: IOPS=101, BW=102MiB/s (107MB/s)(6109MiB/60073msec); 0 zone resets
+    slat (usec): min=41, max=150934, avg=461.69, stdev=6434.31
+    clat (msec): min=8, max=299, avg=156.86, stdev=21.72
+     lat (msec): min=9, max=299, avg=157.32, stdev=20.75
+    clat percentiles (msec):
+     |  1.00th=[   54],  5.00th=[  155], 10.00th=[  155], 20.00th=[  157],
+     | 30.00th=[  157], 40.00th=[  157], 50.00th=[  157], 60.00th=[  157],
+     | 70.00th=[  159], 80.00th=[  159], 90.00th=[  159], 95.00th=[  161],
+     | 99.00th=[  257], 99.50th=[  275], 99.90th=[  296], 99.95th=[  296],
+     | 99.99th=[  300]
+   bw (  KiB/s): min=75776, max=106496, per=99.88%, avg=104004.27, stdev=3483.91, samples=120
+   iops        : min=   74, max=  104, avg=101.57, stdev= 3.40, samples=120
+  lat (msec)   : 10=0.11%, 20=0.20%, 50=0.67%, 100=1.01%, 250=96.89%
+  lat (msec)   : 500=1.11%
+  cpu          : usr=1.17%, sys=1.15%, ctx=5944, majf=0, minf=10
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=99.8%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,6109,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+  WRITE: bw=102MiB/s (107MB/s), 102MiB/s-102MiB/s (107MB/s-107MB/s), io=6109MiB (6406MB), run=60073-60073msec
+
+Disk stats (read/write):
+  sda: ios=0/24533, merge=0/116, ticks=0/3697537, in_queue=3697539, util=96.89%
+
+--- Part 2: Sequential Read (1MB, iodepth=16, direct=1) ---
+seq_read: (g=0): rw=read, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=libaio, iodepth=16
+fio-3.33
+Starting 1 process
+
+seq_read: (groupid=0, jobs=1): err= 0: pid=50327: Mon Sep 14 04:12:37 2026
+  read: IOPS=120, BW=120MiB/s (126MB/s)(7229MiB/60111msec)
+    slat (usec): min=17, max=3816, avg=76.86, stdev=108.52
+    clat (usec): min=1455, max=323195, avg=132912.44, stdev=21231.34
+     lat (usec): min=1555, max=323262, avg=132989.31, stdev=21222.42
+    clat percentiles (msec):
+     |  1.00th=[   93],  5.00th=[  106], 10.00th=[  110], 20.00th=[  117],
+     | 30.00th=[  122], 40.00th=[  126], 50.00th=[  132], 60.00th=[  136],
+     | 70.00th=[  142], 80.00th=[  148], 90.00th=[  159], 95.00th=[  169],
+     | 99.00th=[  194], 99.50th=[  211], 99.90th=[  266], 99.95th=[  292],
+     | 99.99th=[  326]
+   bw (  KiB/s): min=108544, max=153600, per=99.98%, avg=123118.93, stdev=4522.80, samples=120
+   iops        : min=  106, max=  150, avg=120.22, stdev= 4.41, samples=120
+  lat (msec)   : 2=0.03%, 20=0.04%, 50=0.10%, 100=2.34%, 250=97.34%
+  lat (msec)   : 500=0.15%
+  cpu          : usr=0.32%, sys=1.26%, ctx=7084, majf=0, minf=530
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=99.8%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=7229,0,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+   READ: bw=120MiB/s (126MB/s), 120MiB/s-120MiB/s (126MB/s-126MB/s), io=7229MiB (7580MB), run=60111-60111msec
+
+Disk stats (read/write):
+  sda: ios=28823/8, merge=0/3, ticks=3412125/875, in_queue=3413001, util=98.36%
+
+=========================================
+=== T031 COMPLETE ===
+=========================================

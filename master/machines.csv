@@ -2,3 +2,4 @@ machine_id,provider,region,zone,plan_name,instance_family,cpu_arch,cpu_model,exp
 gcp-uswest1a-e2micro-01,Google Cloud Platform,us-west1,us-west1-a,e2-micro,e2,x86_64,Intel/AMD Shared Core,2,1.0,pd-standard,30,KVM
 vultr-delhi-vhp-4c-8gb-intel-01,Vultr,Delhi,default,vhp-4c-8gb-intel,vhp,x86_64,Intel Xeon Processor (Cascadelake),4,7.75,NVMe/SSD,180G,Microsoft
 vultr-mumbai-vhp-4c-8gb-amd-01,Vultr,Mumbai,default,vhp-4c-8gb-amd,vhp,x86_64,AMD EPYC-Rome Processor,4,7.75,NVMe/SSD,180G,Microsoft
+google cloud platform-us-west1-e2-micro-01,Google Cloud Platform,us-west1,us-west1-a,e2-micro,e2,x86_64,Intel(R) Xeon(R) CPU @ 2.20GHz,2,0.95,pd-standard,30G,KVM

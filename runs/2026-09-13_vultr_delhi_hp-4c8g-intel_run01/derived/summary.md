@@ -1,5 +1,5 @@
 # CloudMark Benchmark Summary: 2026-09-13_vultr_delhi_hp-4c8g-intel_run01
-Generated: 2026-09-13 12:28:05 UTC
+Generated: 2026-09-14 04:50:20 UTC
 
 ## 1. System Metadata
 - **run_id**: `2026-09-13_vultr_delhi_hp-4c8g-intel_run01`
@@ -42,3 +42,18 @@ Generated: 2026-09-13 12:28:05 UTC
 | T053 | select_only | 10 | 8 | 69418.1938 | 69477.1 | 0.11 | 0 |
 | T053 | select_only | 10 | 16 | 63172.519435 | 63268.7 | 0.25 | 0 |
 | T053 | select_only | 10 | 32 | 64720.038781 | 64260.1 | 0.5 | 0 |
+
+## 4. Memory Throughput
+| Test ID | Operation | Threads | Block Size | Throughput (MiB/s) | Latency (ms) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| T020 | write | 4 | 1M | 47792.01 | 0.08 |
+| T020 | read | 4 | 1M | 91955.48 | 0.04 |
+
+## 5. Storage I/O Performance
+| Test ID | I/O Pattern | Block Size | Read IOPS | Write IOPS | Read (MB/s) | Write (MB/s) | Mean Latency (ms) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| T031 | Sequential Write (1MB, iodepth=16, direct=1) | 1M | 0.0 | 2924.0 | 0.0 | 2924.0 | 0.065 |
+| T031 | Sequential Read (1MB, iodepth=16, direct=1) | 1M | 3306.0 | 0.0 | 3307.0 | 0.0 | 0.032 |
+| T032 | Random Read (4K, iodepth=32, numjobs=4) | 4k | 218000.0 | 0.0 | 850.0 | 0.0 | 0.585 |
+| T032 | Random Write (4K, iodepth=32, numjobs=4) | 4k | 0.0 | 219000.0 | 0.0 | 855.0 | 0.582 |
+| T032 | Mixed Random 70/30 (4K, iodepth=32, numjobs=4) | 4k | 151000.0 | 64700.0 | 590.0 | 253.0 | 0.611 |

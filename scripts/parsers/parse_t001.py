@@ -53,6 +53,14 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
     os_name_match = re.search(r'PRETTY_NAME="([^"]+)"', log_content)
     os_distro = os_name_match.group(1) if os_name_match else "Linux"
 
+    # Extract Root Disk Type
+    if "PersistentDisk" in log_content:
+        root_disk_type = "pd-standard"
+    elif "nvme" in log_content.lower():
+        root_disk_type = "NVMe"
+    else:
+        root_disk_type = "SSD"
+
     parsed = {
         "machine_id": machine_id,
         "provider": provider,
@@ -64,7 +72,7 @@ def parse_t001(raw_log_path: str, run_id: str, machine_id: str, provider: str, r
         "cpu_model": cpu_model,
         "exposed_vcpu": exposed_vcpu,
         "ram_gb": ram_gb,
-        "root_disk_type": "NVMe/SSD",
+        "root_disk_type": root_disk_type,
         "root_disk_size_gb": root_disk_size,
         "virt_type": virt_type,
         "kernel_version": kernel_ver,

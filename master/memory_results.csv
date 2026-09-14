@@ -3,3 +3,5 @@ run_id,test_id,operation,threads,block_size,total_ops_or_mb,throughput_mb_s,mean
 2026-09-13_vultr_delhi_hp-4c8g-intel_run01,T020,read,4,1M,65536.0,91955.48,0.04,T020_raw.log
 2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T020,write,4,1M,65536.0,18633.78,0.2,T020_raw.log
 2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,T020,read,4,1M,65536.0,156755.7,0.02,T020_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T020,write,2,1M,65536.0,15514.9,0.13,T020_raw.log
+2026-09-14_gcp_uswest1_e2-micro_run01,T020,read,2,1M,61852.0,6093.26,0.32,T020_raw.log

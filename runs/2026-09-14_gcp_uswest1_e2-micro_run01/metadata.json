@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-14_gcp_uswest1_e2-micro_run01",
+  "machine_id": "google cloud platform-us-west1-e2-micro-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Google Cloud Platform",
+  "region": "us-west1",
+  "plan_name": "e2-micro",
+  "created_utc": "2026-09-14 03:50:32 UTC",
+  "pricing": {
+    "monthly_usd": 0.0,
+    "promotional_credit": true,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "e2",
+  "cpu_arch": "x86_64",
+  "cpu_model": "Intel(R) Xeon(R) CPU @ 2.20GHz",
+  "exposed_vcpu": 2,
+  "ram_gb": 0.95,
+  "root_disk_type": "pd-standard",
+  "root_disk_size_gb": "30G",
+  "virt_type": "KVM",
+  "kernel_version": "6.1.0-53-cloud-amd64",
+  "os_distro": "Debian GNU/Linux 12 (bookworm)"
+}

@@ -1,0 +1,38 @@
+=========================================
+=== CBP-1.0 / T030: STORAGE IDENTIFICATION ===
+=== Timestamp (UTC): 2026-09-14 04:10:13 UTC ===
+=========================================
+
+--- Block Device Hierarchy (lsblk) ---
+NAME     SIZE TYPE FSTYPE MOUNTPOINTS ROTA MODEL          DISC-MAX DISC-ZERO
+sda       30G disk                       1 PersistentDisk       4G         0
+├─sda1  29.9G part ext4   /              1                      4G         0
+├─sda14    3M part                       1                      4G         0
+└─sda15  124M part vfat   /boot/efi      1                      4G         0
+
+--- Mount Options ---
+/dev/sda1 on / type ext4 (rw,relatime,discard,errors=remount-ro)
+/dev/sda15 on /boot/efi type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+--- Disk Free (df -hT) ---
+Filesystem     Type      Size  Used Avail Use% Mounted on
+udev           devtmpfs  447M     0  447M   0% /dev
+tmpfs          tmpfs      97M  492K   97M   1% /run
+/dev/sda1      ext4       30G  5.5G   23G  20% /
+tmpfs          tmpfs     485M  1.1M  484M   1% /dev/shm
+tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+efivarfs       efivarfs  256K   26K  226K  11% /sys/firmware/efi/efivars
+/dev/sda15     vfat      124M   12M  112M  10% /boot/efi
+tmpfs          tmpfs      97M     0   97M   0% /run/user/1000
+tmpfs          tmpfs      97M     0   97M   0% /run/user/1001
+
+--- Sysfs Disk Queue & Scheduler ---
+Device: sda
+  scheduler: [none] mq-deadline 
+  nr_requests: 10240
+  rotational (0=SSD/NVMe, 1=HDD): 1
+  read_ahead_kb: 128
+
+=========================================
+=== T030 COMPLETE ===
+=========================================

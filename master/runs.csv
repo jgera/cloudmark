@@ -2,3 +2,4 @@ run_id,machine_id,protocol_version,profile,start_utc,end_utc,os_distro,os_versio
 LEGACY-GCP-001,gcp-uswest1a-e2micro-01,CBP-0,exploratory,unknown,unknown,unknown,unknown,unknown,18,Historical baseline from early exploratory test
 2026-09-13_vultr_delhi_hp-4c8g-intel_run01,vultr-delhi-vhp-4c-8gb-intel-01,CBP-1.0,standard,2026-09-13 11:32:43 UTC,2026-09-13 12:28:05 UTC,Ubuntu 24.04.4 LTS,24.04 LTS,6.8.0-138-generic,18,Complete; instance destroyed
 2026-09-13_vultr_mumbai_hp-4c8g-amd_run01,vultr-mumbai-vhp-4c-8gb-amd-01,CBP-1.0,standard,2026-09-13 18:39:55 UTC,2026-09-13 19:22:46 UTC,Ubuntu 24.04.4 LTS,24.04 LTS,6.8.0-138-generic,18,Complete; instance destroyed
+2026-09-14_gcp_uswest1_e2-micro_run01,google cloud platform-us-west1-e2-micro-01,CBP-1.0,standard,2026-09-14 03:50:32 UTC,2026-09-14 04:49:19 UTC,Debian GNU/Linux 12 (bookworm),12 (bookworm),6.1.0-53-cloud-amd64,18,Complete; persistent baseline preserved
