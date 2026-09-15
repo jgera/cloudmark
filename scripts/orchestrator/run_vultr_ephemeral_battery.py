@@ -227,14 +227,8 @@ def run_vultr_battery(plan, region="del", monthly_price=5.0):
         # Step 9: UNCONDITIONAL TEARDOWN
         teardown_instance(instance_id)
 
-        # Step 10: Parse results and generate reports
+        # Step 10: Generate reports and update runs.csv
         end_time = datetime.now(timezone.utc)
-        raw_dir = BASE_DIR / "runs" / run_id / "raw"
-        for tid in ["T001", "T010", "T011", "T012", "T020", "T031", "T032", "T052", "T053"]:
-            raw_log = raw_dir / f"{tid}_raw.log"
-            if raw_log.exists():
-                cloudmark_runner.trigger_parser(run_id, tid, raw_log)
-        log("All metrics parsed and integrated successfully into master CSVs.")
 
         try:
             cloudmark_runner.generate_report(run_id)

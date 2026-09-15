@@ -76,11 +76,23 @@ def parse_pgbench_log(raw_log_path: str, run_id: str, test_id: str):
             ])
 
     if rows_to_add:
-        with open(master_csv, mode="a", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerows(rows_to_add)
-        for r in rows_to_add:
-            print(f"[{test_id}] Parsed: Clients={r[4]}, WholeRunTPS={r[7]}, SustainedTPS={r[8]}, Latency={r[9]}ms, Failures={r[10]}")
+        existing_keys = set()
+        if master_csv.exists():
+            with open(master_csv, mode="r", encoding="utf-8") as f:
+                rdr = csv.reader(f)
+                for r in rdr:
+                    if len(r) >= 5:
+                        existing_keys.add((r[0], r[1], str(r[4])))
+
+        filtered_rows = [r for r in rows_to_add if (r[0], r[1], str(r[4])) not in existing_keys]
+        if filtered_rows:
+            with open(master_csv, mode="a", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                writer.writerows(filtered_rows)
+            for r in filtered_rows:
+                print(f"[{test_id}] Parsed: Clients={r[4]}, WholeRunTPS={r[7]}, SustainedTPS={r[8]}, Latency={r[9]}ms, Failures={r[10]}")
+        else:
+            print(f"[{test_id}] Rows already present in master dataset. Skipping duplicate append.")
     else:
         print(f"[{test_id}] No pgbench blocks matched in {raw_log_path}")
 

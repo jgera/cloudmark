@@ -72,15 +72,24 @@ def parse_cpu_log(raw_log_path: str, run_id: str, test_id: str):
             print(f"[T012 Time Series] Burst (first 30s): {burst_eps:.1f} eps | Sustained (final 60s): {sustained_eps:.1f} eps | Ratio: {ratio}x | CV: {cv}%")
 
     # Append to master/cpu_results.csv
-    with open(master_csv, mode="a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            run_id, test_id, "sysbench_cpu", thread_count,
-            events_per_sec, mean_lat_ms, p95_lat_ms, scaling_eff,
-            Path(raw_log_path).name
-        ])
+    existing_keys = set()
+    if master_csv.exists():
+        with open(master_csv, mode="r", encoding="utf-8") as f:
+            for r in csv.reader(f):
+                if len(r) >= 2:
+                    existing_keys.add((r[0], r[1]))
 
-    print(f"[{test_id}] Parsed: Threads={thread_count}, Events/sec={events_per_sec}, MeanLat={mean_lat_ms}ms, P95Lat={p95_lat_ms}ms, ScalingMetric={scaling_eff}")
+    if (run_id, test_id) not in existing_keys:
+        with open(master_csv, mode="a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                run_id, test_id, "sysbench_cpu", thread_count,
+                events_per_sec, mean_lat_ms, p95_lat_ms, scaling_eff,
+                Path(raw_log_path).name
+            ])
+        print(f"[{test_id}] Parsed: Threads={thread_count}, Events/sec={events_per_sec}, MeanLat={mean_lat_ms}ms, P95Lat={p95_lat_ms}ms, ScalingMetric={scaling_eff}")
+    else:
+        print(f"[{test_id}] Row already present in master dataset. Skipping duplicate append.")
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
