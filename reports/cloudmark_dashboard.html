@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CloudMark CBP-1.0 Interactive Visual Analytics Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .tab-btn.active {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      border-color: var(--primary);
+    }
+    .chart-bar:hover {
+      opacity: 0.85;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-6 font-sans">
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Header Banner -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            CBP-1.0 Frozen Protocol
+          </span>
+          <span class="text-xs text-[var(--muted-foreground)]">12 Machines Evaluated</span>
+        </div>
+        <h1 class="text-2xl font-bold text-[var(--foreground)] mt-1">CloudMark Multi-Architecture Visual Analytics</h1>
+        <p class="text-sm text-[var(--muted-foreground)]">Real-world database throughput, throttling curves, storage IOPS, and price-to-performance across GCP & Vultr</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <select id="cohortFilter" onchange="renderAll()" class="bg-[var(--background)] text-[var(--foreground)] border border-[var(--border)] rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+          <option value="all">All Tiers ($0 – $160/mo)</option>
+          <option value="micro">Cohort B: Micro & Entry ($0 – $10/mo)</option>
+          <option value="standard">Cohort A: Standard 4-Core ($48 – $158/mo)</option>
+        </select>
+        <select id="cloudFilter" onchange="renderAll()" class="bg-[var(--background)] text-[var(--foreground)] border border-[var(--border)] rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+          <option value="all">All Providers (Vultr + GCP)</option>
+          <option value="vultr">Vultr Only</option>
+          <option value="gcp">Google Cloud Only</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Top KPI Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <div class="text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">#1 Value Champion</div>
+        <div class="text-2xl font-bold text-emerald-500 mt-1">467.7 <span class="text-xs font-normal text-[var(--foreground)]">TPS / $</span></div>
+        <div class="text-xs text-[var(--foreground)] font-semibold mt-1">Vultr Mumbai (vc2-1c-1gb)</div>
+        <div class="text-[11px] text-[var(--muted-foreground)]">2,338 sustained OLTP @ $5.00/mo</div>
+      </div>
+
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <div class="text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">Concurrency Leader ($6)</div>
+        <div class="text-2xl font-bold text-sky-500 mt-1">1,717.4 <span class="text-xs font-normal text-[var(--foreground)]">TPS @ 32c</span></div>
+        <div class="text-xs text-[var(--foreground)] font-semibold mt-1">Vultr Delhi (vhf-1c-1gb)</div>
+        <div class="text-[11px] text-[var(--muted-foreground)]">3.0+ GHz High Frequency NVMe ($6/mo)</div>
+      </div>
+
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <div class="text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">Max 4-Core Throughput</div>
+        <div class="text-2xl font-bold text-indigo-500 mt-1">8,279.7 <span class="text-xs font-normal text-[var(--foreground)]">TPS</span></div>
+        <div class="text-xs text-[var(--foreground)] font-semibold mt-1">Vultr Delhi (vhp-4c-8gb)</div>
+        <div class="text-[11px] text-[var(--muted-foreground)]">Local NVMe (219k IOPS) @ $48/mo</div>
+      </div>
+
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <div class="text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">Throttling Divergence</div>
+        <div class="text-2xl font-bold text-amber-500 mt-1">0% <span class="text-xs font-normal text-[var(--foreground)]">vs 58% Drop</span></div>
+        <div class="text-xs text-[var(--foreground)] font-semibold mt-1">Vultr Flat vs GCP Throttle</div>
+        <div class="text-[11px] text-[var(--muted-foreground)]">300s Continuous Load Stability</div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap border-b border-[var(--border)] gap-2">
+      <button onclick="switchTab('value')" id="tabBtn_value" class="tab-btn active px-4 py-2 text-xs font-medium rounded-t-lg border-b-2 transition-colors">
+        💰 Price-to-Performance ($/TPS)
+      </button>
+      <button onclick="switchTab('oltp')" id="tabBtn_oltp" class="tab-btn px-4 py-2 text-xs font-medium rounded-t-lg border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        📈 Mixed OLTP Scaling (1–32 Clients)
+      </button>
+      <button onclick="switchTab('throttle')" id="tabBtn_throttle" class="tab-btn px-4 py-2 text-xs font-medium rounded-t-lg border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        ⏱️ CPU Throttling Curves (300s)
+      </button>
+      <button onclick="switchTab('storage')" id="tabBtn_storage" class="tab-btn px-4 py-2 text-xs font-medium rounded-t-lg border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        💾 Storage IOPS & Latency
+      </button>
+    </div>
+
+    <!-- Tab 1: Price-to-Performance -->
+    <div id="tab_value" class="space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h3 class="text-base font-semibold text-[var(--foreground)]">TPS Per Monthly Dollar (Mixed OLTP Value)</h3>
+            <p class="text-xs text-[var(--muted-foreground)]">Higher is better. Calculated as (Peak Sustained Mixed OLTP TPS) / (Monthly On-Demand USD Price)</p>
+          </div>
+        </div>
+        <div id="valueChartContainer" class="w-full overflow-x-auto"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: OLTP Scaling -->
+    <div id="tab_oltp" class="hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h3 class="text-base font-semibold text-[var(--foreground)]">PostgreSQL Mixed OLTP Concurrency Scaling (T052)</h3>
+            <p class="text-xs text-[var(--muted-foreground)]">Sustained TPS across 1, 4, 8, 16, and 32 concurrent clients (Scale 10, 180s per tier)</p>
+          </div>
+        </div>
+        <div id="oltpChartContainer" class="w-full overflow-x-auto"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Throttling -->
+    <div id="tab_throttle" class="hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h3 class="text-base font-semibold text-[var(--foreground)]">Sustained CPU Throttling Over Time (T012, 300s Continuous Load)</h3>
+            <p class="text-xs text-[var(--muted-foreground)]">Compares burst capacity (0–30s) against steady state (240–300s). GCP shared cores throttle; Vultr remains rock-flat.</p>
+          </div>
+        </div>
+        <div id="throttleChartContainer" class="w-full overflow-x-auto"></div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Storage -->
+    <div id="tab_storage" class="hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h3 class="text-base font-semibold text-[var(--foreground)]">Random 4K Storage IOPS (32-Depth Direct I/O)</h3>
+            <p class="text-xs text-[var(--muted-foreground)]">Local NVMe & SSD arrays vs. Cloud Network Block Volumes (GCP pd-standard & pd-ssd)</p>
+          </div>
+        </div>
+        <div id="storageChartContainer" class="w-full overflow-x-auto"></div>
+      </div>
+    </div>
+
+    <!-- Interactive Data Table -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+        <h3 class="text-base font-semibold text-[var(--foreground)]">Complete Verified Dataset (CBP-1.0)</h3>
+        <input type="text" id="searchTable" oninput="renderTable()" placeholder="Search machines, regions, CPUs..." class="bg-[var(--background)] text-[var(--foreground)] border border-[var(--border)] rounded-lg px-3 py-1.5 text-xs w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+              <th class="py-2.5 px-3 font-medium">Machine & Location</th>
+              <th class="py-2.5 px-3 font-medium">Cloud</th>
+              <th class="py-2.5 px-3 font-medium">Hardware Spec</th>
+              <th class="py-2.5 px-3 font-medium text-right">Price/Mo</th>
+              <th class="py-2.5 px-3 font-medium text-right">CPU (eps)</th>
+              <th class="py-2.5 px-3 font-medium text-right">Write IOPS</th>
+              <th class="py-2.5 px-3 font-medium text-right">Peak OLTP TPS</th>
+              <th class="py-2.5 px-3 font-medium text-right">Value (TPS/$)</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="divide-y divide-[var(--border)] text-[var(--foreground)]">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const MACHINES = [
+      {
+        id: "vultr-mumbai-vc2-1c-1gb-01",
+        name: "Vultr vc2-1c-1gb",
+        cloud: "Vultr",
+        region: "Mumbai (bom)",
+        tier: "micro",
+        cpu: "Intel Cascadelake (1 core)",
+        ram: "1 GB",
+        disk: "25 GB SSD",
+        price: 5.00,
+        cpu_eps: 454.6,
+        throttle_ratio: 0.97,
+        throttle_cv: 1.52,
+        read_iops: 178000,
+        write_iops: 194000,
+        oltp_series: [2338.6, 2322.7, 2065.9, 2004.9, 1613.7],
+        peak_tps: 2338.6,
+        tps_per_dollar: 467.7,
+        ping_ms: 32.0,
+        color: "#10b981"
+      },
+      {
+        id: "vultr-delhi-vc2-1c-1gb-01",
+        name: "Vultr vc2-1c-1gb",
+        cloud: "Vultr",
+        region: "Delhi (del)",
+        tier: "micro",
+        cpu: "Intel Cascadelake (1 core)",
+        ram: "1 GB",
+        disk: "25 GB SSD",
+        price: 5.00,
+        cpu_eps: 440.8,
+        throttle_ratio: 1.02,
+        throttle_cv: 2.10,
+        read_iops: 144000,
+        write_iops: 102000,
+        oltp_series: [2071.1, 1957.5, 1821.2, 1539.0, 1217.1],
+        peak_tps: 2071.1,
+        tps_per_dollar: 414.2,
+        ping_ms: 10.5,
+        color: "#059669"
+      },
+      {
+        id: "vultr-delhi-vhf-1c-1gb-01",
+        name: "Vultr vhf-1c-1gb (HF NVMe)",
+        cloud: "Vultr",
+        region: "Delhi (del)",
+        tier: "micro",
+        cpu: "Intel Skylake HF 3.0+ GHz (1 core)",
+        ram: "1 GB",
+        disk: "32 GB NVMe",
+        price: 6.00,
+        cpu_eps: 1048.5,
+        throttle_ratio: 0.99,
+        throttle_cv: 1.11,
+        read_iops: 157000,
+        write_iops: 81000,
+        oltp_series: [2143.7, 2019.9, 1915.3, 1802.8, 1717.4],
+        peak_tps: 2143.7,
+        tps_per_dollar: 357.3,
+        ping_ms: 10.5,
+        color: "#0284c7"
+      },
+      {
+        id: "vultr-sgp-vc2-1c-1gb-01",
+        name: "Vultr vc2-1c-1gb",
+        cloud: "Vultr",
+        region: "Singapore (sgp)",
+        tier: "micro",
+        cpu: "Intel Broadwell (1 core)",
+        ram: "1 GB",
+        disk: "25 GB SSD (SAN)",
+        price: 5.00,
+        cpu_eps: 303.5,
+        throttle_ratio: 1.02,
+        throttle_cv: 1.58,
+        read_iops: 56000,
+        write_iops: 37000,
+        oltp_series: [825.3, 1164.5, 1164.4, 982.9, 897.3],
+        peak_tps: 1164.5,
+        tps_per_dollar: 232.9,
+        ping_ms: 72.0,
+        color: "#0d9488"
+      },
+      {
+        id: "vultr-delhi-vc2-1c-2gb-01",
+        name: "Vultr vc2-1c-2gb",
+        cloud: "Vultr",
+        region: "Delhi (del)",
+        tier: "micro",
+        cpu: "Intel Cascadelake (1 core)",
+        ram: "2 GB",
+        disk: "55 GB SSD",
+        price: 10.00,
+        cpu_eps: 449.9,
+        throttle_ratio: 1.00,
+        throttle_cv: 0.96,
+        read_iops: 210000,
+        write_iops: 193000,
+        oltp_series: [2180.4, 2185.1, 2127.9, 1813.0, 1461.7],
+        peak_tps: 2185.1,
+        tps_per_dollar: 218.5,
+        ping_ms: 10.0,
+        color: "#6366f1"
+      },
+      {
+        id: "vultr-delhi-vhp-4c-8gb-intel-01",
+        name: "Vultr vhp-4c-8gb-intel",
+        cloud: "Vultr",
+        region: "Delhi (del)",
+        tier: "standard",
+        cpu: "Intel Cascadelake (4 cores)",
+        ram: "8 GB",
+        disk: "180 GB NVMe",
+        price: 48.00,
+        cpu_eps: 1888.5,
+        throttle_ratio: 1.00,
+        throttle_cv: 0.34,
+        read_iops: 219000,
+        write_iops: 219000,
+        oltp_series: [2360.4, 5976.0, 8279.7, 7788.8, 6933.0],
+        peak_tps: 8279.7,
+        tps_per_dollar: 172.5,
+        ping_ms: 9.0,
+        color: "#8b5cf6"
+      },
+      {
+        id: "vultr-mumbai-vhp-4c-8gb-amd-01",
+        name: "Vultr vhp-4c-8gb-amd",
+        cloud: "Vultr",
+        region: "Mumbai (bom)",
+        tier: "standard",
+        cpu: "AMD EPYC Rome (4 cores)",
+        ram: "8 GB",
+        disk: "180 GB NVMe",
+        price: 48.00,
+        cpu_eps: 5412.3,
+        throttle_ratio: 1.01,
+        throttle_cv: 0.64,
+        read_iops: 127000,
+        write_iops: 124000,
+        oltp_series: [1213.3, 3136.1, 4561.9, 4199.1, 3636.8],
+        peak_tps: 4561.9,
+        tps_per_dollar: 95.0,
+        ping_ms: 32.0,
+        color: "#a855f7"
+      },
+      {
+        id: "gcp-c2-standard-4-01",
+        name: "GCP c2-standard-4",
+        cloud: "Google Cloud",
+        region: "Iowa (us-central1)",
+        tier: "standard",
+        cpu: "Intel Cascadelake 3.8 GHz (4 cores)",
+        ram: "16 GB",
+        disk: "50 GB pd-ssd",
+        price: 158.40,
+        cpu_eps: 1654.1,
+        throttle_ratio: 1.00,
+        throttle_cv: 0.04,
+        read_iops: 7700,
+        write_iops: 7500,
+        oltp_series: [1451.7, 3474.2, 5210.5, 6141.3, 6115.5],
+        peak_tps: 6141.3,
+        tps_per_dollar: 38.8,
+        ping_ms: null,
+        color: "#f59e0b"
+      },
+      {
+        id: "gcp-t2a-standard-4-01",
+        name: "GCP t2a-standard-4 (ARM)",
+        cloud: "Google Cloud",
+        region: "Iowa (us-central1)",
+        tier: "standard",
+        cpu: "Ampere Altra ARM64 (4 cores)",
+        ram: "16 GB",
+        disk: "50 GB pd-ssd",
+        price: 119.38,
+        cpu_eps: 5172.0,
+        throttle_ratio: 1.00,
+        throttle_cv: 0.05,
+        read_iops: 7700,
+        write_iops: 7500,
+        oltp_series: [1073.1, 2621.8, 3900.7, 4135.7, 4159.3],
+        peak_tps: 4159.3,
+        tps_per_dollar: 34.8,
+        ping_ms: null,
+        color: "#f97316"
+      },
+      {
+        id: "gcp-delhi-e2-micro-01",
+        name: "GCP e2-micro",
+        cloud: "Google Cloud",
+        region: "Delhi (asia-south2)",
+        tier: "micro",
+        cpu: "AMD EPYC (0.25 core shared)",
+        ram: "1 GB",
+        disk: "30 GB pd-standard",
+        price: 7.30,
+        cpu_eps: 186.3,
+        throttle_ratio: 1.79,
+        throttle_cv: 51.54,
+        read_iops: 152,
+        write_iops: 302,
+        oltp_series: [94.1, 194.3, 236.2, 250.5, 215.8],
+        peak_tps: 250.5,
+        tps_per_dollar: 34.2,
+        ping_ms: 12.0,
+        color: "#ef4444"
+      },
+      {
+        id: "gcp-uswest1-e2-standard-4-01",
+        name: "GCP e2-standard-4",
+        cloud: "Google Cloud",
+        region: "Oregon (us-west1)",
+        tier: "standard",
+        cpu: "Intel Xeon (4 cores shared)",
+        ram: "16 GB",
+        disk: "50 GB pd-standard",
+        price: 105.12,
+        cpu_eps: 1114.3,
+        throttle_ratio: 0.97,
+        throttle_cv: 2.35,
+        read_iops: 7718,
+        write_iops: 7542,
+        oltp_series: [381.3, 1062.4, 1401.3, 2700.0, 2236.8],
+        peak_tps: 2700.0,
+        tps_per_dollar: 25.7,
+        ping_ms: null,
+        color: "#dc2626"
+      },
+      {
+        id: "gcp-uswest1-e2-micro-01",
+        name: "GCP e2-micro (Always Free)",
+        cloud: "Google Cloud",
+        region: "Oregon (us-west1)",
+        tier: "micro",
+        cpu: "Intel Xeon (0.25 core shared)",
+        ram: "1 GB",
+        disk: "30 GB pd-standard",
+        price: 0.00,
+        cpu_eps: 144.1,
+        throttle_ratio: 2.37,
+        throttle_cv: 83.50,
+        read_iops: 152,
+        write_iops: 304,
+        oltp_series: [91.2, 175.5, 181.4, 179.3, 151.5],
+        peak_tps: 181.4,
+        tps_per_dollar: 0.0,
+        ping_ms: null,
+        color: "#94a3b8"
+      }
+    ];
+
+    function getFilteredMachines() {
+      const cohort = document.getElementById("cohortFilter").value;
+      const cloud = document.getElementById("cloudFilter").value;
+      return MACHINES.filter(m => {
+        if (cohort !== "all" && m.tier !== cohort) return false;
+        if (cloud === "vultr" && m.cloud !== "Vultr") return false;
+        if (cloud === "gcp" && m.cloud !== "Google Cloud") return false;
+        return true;
+      });
+    }
+
+    function switchTab(tabId) {
+      ["value", "oltp", "throttle", "storage"].forEach(t => {
+        document.getElementById("tab_" + t).classList.add("hidden");
+        document.getElementById("tabBtn_" + t).classList.remove("active");
+        document.getElementById("tabBtn_" + t).classList.remove("border-[var(--primary)]");
+        document.getElementById("tabBtn_" + t).classList.add("border-transparent");
+      });
+      document.getElementById("tab_" + tabId).classList.remove("hidden");
+      document.getElementById("tabBtn_" + tabId).classList.add("active");
+      renderAll();
+    }
+
+    function renderValueChart() {
+      const data = getFilteredMachines().filter(m => m.price > 0).sort((a, b) => b.tps_per_dollar - a.tps_per_dollar);
+      const maxVal = Math.max(...data.map(d => d.tps_per_dollar), 1);
+      const h = data.length * 44 + 40;
+      const svgW = 860;
+      const barStart = 260;
+      const barW = 480;
+
+      let svg = `<svg viewBox="0 0 ${svgW} ${h}" class="w-full h-auto text-xs">`;
+      data.forEach((d, i) => {
+        const y = i * 44 + 20;
+        const w = Math.max(8, (d.tps_per_dollar / maxVal) * barW);
+        svg += `
+          <text x="${barStart - 12}" y="${y + 16}" text-anchor="end" fill="var(--foreground)" font-weight="600">${d.name} (${d.region.split(' ')[0]})</text>
+          <text x="${barStart - 12}" y="${y + 28}" text-anchor="end" fill="var(--muted-foreground)" font-size="10">$${d.price.toFixed(2)}/mo</text>
+          <rect x="${barStart}" y="${y + 4}" width="${w}" height="24" rx="5" fill="${d.color}" class="chart-bar">
+            <title>${d.name} in ${d.region}: ${d.tps_per_dollar} TPS/$ (${d.peak_tps} TPS)</title>
+          </rect>
+          <text x="${barStart + w + 10}" y="${y + 20}" fill="var(--foreground)" font-weight="700">${d.tps_per_dollar.toFixed(1)} <tspan font-weight="400" font-size="10" fill="var(--muted-foreground)">TPS/$ (${d.peak_tps.toFixed(0)} TPS)</tspan></text>
+        `;
+      });
+      svg += `</svg>`;
+      document.getElementById("valueChartContainer").innerHTML = svg;
+    }
+
+    function renderOLTPChart() {
+      const data = getFilteredMachines();
+      const svgW = 860;
+      const svgH = 340;
+      const padL = 70;
+      const padR = 180;
+      const padT = 30;
+      const padB = 40;
+      const plotW = svgW - padL - padR;
+      const plotH = svgH - padT - padB;
+
+      const clients = [1, 4, 8, 16, 32];
+      const maxTPS = 9000;
+
+      let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" class="w-full h-auto text-xs">`;
+      // Grid lines
+      [0, 2000, 4000, 6000, 8000].forEach(tps => {
+        const y = padT + plotH - (tps / maxTPS) * plotH;
+        svg += `
+          <line x1="${padL}" y1="${y}" x2="${padL + plotW}" y2="${y}" stroke="var(--border)" stroke-dasharray="3 3"/>
+          <text x="${padL - 8}" y="${y + 4}" text-anchor="end" fill="var(--muted-foreground)" font-size="10">${tps.toLocaleString()} TPS</text>
+        `;
+      });
+
+      // X Axis
+      clients.forEach((c, idx) => {
+        const x = padL + (idx / (clients.length - 1)) * plotW;
+        svg += `
+          <line x1="${x}" y1="${padT + plotH}" x2="${x}" y2="${padT + plotH + 5}" stroke="var(--border)"/>
+          <text x="${x}" y="${padT + plotH + 20}" text-anchor="middle" fill="var(--muted-foreground)" font-size="11 font-medium">${c} Clients</text>
+        `;
+      });
+
+      // Plot series lines
+      data.forEach((d, mIdx) => {
+        const pts = d.oltp_series.map((tps, idx) => {
+          const x = padL + (idx / (clients.length - 1)) * plotW;
+          const y = padT + plotH - (Math.min(tps, maxTPS) / maxTPS) * plotH;
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(" ");
+
+        svg += `<polyline points="${pts}" fill="none" stroke="${d.color}" stroke-width="2.5" stroke-linejoin="round"/>`;
+        
+        // Dots
+        d.oltp_series.forEach((tps, idx) => {
+          const x = padL + (idx / (clients.length - 1)) * plotW;
+          const y = padT + plotH - (Math.min(tps, maxTPS) / maxTPS) * plotH;
+          svg += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="${d.color}">
+            <title>${d.name} (${d.region}) @ ${clients[idx]}c: ${tps.toFixed(1)} TPS</title>
+          </circle>`;
+        });
+
+        // Legend at right
+        const legY = padT + mIdx * 22;
+        if (legY < svgH - 10) {
+          svg += `
+            <circle cx="${padL + plotW + 15}" cy="${legY}" r="4" fill="${d.color}"/>
+            <text x="${padL + plotW + 26}" y="${legY + 4}" fill="var(--foreground)" font-size="10">${d.name} (${d.region.split(' ')[0]})</text>
+          `;
+        }
+      });
+
+      svg += `</svg>`;
+      document.getElementById("oltpChartContainer").innerHTML = svg;
+    }
+
+    function renderThrottleChart() {
+      const data = getFilteredMachines().filter(m => m.tier === "micro");
+      const svgW = 860;
+      const svgH = 280;
+      const padL = 70;
+      const padR = 190;
+      const padT = 30;
+      const padB = 40;
+      const plotW = svgW - padL - padR;
+      const plotH = svgH - padT - padB;
+
+      let svg = `<svg viewBox="0 0 ${svgW} ${svgH}" class="w-full h-auto text-xs">`;
+
+      // Y axis lines
+      [0, 250, 500, 750, 1050].forEach(eps => {
+        const y = padT + plotH - (eps / 1100) * plotH;
+        svg += `
+          <line x1="${padL}" y1="${y}" x2="${padL + plotW}" y2="${y}" stroke="var(--border)" stroke-dasharray="3 3"/>
+          <text x="${padL - 8}" y="${y + 4}" text-anchor="end" fill="var(--muted-foreground)" font-size="10">${eps} eps</text>
+        `;
+      });
+
+      // X intervals: 0s, 60s, 120s, 180s, 240s, 300s
+      [0, 60, 120, 180, 240, 300].forEach(s => {
+        const x = padL + (s / 300) * plotW;
+        svg += `
+          <line x1="${x}" y1="${padT + plotH}" x2="${x}" y2="${padT + plotH + 5}" stroke="var(--border)"/>
+          <text x="${x}" y="${padT + plotH + 20}" text-anchor="middle" fill="var(--muted-foreground)" font-size="10">${s}s</text>
+        `;
+      });
+
+      // Plot curves (Burst to Sustained)
+      data.forEach((d, mIdx) => {
+        let pts = [];
+        if (d.name.includes("e2-micro") && d.region.includes("Delhi")) {
+          // Drops from 790 to 186 around 70s
+          pts = [[0, 790], [40, 750], [80, 330], [150, 210], [300, 186]];
+        } else if (d.name.includes("e2-micro")) {
+          // Drops from 472 to 144 around 60s
+          pts = [[0, 472], [40, 420], [70, 210], [150, 155], [300, 144]];
+        } else {
+          // Vultr is rock flat
+          pts = [[0, d.cpu_eps], [150, d.cpu_eps * 0.99], [300, d.cpu_eps]];
+        }
+
+        const poly = pts.map(([s, val]) => {
+          const x = padL + (s / 300) * plotW;
+          const y = padT + plotH - (val / 1100) * plotH;
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(" ");
+
+        svg += `<polyline points="${poly}" fill="none" stroke="${d.color}" stroke-width="2.5" stroke-linejoin="round"/>`;
+
+        const legY = padT + mIdx * 26;
+        svg += `
+          <circle cx="${padL + plotW + 15}" cy="${legY}" r="4" fill="${d.color}"/>
+          <text x="${padL + plotW + 26}" y="${legY + 4}" fill="var(--foreground)" font-size="10">${d.name} (${d.region.split(' ')[0]}): <tspan font-weight="700">${d.throttle_ratio}x drop</tspan></text>
+        `;
+      });
+
+      svg += `</svg>`;
+      document.getElementById("throttleChartContainer").innerHTML = svg;
+    }
+
+    function renderStorageChart() {
+      const data = getFilteredMachines();
+      const maxIOPS = 230000;
+      const h = data.length * 44 + 40;
+      const svgW = 860;
+      const barStart = 260;
+      const barW = 460;
+
+      let svg = `<svg viewBox="0 0 ${svgW} ${h}" class="w-full h-auto text-xs">`;
+      data.forEach((d, i) => {
+        const y = i * 44 + 20;
+        const rw = Math.max(3, (d.read_iops / maxIOPS) * barW);
+        const ww = Math.max(3, (d.write_iops / maxIOPS) * barW);
+        svg += `
+          <text x="${barStart - 12}" y="${y + 14}" text-anchor="end" fill="var(--foreground)" font-weight="600">${d.name}</text>
+          <text x="${barStart - 12}" y="${y + 26}" text-anchor="end" fill="var(--muted-foreground)" font-size="10">${d.disk} (${d.region.split(' ')[0]})</text>
+          
+          <rect x="${barStart}" y="${y + 2}" width="${rw}" height="10" rx="3" fill="#38bdf8">
+            <title>Read: ${d.read_iops.toLocaleString()} IOPS</title>
+          </rect>
+          <rect x="${barStart}" y="${y + 14}" width="${ww}" height="10" rx="3" fill="#f43f5e">
+            <title>Write: ${d.write_iops.toLocaleString()} IOPS</title>
+          </rect>
+
+          <text x="${barStart + Math.max(rw, ww) + 8}" y="${y + 18}" fill="var(--foreground)" font-size="10" font-weight="600">${(d.read_iops/1000).toFixed(0)}k R / ${(d.write_iops/1000).toFixed(0)}k W IOPS</text>
+        `;
+      });
+      svg += `</svg>`;
+      document.getElementById("storageChartContainer").innerHTML = svg;
+    }
+
+    function renderTable() {
+      const q = document.getElementById("searchTable").value.toLowerCase();
+      const rows = getFilteredMachines().filter(m => {
+        if (!q) return true;
+        return m.name.toLowerCase().includes(q) || m.cloud.toLowerCase().includes(q) || m.region.toLowerCase().includes(q) || m.cpu.toLowerCase().includes(q);
+      });
+
+      let html = "";
+      rows.forEach(r => {
+        html += `
+          <tr class="hover:bg-[var(--card)] transition-colors">
+            <td class="py-2.5 px-3">
+              <div class="font-semibold text-[var(--foreground)]">${r.name}</div>
+              <div class="text-[11px] text-[var(--muted-foreground)]">${r.region}</div>
+            </td>
+            <td class="py-2.5 px-3">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium ${r.cloud === 'Vultr' ? 'bg-sky-500/10 text-sky-500 border border-sky-500/20' : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'}">
+                ${r.cloud}
+              </span>
+            </td>
+            <td class="py-2.5 px-3">
+              <div class="text-[var(--foreground)]">${r.cpu}</div>
+              <div class="text-[11px] text-[var(--muted-foreground)]">${r.ram} RAM • ${r.disk}</div>
+            </td>
+            <td class="py-2.5 px-3 text-right font-medium">$${r.price.toFixed(2)}</td>
+            <td class="py-2.5 px-3 text-right font-mono">${r.cpu_eps.toFixed(1)}</td>
+            <td class="py-2.5 px-3 text-right font-mono">${(r.write_iops/1000).toFixed(0)}k</td>
+            <td class="py-2.5 px-3 text-right font-bold text-emerald-500 font-mono">${r.peak_tps.toFixed(1)}</td>
+            <td class="py-2.5 px-3 text-right font-bold text-sky-500 font-mono">${r.tps_per_dollar.toFixed(1)}</td>
+          </tr>
+        `;
+      });
+      document.getElementById("tableBody").innerHTML = html;
+    }
+
+    function renderAll() {
+      renderValueChart();
+      renderOLTPChart();
+      renderThrottleChart();
+      renderStorageChart();
+      renderTable();
+    }
+
+    window.onload = renderAll;
+  </script>
+</body>
+</html>
