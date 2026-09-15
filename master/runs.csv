@@ -11,3 +11,4 @@ LEGACY-GCP-001,gcp-uswest1a-e2micro-01,CBP-0,exploratory,unknown,unknown,unknown
 2026-09-14_vultr_delhi_vc2-1c-2gb_run01,vultr-delhi-vc2-1c-2gb-01,CBP-1.0,standard,2026-09-14 12:48:38 UTC,2026-09-14 13:30:26 UTC,Debian GNU/Linux 12 (bookworm),24.04 LTS,6.1.0-52-amd64,18,Complete; instance destroyed
 2026-09-14_vultr_sgp_vc2-1c-1gb_run01,vultr-sgp-vc2-1c-1gb-01,CBP-1.0,standard,2026-09-14 16:42:52 UTC,2026-09-14 17:25:46 UTC,Debian GNU/Linux 12 (bookworm),24.04 LTS,6.1.0-52-amd64,18,Complete; instance destroyed
 2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,vultr-mumbai-vc2-1c-1gb-01,CBP-1.0,standard,2026-09-14 18:24:38 UTC,2026-09-15 11:39:26 UTC,Debian GNU/Linux 12 (bookworm),24.04 LTS,6.1.0-52-amd64,18,Complete; instance destroyed
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,vultr-delhi-vhf-1c-1gb-01,CBP-1.0,standard,2026-09-15 12:11:28 UTC,2026-09-15 12:52:54 UTC,Debian GNU/Linux 12 (bookworm),24.04 LTS,6.1.0-52-amd64,18,Complete; instance destroyed

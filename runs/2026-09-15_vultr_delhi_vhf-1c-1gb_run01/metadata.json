@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-15_vultr_delhi_vhf-1c-1gb_run01",
+  "machine_id": "vultr-delhi-vhf-1c-1gb-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Vultr",
+  "region": "Delhi",
+  "plan_name": "vhf-1c-1gb",
+  "created_utc": "2026-09-15 12:11:28 UTC",
+  "pricing": {
+    "monthly_usd": 6.0,
+    "promotional_credit": false,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "vhf",
+  "cpu_arch": "x86_64",
+  "cpu_model": "Intel Core Processor (Skylake, IBRS, no TSX)",
+  "exposed_vcpu": 1,
+  "ram_gb": 0.93,
+  "root_disk_type": "SSD",
+  "root_disk_size_gb": "32G",
+  "virt_type": "Microsoft",
+  "kernel_version": "6.1.0-52-amd64",
+  "os_distro": "Debian GNU/Linux 12 (bookworm)"
+}

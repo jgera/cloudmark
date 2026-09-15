@@ -11,3 +11,4 @@ vultr-delhi-vc2-1c-1gb-01,Vultr,Delhi,default,vc2-1c-1gb,vc2,x86_64,Intel Xeon P
 vultr-delhi-vc2-1c-2gb-01,Vultr,Delhi,default,vc2-1c-2gb,vc2,x86_64,Intel Xeon Processor (Cascadelake),1,1.92,SSD,55G,Microsoft
 vultr-sgp-vc2-1c-1gb-01,Vultr,Sgp,default,vc2-1c-1gb,vc2,x86_64,"Intel Core Processor (Broadwell, no TSX, IBRS)",1,0.93,SSD,25G,Microsoft
 vultr-mumbai-vc2-1c-1gb-01,Vultr,Mumbai,default,vc2-1c-1gb,vc2,x86_64,Intel Xeon Processor (Cascadelake),1,0.93,SSD,25G,Microsoft
+vultr-delhi-vhf-1c-1gb-01,Vultr,Delhi,default,vhf-1c-1gb,vhf,x86_64,"Intel Core Processor (Skylake, IBRS, no TSX)",1,0.93,SSD,32G,Microsoft

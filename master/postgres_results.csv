@@ -113,3 +113,13 @@ LEGACY-GCP-001,T053,select_only,10,1,1,120,2030.0,746.6,1.35,0,legacy_gcp_baseli
 2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,T053,select_only,10,8,1,120,14693.796755,14673.0,0.54,0,T053_raw.log
 2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,T053,select_only,10,16,1,120,13516.229509,13574.0,1.18,0,T053_raw.log
 2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,T053,select_only,10,32,1,120,9785.038426,9914.9,3.25,0,T053_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T052,mixed_tpc_b,10,1,1,180,2145.058567,2143.7,0.47,0,T052_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T052,mixed_tpc_b,10,4,1,180,2029.086978,2019.9,1.98,0,T052_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T052,mixed_tpc_b,10,8,1,180,1914.864177,1915.3,4.18,0,T052_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T052,mixed_tpc_b,10,16,1,180,1808.821414,1802.8,8.88,0,T052_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T052,mixed_tpc_b,10,32,1,180,1719.219309,1717.4,18.64,0,T052_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,1,1,120,16444.517518,16523.2,0.06,0,T053_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,4,1,120,13483.7456,13492.9,0.3,0,T053_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,8,1,120,13088.724189,13133.8,0.61,0,T053_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,16,1,120,12686.793243,12701.6,1.26,0,T053_raw.log
+2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,32,1,120,12198.507941,12260.8,2.61,0,T053_raw.log
