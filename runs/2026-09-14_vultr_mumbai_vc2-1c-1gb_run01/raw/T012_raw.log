@@ -1,0 +1,100 @@
+=========================================
+=== CBP-1.0 / T012: CPU SUSTAINED TEST (300s) ===
+=== Timestamp (UTC): 2026-09-14 18:29:03 UTC ===
+=========================================
+Running 300s sustained sysbench CPU test with 5s progress reporting...
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Report intermediate results every 5 second(s)
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+[ 5s ] thds: 1 eps: 451.74 lat (ms,95%): 2.39
+[ 10s ] thds: 1 eps: 453.02 lat (ms,95%): 2.30
+[ 15s ] thds: 1 eps: 440.80 lat (ms,95%): 2.52
+[ 20s ] thds: 1 eps: 443.40 lat (ms,95%): 2.43
+[ 25s ] thds: 1 eps: 449.60 lat (ms,95%): 2.30
+[ 30s ] thds: 1 eps: 448.40 lat (ms,95%): 2.35
+[ 35s ] thds: 1 eps: 448.20 lat (ms,95%): 2.39
+[ 40s ] thds: 1 eps: 448.60 lat (ms,95%): 2.35
+[ 45s ] thds: 1 eps: 449.60 lat (ms,95%): 2.35
+[ 50s ] thds: 1 eps: 448.60 lat (ms,95%): 2.35
+[ 55s ] thds: 1 eps: 448.20 lat (ms,95%): 2.35
+[ 60s ] thds: 1 eps: 446.40 lat (ms,95%): 2.39
+[ 65s ] thds: 1 eps: 444.00 lat (ms,95%): 2.39
+[ 70s ] thds: 1 eps: 445.80 lat (ms,95%): 2.43
+[ 75s ] thds: 1 eps: 441.40 lat (ms,95%): 2.43
+[ 80s ] thds: 1 eps: 438.59 lat (ms,95%): 2.43
+[ 85s ] thds: 1 eps: 438.60 lat (ms,95%): 2.43
+[ 90s ] thds: 1 eps: 440.21 lat (ms,95%): 2.43
+[ 95s ] thds: 1 eps: 452.40 lat (ms,95%): 2.35
+[ 100s ] thds: 1 eps: 448.20 lat (ms,95%): 2.43
+[ 105s ] thds: 1 eps: 456.00 lat (ms,95%): 2.26
+[ 110s ] thds: 1 eps: 457.00 lat (ms,95%): 2.35
+[ 115s ] thds: 1 eps: 457.60 lat (ms,95%): 2.22
+[ 120s ] thds: 1 eps: 457.20 lat (ms,95%): 2.26
+[ 125s ] thds: 1 eps: 459.20 lat (ms,95%): 2.22
+[ 130s ] thds: 1 eps: 461.20 lat (ms,95%): 2.18
+[ 135s ] thds: 1 eps: 461.00 lat (ms,95%): 2.18
+[ 140s ] thds: 1 eps: 460.60 lat (ms,95%): 2.18
+[ 145s ] thds: 1 eps: 460.20 lat (ms,95%): 2.22
+[ 150s ] thds: 1 eps: 460.60 lat (ms,95%): 2.18
+[ 155s ] thds: 1 eps: 459.60 lat (ms,95%): 2.22
+[ 160s ] thds: 1 eps: 460.20 lat (ms,95%): 2.18
+[ 165s ] thds: 1 eps: 459.20 lat (ms,95%): 2.22
+[ 170s ] thds: 1 eps: 460.00 lat (ms,95%): 2.18
+[ 175s ] thds: 1 eps: 459.80 lat (ms,95%): 2.18
+[ 180s ] thds: 1 eps: 459.40 lat (ms,95%): 2.18
+[ 185s ] thds: 1 eps: 461.00 lat (ms,95%): 2.18
+[ 190s ] thds: 1 eps: 461.00 lat (ms,95%): 2.18
+[ 195s ] thds: 1 eps: 460.60 lat (ms,95%): 2.18
+[ 200s ] thds: 1 eps: 460.40 lat (ms,95%): 2.22
+[ 205s ] thds: 1 eps: 460.40 lat (ms,95%): 2.22
+[ 210s ] thds: 1 eps: 461.20 lat (ms,95%): 2.18
+[ 215s ] thds: 1 eps: 461.20 lat (ms,95%): 2.18
+[ 220s ] thds: 1 eps: 460.40 lat (ms,95%): 2.18
+[ 225s ] thds: 1 eps: 461.20 lat (ms,95%): 2.18
+[ 230s ] thds: 1 eps: 460.40 lat (ms,95%): 2.22
+[ 235s ] thds: 1 eps: 460.60 lat (ms,95%): 2.18
+[ 240s ] thds: 1 eps: 457.80 lat (ms,95%): 2.22
+[ 245s ] thds: 1 eps: 459.80 lat (ms,95%): 2.22
+[ 250s ] thds: 1 eps: 460.40 lat (ms,95%): 2.18
+[ 255s ] thds: 1 eps: 460.00 lat (ms,95%): 2.18
+[ 260s ] thds: 1 eps: 460.80 lat (ms,95%): 2.18
+[ 265s ] thds: 1 eps: 459.20 lat (ms,95%): 2.18
+[ 270s ] thds: 1 eps: 458.00 lat (ms,95%): 2.22
+[ 275s ] thds: 1 eps: 459.60 lat (ms,95%): 2.18
+[ 280s ] thds: 1 eps: 457.80 lat (ms,95%): 2.22
+[ 285s ] thds: 1 eps: 460.60 lat (ms,95%): 2.18
+[ 290s ] thds: 1 eps: 460.80 lat (ms,95%): 2.18
+[ 295s ] thds: 1 eps: 460.60 lat (ms,95%): 2.18
+[ 300s ] thds: 1 eps: 457.80 lat (ms,95%): 2.22
+CPU speed:
+    events per second:   455.27
+
+General statistics:
+    total time:                          300.0035s
+    total number of events:              136583
+
+Latency (ms):
+         min:                                    2.16
+         avg:                                    2.20
+         max:                                    8.61
+         95th percentile:                        2.35
+         sum:                               299944.62
+
+Threads fairness:
+    events (avg/stddev):           136583.0000/0.00
+    execution time (avg/stddev):   299.9446/0.00
+
+=========================================
+=== T012 COMPLETE ===
+=========================================

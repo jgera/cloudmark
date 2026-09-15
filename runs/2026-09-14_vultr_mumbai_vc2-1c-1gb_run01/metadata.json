@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-14_vultr_mumbai_vc2-1c-1gb_run01",
+  "machine_id": "vultr-mumbai-vc2-1c-1gb-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Vultr",
+  "region": "Mumbai",
+  "plan_name": "vc2-1c-1gb",
+  "created_utc": "2026-09-14 18:24:38 UTC",
+  "pricing": {
+    "monthly_usd": 5.0,
+    "promotional_credit": false,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "vc2",
+  "cpu_arch": "x86_64",
+  "cpu_model": "Intel Xeon Processor (Cascadelake)",
+  "exposed_vcpu": 1,
+  "ram_gb": 0.93,
+  "root_disk_type": "SSD",
+  "root_disk_size_gb": "25G",
+  "virt_type": "Microsoft",
+  "kernel_version": "6.1.0-52-amd64",
+  "os_distro": "Debian GNU/Linux 12 (bookworm)"
+}

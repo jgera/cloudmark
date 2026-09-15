@@ -19,3 +19,5 @@ run_id,test_id,operation,threads,block_size,total_ops_or_mb,throughput_mb_s,mean
 2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T020,read,1,1M,65536.0,24029.8,0.04,T020_raw.log
 2026-09-14_vultr_sgp_vc2-1c-1gb_run01,T020,write,1,1M,65536.0,11893.03,0.08,T020_raw.log
 2026-09-14_vultr_sgp_vc2-1c-1gb_run01,T020,read,1,1M,65536.0,17497.42,0.06,T020_raw.log
+2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,T020,write,1,1M,65536.0,19742.46,0.05,T020_raw.log
+2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,T020,read,1,1M,65536.0,24598.19,0.04,T020_raw.log

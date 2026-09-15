@@ -31,7 +31,4 @@ A rigorous multi-architecture benchmark comparing 4-core virtual machines across
 | **Vultr Intel (Delhi)** | 180 GB Local NVMe | **3,267 MB/s** | **2,721 MB/s** | **219,000 IOPS** | **178,000 IOPS** | **0.58 ms** |
 | **Vultr AMD (Mumbai)** | 180 GB Local NVMe | **3,250 MB/s** | **2,710 MB/s** | **215,000 IOPS** | **172,000 IOPS** | **0.61 ms** |
 
-> [!NOTE]
-> **Storage Bottleneck Exposed:** Google Cloud caps 50 GB `pd-ssd` persistent disks at 240 MB/s and 7,700 IOPS. Vultr's direct local NVMe delivers **219,000 IOPS**, explaining why Vultr Intel achieved 8,280 sustained OLTP TPS compared to GCP C2's 6,141 TPS despite GCP C2 having higher single-thread CPU clock frequencies.
-
 ---

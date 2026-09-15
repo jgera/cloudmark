@@ -4,3 +4,4 @@ run_id,test_id,endpoint_desc,client_location,direction,bitrate_mbps,retransmits,
 2026-09-14_vultr_delhi_vc2-1c-1gb_run01,T041,ping_to_139.84.170.75,North India,bidirectional_rtt,N/A,0,9.0,41.0,899.0,2.0,T041_raw.log
 2026-09-14_vultr_delhi_vc2-1c-2gb_run01,T041,ping_to_139.84.174.73,North India,bidirectional_rtt,N/A,0,10.0,15.0,67.0,0.0,T041_raw.log
 2026-09-14_vultr_sgp_vc2-1c-1gb_run01,T041,ping_to_207.148.119.226,North India,bidirectional_rtt,N/A,0,72.0,77.0,107.0,0.0,T041_raw.log
+2026-09-14_vultr_mumbai_vc2-1c-1gb_run01,T041,ping_to_65.20.89.68,North India,bidirectional_rtt,N/A,0,32.0,37.0,72.0,0.0,T041_raw.log
