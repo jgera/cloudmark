@@ -35,3 +35,6 @@ run_id,test_id,tool,thread_count,events_per_sec,mean_latency_ms,p95_latency_ms,s
 2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T010,sysbench_cpu,1,1048.45,0.95,1.01,N/A,T010_raw.log
 2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T011,sysbench_cpu,1,1046.1,0.96,1.03,N/A,T011_raw.log
 2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T012,sysbench_cpu,1,1047.41,0.95,1.03,"Burst/Sust=0.99, CV=1.11%",T012_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T010,sysbench_cpu,1,366.22,2.73,3.25,N/A,T010_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T011,sysbench_cpu,1,380.93,2.62,3.07,N/A,T011_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T012,sysbench_cpu,1,379.08,2.64,3.07,"Burst/Sust=1.0, CV=2.87%",T012_raw.log

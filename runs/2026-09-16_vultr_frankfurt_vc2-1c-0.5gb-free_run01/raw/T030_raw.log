@@ -1,0 +1,42 @@
+=========================================
+=== CBP-1.0 / T030: STORAGE IDENTIFICATION ===
+=== Timestamp (UTC): 2026-09-16 08:36:44 UTC ===
+=========================================
+
+--- Block Device Hierarchy (lsblk) ---
+NAME    SIZE TYPE FSTYPE MOUNTPOINTS ROTA MODEL        DISC-MAX DISC-ZERO
+sr0    1024M rom                        1 QEMU DVD-ROM       0B         0
+vda      10G disk                       1                    2G         0
+├─vda1  512M part vfat   /boot/efi      1                    2G         0
+└─vda2  9.5G part ext4   /              1                    2G         0
+
+--- Mount Options ---
+/dev/vda2 on / type ext4 (rw,relatime,errors=remount-ro)
+/dev/vda1 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+--- Disk Free (df -hT) ---
+Filesystem     Type      Size  Used Avail Use% Mounted on
+udev           devtmpfs  188M     0  188M   0% /dev
+tmpfs          tmpfs      46M  916K   45M   2% /run
+/dev/vda2      ext4      8.9G  5.5G  3.0G  66% /
+tmpfs          tmpfs     226M  1.1M  225M   1% /dev/shm
+tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+efivarfs       efivarfs  256K   19K  233K   8% /sys/firmware/efi/efivars
+/dev/vda1      vfat      511M   12M  500M   3% /boot/efi
+tmpfs          tmpfs      46M     0   46M   0% /run/user/0
+
+--- Sysfs Disk Queue & Scheduler ---
+Device: sr0
+  scheduler: [mq-deadline] none
+  nr_requests: 64
+  rotational (0=SSD/NVMe, 1=HDD): 1
+  read_ahead_kb: 128
+Device: vda
+  scheduler: [mq-deadline] none
+  nr_requests: 256
+  rotational (0=SSD/NVMe, 1=HDD): 1
+  read_ahead_kb: 128
+
+=========================================
+=== T030 COMPLETE ===
+=========================================

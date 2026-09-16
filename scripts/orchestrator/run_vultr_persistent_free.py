@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-CloudMark Full Benchmark Battery & Auto-Teardown Runner
-Executes CBP-1.0 test sequence autonomously, parses all metrics into master CSVs,
-generates a comparative report, and unconditionally destroys the billable VM when complete.
+CloudMark Persistent Vultr Free Tier Benchmark Runner
+Provisions and benchmarks the permanent Vultr Free Tier instance (vc2-1c-0.5gb-free in Frankfurt).
+DOES NOT DELETE OR TEARDOWN THE INSTANCE — Preserves it permanently for continuous user workloads.
 """
 
 import sys
 import os
 import time
-import argparse
 import subprocess
 import json
 import csv
@@ -28,13 +27,13 @@ sys.path.insert(0, str(BASE_DIR / "scripts" / "orchestrator"))
 import cloudmark_runner
 
 VULTR_CLI = str(BASE_DIR / "bin" / "vultr" / "vultr-cli.exe")
+SSH_KEY_ID = "cae4c84f-cb38-477d-a1d8-66c78dff0869"
 
 def log(msg):
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     print(f"\n[{now}] === {msg} ===", flush=True)
 
 def ensure_ssh_access(host_ip, default_password, pubkey_path, privkey_path):
-    # Test if passwordless SSH already works
     ssh_test = subprocess.run(
         ["ssh", "-i", privkey_path, "-o", "StrictHostKeyChecking=accept-new", "-o", "ConnectTimeout=5", f"root@{host_ip}", "echo OK"],
         capture_output=True, text=True
@@ -64,29 +63,13 @@ def ensure_ssh_access(host_ip, default_password, pubkey_path, privkey_path):
         log(f"Failed to inject SSH key: {e}")
         return False
 
-SSH_KEY_ID = "cae4c84f-cb38-477d-a1d8-66c78dff0869"
-
-def teardown_instance(instance_id):
-    if not instance_id:
-        return
-    log(f"INITIATING UNCONDITIONAL TEARDOWN OF VULTR INSTANCE: {instance_id}")
-    try:
-        cmd = [VULTR_CLI, "instance", "delete", instance_id]
-        res = subprocess.run(cmd, capture_output=True, text=True)
-        if res.returncode == 0:
-            log(f"Teardown successful: Instance {instance_id} deleted. 0 billable instances remaining.")
-        else:
-            log(f"Teardown warning: {res.stderr.strip()}")
-    except Exception as e:
-        log(f"Error during instance teardown: {e}")
-
-def provision_vultr_instance(plan, region, os_id=2136, label="cloudmark-ephemeral"):
-    log(f"Provisioning Vultr instance (Plan: {plan}, Region: {region}, OS: {os_id}, Label: {label})...")
+def provision_persistent_free(plan="vc2-1c-0.5gb-free", region="fra", label="vultr-free-fra-01"):
+    log(f"Provisioning PERSISTENT Vultr Free Tier instance (Plan: {plan}, Region: {region}, Label: {label})...")
     create_cmd = [
         VULTR_CLI, "instance", "create",
         f"--region={region}",
         f"--plan={plan}",
-        f"--os={os_id}",
+        f"--os=2136",
         f"--ssh-keys={SSH_KEY_ID}",
         f"--label={label}",
         "--output=json"
@@ -94,17 +77,17 @@ def provision_vultr_instance(plan, region, os_id=2136, label="cloudmark-ephemera
     res = subprocess.run(create_cmd, capture_output=True, text=True)
     if res.returncode != 0:
         raise RuntimeError(f"Failed to create Vultr instance:\n{res.stderr}")
-    
+
     data = json.loads(res.stdout)
     instance_info = data.get("instance", {})
     instance_id = instance_info.get("id")
     default_password = instance_info.get("default_password", "")
     if not instance_id:
         raise RuntimeError(f"Could not parse instance ID from output:\n{res.stdout}")
-    
+
     log(f"Instance created with ID: {instance_id}. Waiting for active status and IP assignment...")
-    
-    max_wait = 240
+
+    max_wait = 300
     start = time.time()
     main_ip = None
     while time.time() - start < max_wait:
@@ -122,17 +105,16 @@ def provision_vultr_instance(plan, region, os_id=2136, label="cloudmark-ephemera
                 log(f"Instance is active: IP={main_ip}, Server Status={server_status}")
                 break
         print(".", end="", flush=True)
-        
+
     if not main_ip:
-        teardown_instance(instance_id)
         raise TimeoutError(f"Instance {instance_id} failed to become active within {max_wait}s.")
-        
+
     log(f"Polling SSH readiness on {main_ip}...")
     pubkey_path = str(Path(os.path.expanduser(r"~\.ssh\cloudmark_id_ed25519.pub")))
     privkey_path = str(Path(os.path.expanduser(r"~\.ssh\cloudmark_id_ed25519")))
-    
+
     ssh_ready = False
-    ssh_wait = 180
+    ssh_wait = 240
     start_ssh = time.time()
     while time.time() - start_ssh < ssh_wait:
         time.sleep(5)
@@ -140,35 +122,32 @@ def provision_vultr_instance(plan, region, os_id=2136, label="cloudmark-ephemera
             ssh_ready = True
             break
         print("s", end="", flush=True)
-        
-    if not ssh_ready:
-        teardown_instance(instance_id)
-        raise TimeoutError(f"SSH failed to become ready on {main_ip} within {ssh_wait}s.")
-        
-    log(f"Instance {instance_id} is online and SSH accessible at {main_ip}.")
-    return instance_id, main_ip
 
-def run_vultr_battery(plan, region="del", monthly_price=5.0):
-    region_map = {"del": "delhi", "bom": "mumbai", "sgp": "sgp", "sea": "seattle", "fra": "frankfurt", "mia": "miami"}
-    region_label = region_map.get(region, region)
-    clean_plan = plan.lower().replace("-", "").replace(".", "")
-    run_id = f"{datetime.now(timezone.utc).strftime('%Y-%m-%d')}_vultr_{region_label}_{plan}_run01"
-    label = f"cm-{region_label}-{clean_plan}"[:30]
-    
-    log(f"STARTING AUTONOMOUS EPHEMERAL VULTR BENCHMARK RUN: {run_id}")
-    log(f"Target: {label} ({plan}) in region '{region}' at ${monthly_price:.2f}/mo")
-    
+    if not ssh_ready:
+        raise TimeoutError(f"SSH failed to become ready on {main_ip} within {ssh_wait}s.")
+
+    log(f"Persistent Free Tier Instance {instance_id} is online and SSH accessible at {main_ip}.")
+    return instance_id, main_ip, default_password
+
+def run_persistent_free_battery():
+    plan = "vc2-1c-0.5gb-free"
+    region = "fra"
+    region_label = "frankfurt"
+    monthly_price = 0.0
+    run_id = f"{datetime.now(timezone.utc).strftime('%Y-%m-%d')}_vultr_frankfurt_{plan}_run01"
+    label = "vultr-free-fra-01"
+
+    log(f"STARTING PERSISTENT VULTR FREE TIER BENCHMARK RUN: {run_id}")
+    log(f"Target: {label} ({plan}) in Frankfurt ('{region}') at $0.00/mo (PRESERVED PERMANENTLY)")
+
     # Initialize run directory and master records
-    cloudmark_runner.init_run(run_id, "Vultr", region_label.capitalize(), plan, monthly_price, promo=False)
-    
+    cloudmark_runner.init_run(run_id, "Vultr", "Frankfurt", plan, monthly_price, promo=False)
+
     privkey_path = str(Path(os.path.expanduser(r"~\.ssh\cloudmark_id_ed25519")))
-    instance_id = None
+    instance_id, host_ip, default_password = provision_persistent_free(plan, region, label)
     start_time = datetime.now(timezone.utc)
-    
+
     try:
-        # Step 1: Provision
-        instance_id, host_ip = provision_vultr_instance(plan, region, os_id=2136, label=label)
-        
         # Step 2: Characterization & Idle Baseline
         log("Executing T001 — Machine and Environment Characterization")
         cloudmark_runner.run_test(run_id, "T001", host_ip, privkey_path)
@@ -222,23 +201,15 @@ def run_vultr_battery(plan, region="del", monthly_price=5.0):
         log("Executing T053 — SELECT-Only Concurrency Scaling (Clients: 1, 4, 8, 16, 32)")
         cloudmark_runner.run_test(run_id, "T053", host_ip, privkey_path)
 
-        log("All benchmark tests completed successfully!")
+        log("All benchmark tests completed successfully on Vultr Free Tier node!")
 
     finally:
-        # Step 9: UNCONDITIONAL TEARDOWN
-        teardown_instance(instance_id)
+        # NO TEARDOWN! The instance is explicitly preserved as requested by the user.
+        log(f"NOTICE: INSTANCE {instance_id} ({host_ip}) IS PRESERVED PERMANENTLY AS FREE TIER NODE. NO TEARDOWN.")
 
-        # Step 10: Generate reports and update runs.csv
         end_time = datetime.now(timezone.utc)
-
-        try:
-            cloudmark_runner.generate_report(run_id)
-        except Exception as re:
-            log(f"Report generation note: {re}")
-
         runs_csv = BASE_DIR / "master" / "runs.csv"
         if runs_csv.exists():
-            import csv
             rows = []
             with open(runs_csv, mode="r", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
@@ -246,12 +217,17 @@ def run_vultr_battery(plan, region="del", monthly_price=5.0):
                 for r in reader:
                     if r.get("run_id") == run_id:
                         r["end_utc"] = end_time.strftime("%Y-%m-%d %H:%M:%S UTC")
-                        r["notes"] = "Complete; instance destroyed"
+                        r["notes"] = "Complete; persistent free baseline preserved"
                     rows.append(r)
             with open(runs_csv, mode="w", newline="", encoding="utf-8") as f:
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(rows)
+
+        try:
+            cloudmark_runner.generate_report(run_id)
+        except Exception as re:
+            log(f"Report generation note: {re}")
 
         try:
             import compile_all_reports
@@ -260,16 +236,14 @@ def run_vultr_battery(plan, region="del", monthly_price=5.0):
         except Exception as ce:
             log(f"Report compile note: {ce}")
 
-        log(f"Run {run_id} finalized. Ephemeral Vultr VM destroyed. 0 runaway instances.")
-
-def main():
-    parser = argparse.ArgumentParser(description="CloudMark Vultr Ephemeral Battery Runner")
-    parser.add_argument("--plan", required=True, help="e.g. vc2-1c-1gb, vhf-1c-1gb, vhp-1c-1gb-intel")
-    parser.add_argument("--region", default="del", help="Vultr region, e.g. del, bom")
-    parser.add_argument("--monthly-price", type=float, default=5.0)
-
-    args = parser.parse_args()
-    run_vultr_battery(args.plan, args.region, args.monthly_price)
+        log("==================================================================")
+        log(f"PERSISTENT FREE TIER NODE IS READY AND ACTIVE FOR CONTINUOUS USE!")
+        log(f"Instance ID : {instance_id}")
+        log(f"Public IP   : {host_ip}")
+        log(f"Location    : Frankfurt, Germany (fra)")
+        log(f"Spec        : 1 vCPU, 512MB RAM, 10GB SSD, $0.00/mo")
+        log(f"SSH Command : ssh -i {privkey_path} root@{host_ip}")
+        log("==================================================================")
 
 if __name__ == "__main__":
-    main()
+    run_persistent_free_battery()

@@ -1,0 +1,33 @@
+=========================================
+=== CBP-1.0 / T002: IDLE-SYSTEM BASELINE ===
+=== Timestamp (UTC): 2026-09-16 08:27:53 UTC ===
+=========================================
+
+--- UPTIME & LOAD AVERAGE ---
+ 08:27:53 up 0 min,  0 user,  load average: 0.52, 0.15, 0.05
+
+--- MEMORY & SWAP (free -h) ---
+               total        used        free      shared  buff/cache   available
+Mem:           451Mi       113Mi       212Mi       920Ki       146Mi       338Mi
+Swap:             0B          0B          0B
+
+--- VMSTAT SAMPLING (1s x 10 intervals) ---
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 1  0      0 217324  18420 131668    0    0  3550   506  315 1440 19 25 35 20  1
+ 1  0      0 217324  18420 131668    0    0     0     0   75   73  0  0 95  5  0
+ 1  0      0 217324  18420 131668    0    0     0     0   55   51  1  0 99  0  0
+ 1  0      0 217324  18420 131668    0    0     0    24   61   65  0  0 99  0  1
+ 1  0      0 217324  18420 131668    0    0     0     0   41   38  0  0 100  0  0
+ 1  0      0 217324  18420 131668    0    0     0     0   42   44  0  0 100  0  0
+ 1  0      0 217324  18420 131668    0    0     0     0   37   40  0  0 100  0  0
+ 1  0      0 217324  18420 131668    0    0     0     0   33   36  0  0 100  0  0
+ 1  0      0 217324  18420 131668    0    0     0  1792  109   74  0  0 96  3  1
+ 1  0      0 217324  18420 131668    0    0     0     0   55   44  0  1 99  0  0
+
+--- IOSTAT SAMPLING (1s x 10 intervals) ---
+iostat not found, installing sysstat may be required
+
+=========================================
+=== T002 IDLE BASELINE COMPLETE ===
+=========================================

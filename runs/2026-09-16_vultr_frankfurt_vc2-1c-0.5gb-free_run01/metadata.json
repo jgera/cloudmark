@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01",
+  "machine_id": "vultr-frankfurt-vc2-1c-05gb-free-01",
+  "protocol_version": "CBP-1.0",
+  "provider": "Vultr",
+  "region": "Frankfurt",
+  "plan_name": "vc2-1c-0.5gb-free",
+  "created_utc": "2026-09-16 08:25:53 UTC",
+  "pricing": {
+    "monthly_usd": 0.0,
+    "promotional_credit": false,
+    "currency": "USD"
+  },
+  "zone": "default",
+  "instance_family": "vc2",
+  "cpu_arch": "x86_64",
+  "cpu_model": "Intel Xeon Processor (Skylake, IBRS)",
+  "exposed_vcpu": 1,
+  "ram_gb": 0.44,
+  "root_disk_type": "SSD",
+  "root_disk_size_gb": "10G",
+  "virt_type": "Microsoft",
+  "kernel_version": "6.1.0-52-amd64",
+  "os_distro": "Debian GNU/Linux 12 (bookworm)"
+}

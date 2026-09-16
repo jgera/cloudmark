@@ -26,7 +26,7 @@
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
             CBP-1.0 Frozen Protocol
           </span>
-          <span class="text-xs text-[var(--muted-foreground)]">12 Machines Evaluated</span>
+          <span class="text-xs text-[var(--muted-foreground)]">13 Machines Evaluated (incl. 2 Free Tier Baselines)</span>
         </div>
         <h1 class="text-2xl font-bold text-[var(--foreground)] mt-1">CloudMark Multi-Architecture Visual Analytics</h1>
         <p class="text-sm text-[var(--muted-foreground)]">Real-world database throughput, throttling curves, storage IOPS, and price-to-performance across GCP & Vultr</p>
@@ -90,6 +90,9 @@
       <button onclick="switchTab('storage')" id="tabBtn_storage" class="tab-btn px-4 py-2 text-xs font-medium rounded-t-lg border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
         💾 Storage IOPS & Latency
       </button>
+      <button onclick="switchTab('freetier')" id="tabBtn_freetier" class="tab-btn px-4 py-2 text-xs font-medium rounded-t-lg border-b-2 border-transparent text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        🆓 Free Tier Showdown ($0 vs $0)
+      </button>
     </div>
 
     <!-- Tab 1: Price-to-Performance -->
@@ -141,6 +144,118 @@
           </div>
         </div>
         <div id="storageChartContainer" class="w-full overflow-x-auto"></div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Free Tier Showdown -->
+    <div id="tab_freetier" class="hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-6">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Head-to-Head Showdown</span>
+            <span class="text-xs text-[var(--muted-foreground)]">Zero Ongoing Billable Cost ($0.00 / month)</span>
+          </div>
+          <h3 class="text-lg font-bold text-[var(--foreground)] mt-1">Google Cloud Always-Free vs. Vultr Free Tier Program</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">Direct evaluation of persistent baseline instances: GCP e2-micro (Oregon, US) vs. Vultr vc2-1c-0.5gb (Frankfurt, EU)</p>
+        </div>
+
+        <!-- 3 Feature Highlight Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4">
+            <div class="text-xs font-medium text-[var(--muted-foreground)]">CPU Throttling Ratio (T012)</div>
+            <div class="text-xl font-bold text-emerald-400 mt-1">1.00x <span class="text-xs text-[var(--muted-foreground)]">vs</span> <span class="text-rose-400">2.37x</span></div>
+            <div class="text-xs text-[var(--foreground)] font-semibold mt-1">Vultr: 0% Throttling (379 eps)</div>
+            <div class="text-[11px] text-[var(--muted-foreground)]">GCP throttles 58% down to 144 eps</div>
+          </div>
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4">
+            <div class="text-xs font-medium text-[var(--muted-foreground)]">Random 4K Read IOPS (T032)</div>
+            <div class="text-xl font-bold text-emerald-400 mt-1">206,000 <span class="text-xs text-[var(--muted-foreground)]">vs</span> <span class="text-rose-400">152</span></div>
+            <div class="text-xs text-[var(--foreground)] font-semibold mt-1">1,355x Higher Read IOPS</div>
+            <div class="text-[11px] text-[var(--muted-foreground)]">805 MB/s local SSD vs 0.6 MB/s pd-standard</div>
+          </div>
+          <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4">
+            <div class="text-xs font-medium text-[var(--muted-foreground)]">Peak Sustained OLTP (T052)</div>
+            <div class="text-xl font-bold text-emerald-400 mt-1">588.2 <span class="text-xs text-[var(--muted-foreground)]">vs</span> <span class="text-rose-400">181.4</span></div>
+            <div class="text-xs text-[var(--foreground)] font-semibold mt-1">3.24x Higher Database Throughput</div>
+            <div class="text-[11px] text-[var(--muted-foreground)]">PostgreSQL scale 10 mixed TPC-B workload</div>
+          </div>
+        </div>
+
+        <!-- Direct Comparison Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+                <th class="py-2.5 px-3 font-medium">Metric / Protocol Step</th>
+                <th class="py-2.5 px-3 font-medium text-rose-400">Google Cloud e2-micro (Always-Free)</th>
+                <th class="py-2.5 px-3 font-medium text-emerald-400">Vultr vc2-1c-0.5gb (Free Tier)</th>
+                <th class="py-2.5 px-3 font-medium">Performance Disparity</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border)]">
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">Monthly Rate</td>
+                <td class="py-2.5 px-3 font-mono">$0.00 / mo (Permanent)</td>
+                <td class="py-2.5 px-3 font-mono">$0.00 / mo (1-Year Program)</td>
+                <td class="py-2.5 px-3 text-[var(--muted-foreground)]">Zero billable cost on both providers</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">Allocated vCPU / Model</td>
+                <td class="py-2.5 px-3">0.25 core shared (Intel Xeon)</td>
+                <td class="py-2.5 px-3 font-semibold text-emerald-400">1 full core (Intel Xeon Skylake)</td>
+                <td class="py-2.5 px-3">4x dedicated core share</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">RAM Allocation</td>
+                <td class="py-2.5 px-3 font-semibold text-sky-400">1,024 MB (1.0 GB)</td>
+                <td class="py-2.5 px-3">512 MB (0.5 GB)</td>
+                <td class="py-2.5 px-3 text-[var(--muted-foreground)]">GCP has 2x RAM; Vultr requires 2GB swap</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">CPU Throttling Ratio (T012)</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">2.37x drop (341 -> 144 eps)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">1.00x flat (380 -> 379 eps)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">Vultr is 100% unthrottled</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">Throttling Volatility (CV)</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">83.5% CV (Severe throttling)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">2.87% CV (Rock-flat)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">29x more consistent CPU</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">Random 4K Read IOPS (T032)</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">152 IOPS (0.6 MB/s)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">206,000 IOPS (805 MB/s)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">1,355x faster read IOPS</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">Single-Client OLTP (T052)</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">91.2 TPS (10.95 ms)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">305.2 TPS (2.62 ms)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">3.3x faster at 4.2x lower latency</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">Peak Mixed OLTP Throughput</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">181.4 TPS (44.67 ms)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">588.2 TPS (29.76 ms)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">3.24x higher sustained database throughput</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">32-Client Heavy Load (T052)</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">151.5 TPS (223.43 ms)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">442.8 TPS (77.55 ms)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">2.9x higher TPS & 2.9x lower latency</td>
+              </tr>
+              <tr class="hover:bg-[var(--background)]">
+                <td class="py-2.5 px-3 font-semibold">SELECT-Only Read Peak (T053)</td>
+                <td class="py-2.5 px-3 font-mono text-rose-400">789.7 TPS (1.24 ms)</td>
+                <td class="py-2.5 px-3 font-mono text-emerald-400 font-bold">8,877.0 TPS (0.13 ms)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-semibold">11.2x higher read throughput</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -425,6 +540,27 @@
         tps_per_dollar: 0.0,
         ping_ms: null,
         color: "#94a3b8"
+      },
+      {
+        id: "vultr-frankfurt-vc2-1c-05gb-free-01",
+        name: "Vultr vc2-1c-0.5gb (Free Tier)",
+        cloud: "Vultr",
+        region: "Frankfurt (fra)",
+        tier: "micro",
+        cpu: "Intel Xeon Skylake (1 core)",
+        ram: "512 MB",
+        disk: "10 GB SSD",
+        price: 0.00,
+        cpu_eps: 379.1,
+        throttle_ratio: 1.00,
+        throttle_cv: 2.87,
+        read_iops: 206000,
+        write_iops: 50000,
+        oltp_series: [305.2, 437.7, 486.0, 588.2, 442.8],
+        peak_tps: 588.2,
+        tps_per_dollar: 0.0,
+        ping_ms: 204.0,
+        color: "#06b6d4"
       }
     ];
 
@@ -440,14 +576,20 @@
     }
 
     function switchTab(tabId) {
-      ["value", "oltp", "throttle", "storage"].forEach(t => {
-        document.getElementById("tab_" + t).classList.add("hidden");
-        document.getElementById("tabBtn_" + t).classList.remove("active");
-        document.getElementById("tabBtn_" + t).classList.remove("border-[var(--primary)]");
-        document.getElementById("tabBtn_" + t).classList.add("border-transparent");
+      ["value", "oltp", "throttle", "storage", "freetier"].forEach(t => {
+        const el = document.getElementById("tab_" + t);
+        const btn = document.getElementById("tabBtn_" + t);
+        if (el) el.classList.add("hidden");
+        if (btn) {
+          btn.classList.remove("active");
+          btn.classList.remove("border-[var(--primary)]");
+          btn.classList.add("border-transparent");
+        }
       });
-      document.getElementById("tab_" + tabId).classList.remove("hidden");
-      document.getElementById("tabBtn_" + tabId).classList.add("active");
+      const targetEl = document.getElementById("tab_" + tabId);
+      const targetBtn = document.getElementById("tabBtn_" + tabId);
+      if (targetEl) targetEl.classList.remove("hidden");
+      if (targetBtn) targetBtn.classList.add("active");
       renderAll();
     }
 
@@ -665,7 +807,7 @@
             <td class="py-2.5 px-3 text-right font-mono">${r.cpu_eps.toFixed(1)}</td>
             <td class="py-2.5 px-3 text-right font-mono">${(r.write_iops/1000).toFixed(0)}k</td>
             <td class="py-2.5 px-3 text-right font-bold text-emerald-500 font-mono">${r.peak_tps.toFixed(1)}</td>
-            <td class="py-2.5 px-3 text-right font-bold text-sky-500 font-mono">${r.tps_per_dollar.toFixed(1)}</td>
+            <td class="py-2.5 px-3 text-right font-mono">${r.price === 0 ? '<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free Tier</span>' : '<span class="font-bold text-sky-500">' + r.tps_per_dollar.toFixed(1) + '</span>'}</td>
           </tr>
         `;
       });

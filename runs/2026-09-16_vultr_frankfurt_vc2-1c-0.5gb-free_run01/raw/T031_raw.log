@@ -1,0 +1,55 @@
+=========================================
+=== CBP-1.0 / T031: SEQUENTIAL STORAGE THROUGHPUT ===
+=== Timestamp (UTC): 2026-09-16 08:36:48 UTC ===
+=========================================
+
+--- Part 1: Sequential Write (1MB, iodepth=16, direct=1) ---
+seq_write: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=libaio, iodepth=16
+fio-3.33
+Starting 1 process
+seq_write: Laying out IO file (1 file / 4096MiB)
+fio: pid=4957, err=28/file:io_u.c:1876, func=io_u error, error=No space left on device
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3602907136, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3603955712, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3605004288, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3606052864, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3607101440, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3608150016, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3609198592, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3610247168, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3611295744, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3612344320, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3613392896, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3614441472, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3615490048, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3616538624, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3617587200, buflen=1048576
+fio: io_u error on file /var/tmp/fio_test/testfile_seq.dat: No space left on device: write offset=3618635776, buflen=1048576
+
+seq_write: (groupid=0, jobs=1): err=28 (file:io_u.c:1876, func=io_u error, error=No space left on device): pid=4957: Wed Sep 16 08:37:05 2026
+  write: IOPS=204, BW=204MiB/s (214MB/s)(3436MiB/16870msec); 0 zone resets
+    slat (usec): min=51, max=158007, avg=580.32, stdev=5257.90
+    clat (msec): min=8, max=459, avg=77.95, stdev=40.73
+     lat (msec): min=10, max=485, avg=78.50, stdev=41.99
+    clat percentiles (msec):
+     |  1.00th=[   22],  5.00th=[   34], 10.00th=[   44], 20.00th=[   52],
+     | 30.00th=[   56], 40.00th=[   63], 50.00th=[   71], 60.00th=[   78],
+     | 70.00th=[   87], 80.00th=[   99], 90.00th=[  117], 95.00th=[  140],
+     | 99.00th=[  255], 99.50th=[  296], 99.90th=[  414], 99.95th=[  435],
+     | 99.99th=[  460]
+   bw (  KiB/s): min=65536, max=278528, per=100.00%, avg=211626.67, stdev=53384.85, samples=33
+   iops        : min=   64, max=  272, avg=206.67, stdev=52.13, samples=33
+  lat (msec)   : 10=0.03%, 20=0.55%, 50=15.76%, 100=66.05%, 250=16.14%
+  lat (msec)   : 500=1.01%
+  cpu          : usr=2.22%, sys=1.24%, ctx=1670, majf=0, minf=19
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.2%, 16=99.6%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,3452,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+  WRITE: bw=204MiB/s (214MB/s), 204MiB/s-204MiB/s (214MB/s-214MB/s), io=3436MiB (3603MB), run=16870-16870msec
+
+Disk stats (read/write):
+  vda: ios=0/7496, merge=0/149, ticks=0/721874, in_queue=721912, util=94.87%

@@ -1,0 +1,79 @@
+﻿=========================================
+=== CBP-1.0 / T041: CLIENT RTT TO 136.244.82.152 ===
+=== Client Timestamp:  ===
+=== Target IP: 136.244.82.152 ===
+=========================================
+
+Pinging 136.244.82.152 with 32 bytes of data:
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=933ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=231ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=236ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=212ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=232ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=214ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=208ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=212ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=220ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=207ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=210ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=204ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=231ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=204ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=225ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=223ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=204ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=216ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=235ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=223ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=211ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=258ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=223ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=372ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=207ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=220ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=310ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=209ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=207ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=205ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=206ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=209ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=216ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=207ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=241ms TTL=56
+Reply from 136.244.82.152: bytes=32 time=209ms TTL=56
+
+Ping statistics for 136.244.82.152:
+    Packets: Sent = 50, Received = 50, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 204ms, Maximum = 933ms, Average = 233ms
+
+--- TRACEROUTE ---
+
+Tracing route to 136.244.82.152 over a maximum of 20 hops
+
+  1     2 ms     2 ms     3 ms  192.168.1.1 
+  2    30 ms    15 ms     5 ms  10.240.9.204 
+  3     *        *        *     Request timed out.
+  4    36 ms     5 ms    70 ms  125.18.168.169 
+  5   213 ms   182 ms   158 ms  182.79.134.223 
+  6   201 ms   276 ms   195 ms  80.81.196.21 
+  7     *        *        *     Request timed out.
+  8     *        *        *     Request timed out.
+  9   212 ms   211 ms   213 ms  108.61.113.29 
+ 10   205 ms   211 ms   208 ms  136.244.82.152 
+
+Trace complete.

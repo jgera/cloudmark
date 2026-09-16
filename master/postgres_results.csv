@@ -123,3 +123,13 @@ LEGACY-GCP-001,T053,select_only,10,1,1,120,2030.0,746.6,1.35,0,legacy_gcp_baseli
 2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,8,1,120,13088.724189,13133.8,0.61,0,T053_raw.log
 2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,16,1,120,12686.793243,12701.6,1.26,0,T053_raw.log
 2026-09-15_vultr_delhi_vhf-1c-1gb_run01,T053,select_only,10,32,1,120,12198.507941,12260.8,2.61,0,T053_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T052,mixed_tpc_b,10,1,1,180,382.248171,305.2,2.62,0,T052_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T053,select_only,10,1,1,120,7618.569150,8877.0,0.13,0,T053_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T052,mixed_tpc_b,10,4,1,180,445.638835,437.7,12.87,0,T052_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T052,mixed_tpc_b,10,8,1,180,538.831192,486.0,17.94,0,T052_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T052,mixed_tpc_b,10,16,1,180,536.880869,588.2,29.76,0,T052_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T052,mixed_tpc_b,10,32,1,180,455.809892,442.8,77.55,0,T052_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T053,select_only,10,4,1,120,8078.302329,8160.3,0.49,0,T053_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T053,select_only,10,8,1,120,7370.479192,7696.3,1.04,0,T053_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T053,select_only,10,16,1,120,5601.220414,5643.5,2.84,0,T053_raw.log
+2026-09-16_vultr_frankfurt_vc2-1c-0.5gb-free_run01,T053,select_only,10,32,1,120,5041.778241,5218.8,6.13,0,T053_raw.log

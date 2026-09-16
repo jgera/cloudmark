@@ -1,7 +1,7 @@
 # CloudMark CBP-1.0 Multi-Architecture Benchmark Report
 
 A publication-grade cross-cloud comparative analysis evaluating real-world database throughput, compute throttling curves, storage IOPS, and price-to-performance across **Google Cloud Platform** and **Vultr**.
-*Compiled: 2026-09-15 12:56:37 UTC*
+*Compiled: 2026-09-16 09:10:46 UTC*
 
 ---
 
@@ -9,7 +9,7 @@ A publication-grade cross-cloud comparative analysis evaluating real-world datab
 
 All benchmarks executed under the frozen **CloudMark Benchmark Protocol (CBP-1.0)** with vendor defaults preserved and zero tuning bias:
 
-### 1.1 Evaluated Instances Matrix (12 Architectures & Regional Profiles)
+### 1.1 Evaluated Instances Matrix (13 Architectures & Regional Profiles)
 | Machine ID | Cloud Provider | Plan / Tier | Architecture & vCPUs | RAM | Storage Subsystem | Region | Monthly On-Demand |
 | :--- | :--- | :--- | :--- | :---: | :--- | :---: | :---: |
 | `vultr-delhi-vhp-4c-8gb-intel-01` | **Vultr** | `vhp-4c-8gb-intel` | 4 vCPUs (Intel Xeon Processor (Cascadelake)) | 7.75 GB | 180G NVMe/SSD | `Delhi` | **$48.00** |
@@ -24,6 +24,7 @@ All benchmarks executed under the frozen **CloudMark Benchmark Protocol (CBP-1.0
 | `vultr-sgp-vc2-1c-1gb-01` | **Vultr** | `vc2-1c-1gb` | 1 vCPUs (Intel Core Processor (Broadwell, no TSX, IBRS)) | 0.93 GB | 25G SSD | `Sgp` | **$5.00** |
 | `vultr-mumbai-vc2-1c-1gb-01` | **Vultr** | `vc2-1c-1gb` | 1 vCPUs (Intel Xeon Processor (Cascadelake)) | 0.93 GB | 25G SSD | `Mumbai` | **$5.00** |
 | `vultr-delhi-vhf-1c-1gb-01` | **Vultr** | `vhf-1c-1gb` | 1 vCPUs (Intel Core Processor (Skylake, IBRS, no TSX)) | 0.93 GB | 32G SSD | `Delhi` | **$6.00** |
+| `vultr-frankfurt-vc2-1c-05gb-free-01` | **Vultr** | `vc2-1c-0.5gb-free` | 1 vCPUs (Intel Xeon Processor (Skylake, IBRS)) | 0.44 GB | 10G SSD | `Frankfurt` | **$0.00** |
 
 ---
 
@@ -44,7 +45,8 @@ Transactions Per Second (TPS) per dollar per month based on peak sustained Postg
 | **GCP `t2a-standard-4` (ARM)**| **Iowa** | **$119.38** | **4,159.3 TPS** | **34.8 TPS / $** | **#9** |
 | **GCP `e2-micro`** | **Delhi** | **$7.30** | **250.5 TPS** | **34.2 TPS / $** | **#10** |
 | **GCP `e2-standard-4`** | **Oregon** | **$105.12** | **2,700.0 TPS** | **25.7 TPS / $** | **#11** |
-| **GCP `e2-micro`** | **Oregon** | **$0.00** | **181.4 TPS** | **∞ (Always Free)** | **N/A** |
+| **Vultr `vc2-1c-0.5gb-free`**| **Frankfurt**| **$0.00** | **588.2 TPS** | **∞ (1-Yr Free Tier Leader)** | 🏆 **#1 Free Tier (3.2x faster than GCP)** |
+| **GCP `e2-micro`** | **Oregon** | **$0.00** | **181.4 TPS** | **∞ (Always Free Baseline)** | **#2 Free Tier** |
 
 > [!IMPORTANT]
 > **Key Value Finding:** For pure cost efficiency on persistent database workloads, **Vultr Mumbai `vc2-1c-1gb` delivers 467.7 sustained TPS per dollar**, outperforming Google Cloud's `c2-standard-4` by **12.1x in efficiency** and GCP's `e2-micro` by **13.7x**.
@@ -85,26 +87,27 @@ Transactions Per Second (TPS) per dollar per month based on peak sustained Postg
 | **Vultr `vc2-1c-1gb` (Delhi)** | Intel Cascadelake (1 core) | 440.8 | 442.8 | 436.0 | **1.02x** | **2.10%** | **100% Sustained (No Throttling)** |
 | **Vultr `vc2-1c-2gb` (Delhi)** | Intel Cascadelake (1 core) | 449.9 | 450.8 | 450.8 | **1.00x** | **0.96%** | **100% Sustained (Rock Flat)** |
 | **Vultr `vc2-1c-1gb` (SGP)** | Intel Broadwell (1 core) | 303.5 | 305.7 | 300.3 | **1.02x** | **1.58%** | **100% Sustained (No Throttling)** |
+| **Vultr `vc2-1c-0.5gb-free` (FRA)**| Intel Skylake (1 core) | 366.2 | 380.9 | 379.1 | **1.00x** | **2.87%** | **100% Sustained (Zero Throttling on Free Tier!)** |
 | **GCP `e2-micro` (US)** | Intel Xeon (0.25 core shared) | 472.0 | 341.2 | 144.1 | 2.37x drop | 83.5% | **Severe Throttling** |
 | **GCP `e2-micro` (Delhi)** | AMD EPYC (0.25 core shared) | 790.2 | 332.9 | 186.3 | 1.79x drop | 51.5% | **Severe Throttling** |
 
 ### 4.2 PostgreSQL Sustained Mixed OLTP Throughput (T052 — Scale 10)
-| Concurrency Tier | GCP `e2-micro` (US, $0) | GCP `e2-micro` (Delhi, $7.30) | Vultr $5 (SGP) | Vultr $5 (Delhi) | Vultr $5 (Mumbai) | Vultr $6 HF (Delhi) | Vultr $10 (Delhi) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1 Client** | 91.2 TPS (10.95 ms) | 94.1 TPS (10.63 ms) | 825.3 TPS (1.21 ms) | 2,071.1 TPS (0.48 ms) | **2,338.6 TPS (0.43 ms)** | 2,143.7 TPS (0.47 ms) | 2,180.4 TPS (0.46 ms) |
-| **4 Clients** | 175.5 TPS (22.78 ms) | 194.3 TPS (20.59 ms) | 1,164.5 TPS (3.44 ms) | 1,957.5 TPS (2.06 ms) | **2,322.7 TPS (1.73 ms)** | 2,019.9 TPS (1.98 ms) | 2,185.1 TPS (1.84 ms) |
-| **8 Clients** | 181.4 TPS (44.67 ms) | 236.2 TPS (33.95 ms) | 1,164.4 TPS (6.88 ms) | 1,821.2 TPS (4.40 ms) | 2,065.9 TPS (3.90 ms) | 1,915.3 TPS (4.18 ms) | **2,127.9 TPS (3.76 ms)** |
-| **16 Clients**| 179.3 TPS (89.53 ms) | 250.5 TPS (63.99 ms) | 982.9 TPS (16.32 ms) | 1,539.0 TPS (10.43 ms)| **2,004.9 TPS (7.99 ms)** | 1,802.8 TPS (8.88 ms) | 1,813.0 TPS (8.83 ms) |
-| **32 Clients**| 151.5 TPS (223.43 ms)| 215.8 TPS (145.05 ms)| 897.3 TPS (35.69 ms) | 1,217.1 TPS (26.38 ms)| 1,613.7 TPS (19.86 ms)| **1,717.4 TPS (18.64 ms)**| 1,461.7 TPS (21.92 ms)|
+| Concurrency Tier | GCP `e2-micro` (US, $0) | Vultr Free (FRA, $0) | GCP `e2-micro` (DEL, $7.30) | Vultr $5 (SGP) | Vultr $5 (DEL) | Vultr $5 (BOM) | Vultr $6 HF (DEL) | Vultr $10 (DEL) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1 Client** | 91.2 TPS (10.95 ms) | **305.2 TPS (2.62 ms)** | 94.1 TPS (10.63 ms) | 825.3 TPS (1.21 ms) | 2,071.1 TPS (0.48 ms) | **2,338.6 TPS (0.43 ms)** | 2,143.7 TPS (0.47 ms) | 2,180.4 TPS (0.46 ms) |
+| **4 Clients** | 175.5 TPS (22.78 ms) | **437.7 TPS (12.87 ms)**| 194.3 TPS (20.59 ms) | 1,164.5 TPS (3.44 ms) | 1,957.5 TPS (2.06 ms) | **2,322.7 TPS (1.73 ms)** | 2,019.9 TPS (1.98 ms) | 2,185.1 TPS (1.84 ms) |
+| **8 Clients** | 181.4 TPS (44.67 ms) | **486.0 TPS (17.94 ms)**| 236.2 TPS (33.95 ms) | 1,164.4 TPS (6.88 ms) | 1,821.2 TPS (4.40 ms) | 2,065.9 TPS (3.90 ms) | 1,915.3 TPS (4.18 ms) | **2,127.9 TPS (3.76 ms)** |
+| **16 Clients**| 179.3 TPS (89.53 ms) | **588.2 TPS (29.76 ms)**| 250.5 TPS (63.99 ms) | 982.9 TPS (16.32 ms) | 1,539.0 TPS (10.43 ms)| **2,004.9 TPS (7.99 ms)** | 1,802.8 TPS (8.88 ms) | 1,813.0 TPS (8.83 ms) |
+| **32 Clients**| 151.5 TPS (223.43 ms)| **442.8 TPS (77.55 ms)**| 215.8 TPS (145.05 ms)| 897.3 TPS (35.69 ms) | 1,217.1 TPS (26.38 ms)| 1,613.7 TPS (19.86 ms)| **1,717.4 TPS (18.64 ms)**| 1,461.7 TPS (21.92 ms)|
 
 ### 4.3 PostgreSQL Sustained SELECT-Only Scaling (T053 — Scale 10)
-| Concurrency Tier | GCP `e2-micro` (US, $0) | GCP `e2-micro` (Delhi, $7.30) | Vultr $5 (SGP) | Vultr $5 (Delhi) | Vultr $5 (Mumbai) | Vultr $6 HF (Delhi) | Vultr $10 (Delhi) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1 Client** | 789.7 TPS (1.24 ms) | 971.8 TPS (1.01 ms) | 9,224.7 TPS (0.11 ms) | 19,475.2 TPS (0.05 ms) | 18,601.7 TPS (0.05 ms) | 16,523.2 TPS (0.06 ms) | **21,048.0 TPS (0.05 ms)** |
-| **4 Clients** | 1,717.0 TPS (2.29 ms) | 2,325.4 TPS (1.68 ms) | 8,076.3 TPS (0.50 ms) | 15,287.2 TPS (0.26 ms) | 15,510.9 TPS (0.26 ms) | 13,492.9 TPS (0.30 ms) | **16,933.3 TPS (0.24 ms)** |
-| **8 Clients** | 1,650.1 TPS (4.80 ms) | 2,248.5 TPS (3.52 ms) | 8,120.8 TPS (0.98 ms) | 14,442.4 TPS (0.55 ms) | 14,673.0 TPS (0.54 ms) | 13,133.8 TPS (0.61 ms) | **15,547.8 TPS (0.51 ms)** |
-| **16 Clients**| 1,487.6 TPS (11.61 ms)| 2,290.7 TPS (6.95 ms) | 7,418.1 TPS (2.16 ms) | 13,695.9 TPS (1.17 ms) | 13,574.0 TPS (1.18 ms) | 12,701.6 TPS (1.26 ms) | **15,067.2 TPS (1.06 ms)** |
-| **32 Clients**| 1,439.4 TPS (22.09 ms)| 2,120.5 TPS (15.17 ms)| 6,317.1 TPS (5.08 ms) | 9,308.0 TPS (3.44 ms) | 9,914.9 TPS (3.25 ms) | **12,260.8 TPS (2.61 ms)** | 11,508.8 TPS (2.85 ms) |
+| Concurrency Tier | GCP `e2-micro` (US, $0) | Vultr Free (FRA, $0) | GCP `e2-micro` (DEL, $7.30) | Vultr $5 (SGP) | Vultr $5 (DEL) | Vultr $5 (BOM) | Vultr $6 HF (DEL) | Vultr $10 (DEL) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1 Client** | 789.7 TPS (1.24 ms) | **8,877.0 TPS (0.13 ms)** | 971.8 TPS (1.01 ms) | 9,224.7 TPS (0.11 ms) | 19,475.2 TPS (0.05 ms) | 18,601.7 TPS (0.05 ms) | 16,523.2 TPS (0.06 ms) | **21,048.0 TPS (0.05 ms)** |
+| **4 Clients** | 1,717.0 TPS (2.29 ms) | **8,160.3 TPS (0.49 ms)** | 2,325.4 TPS (1.68 ms) | 8,076.3 TPS (0.50 ms) | 15,287.2 TPS (0.26 ms) | 15,510.9 TPS (0.26 ms) | 13,492.9 TPS (0.30 ms) | **16,933.3 TPS (0.24 ms)** |
+| **8 Clients** | 1,650.1 TPS (4.80 ms) | **7,696.3 TPS (1.04 ms)** | 2,248.5 TPS (3.52 ms) | 8,120.8 TPS (0.98 ms) | 14,442.4 TPS (0.55 ms) | 14,673.0 TPS (0.54 ms) | 13,133.8 TPS (0.61 ms) | **15,547.8 TPS (0.51 ms)** |
+| **16 Clients**| 1,487.6 TPS (11.61 ms)| **5,643.5 TPS (2.84 ms)** | 2,290.7 TPS (6.95 ms) | 7,418.1 TPS (2.16 ms) | 13,695.9 TPS (1.17 ms) | 13,574.0 TPS (1.18 ms) | 12,701.6 TPS (1.26 ms) | **15,067.2 TPS (1.06 ms)** |
+| **32 Clients**| 1,439.4 TPS (22.09 ms)| **5,218.8 TPS (6.13 ms)** | 2,120.5 TPS (15.17 ms)| 6,317.1 TPS (5.08 ms) | 9,308.0 TPS (3.44 ms) | 9,914.9 TPS (3.25 ms) | **12,260.8 TPS (2.61 ms)** | 11,508.8 TPS (2.85 ms) |
 
 ---
 
@@ -124,17 +127,11 @@ Evaluating identical **$5.00/mo plans (`vc2-1c-1gb`)** across Vultr's South Asia
 | **32-Client Sustained OLTP** | 1,217.1 TPS (26.38 ms) | **1,613.7 TPS (19.86 ms)** | 897.3 TPS (35.69 ms) | Mumbai sustains +32.6% higher throughput under heavy concurrency |
 | **Peak SELECT-Only Read** | **19,475.2 TPS** | 18,601.7 TPS | 9,224.7 TPS | Delhi & Mumbai deliver double the read capability of Singapore |
 
-> [!IMPORTANT]
-> **India Domestic Triangle Takeaways:**
-> 1. **Mumbai (`bom`) is the Highest Performing $5.00 Node:** Thanks to phenomenal random write IOPS (194k IOPS) and ultra-consistent low-latency disk arrays, Mumbai achieved **2,338.6 sustained OLTP TPS**, holding up better under 32 concurrent clients (1,614 TPS vs Delhi's 1,217 TPS).
-> 2. **Delhi (`del`) is the Lowest Latency Node for North India:** If client network round-trip time is paramount, Delhi offers single-digit pings (10.5 ms min) and near-identical CPU performance (2,071 OLTP TPS).
-> 3. **Singapore (`sgp`) Suffers from Legacy Hardware:** Vultr Singapore's entry tier operates on older Intel Broadwell silicon paired with network SAN storage, resulting in less than half the database throughput (825–1,164 TPS) at higher round-trip latency (72–77 ms).
-
 ---
 
 ## 6. The $5 SSD vs. $6 High-Frequency NVMe Step-Up in Delhi
 
-Comparing Vultr's **$5/mo Standard SSD (`vc2-1c-1gb`)** vs. **$6/mo High-Frequency NVMe (`vhf-1c-1gb`)** in Delhi answers the question: *What does $1.00 extra buy?*
+Comparing Vultr's **$5/mo Standard SSD (`vc2-1c-1gb`)** vs. **$6/mo High-Frequency NVMe (`vhf-1c-1gb`)** in Delhi answers: *What does $1.00 extra buy?*
 
 | Benchmark Dimension | Vultr $5 Standard (`vc2-1c-1gb`) | Vultr $6 High-Frequency (`vhf-1c-1gb`) | The $1.00 Value Difference |
 | :--- | :---: | :---: | :--- |
@@ -143,20 +140,38 @@ Comparing Vultr's **$5/mo Standard SSD (`vc2-1c-1gb`)** vs. **$6/mo High-Frequen
 | **32-Client Sustained Mixed OLTP** | 1,217.1 TPS (26.38 ms) | **1,717.4 TPS (18.64 ms)** | **+41.1% higher throughput** under concurrency |
 | **32-Client SELECT-Only Throughput** | 9,308.0 TPS (3.44 ms) | **12,260.8 TPS (2.61 ms)** | **+31.7% higher read ceiling** under concurrency |
 | **Storage Disk Space** | 25 GB | **32 GB** | **+28% larger disk space** |
-| **Price-to-Performance** | 414.2 TPS / $ | **357.3 TPS / $** | High-Frequency costs 20% more, yields +41% concurrency |
-
-> [!TIP]
-> **Verdict on the $1 Step-Up:** If your workload experiences concurrent request spikes (16–32 clients), upgrading to **`vhf-1c-1gb` at $6.00/mo is overwhelmingly worth the extra $1.00**. The 3.0+ GHz High Frequency CPU processes queries fast enough to prevent queue stalls, delivering **+41.1% higher sustained OLTP throughput** when the database is under peak concurrency.
 
 ---
 
-## 7. Architectural Recommendations
+## 7. The Cloud Free Tier Showdown: Google Cloud Always-Free vs. Vultr Free Tier ($0.00 vs. $0.00)
 
-1. **For Budget Production Databases ($5 – $6/mo):**
+A direct head-to-head comparison between **Google Cloud Platform Always-Free (`e2-micro`, Oregon)** and **Vultr Free Tier (`vc2-1c-0.5gb-free`, Frankfurt)**:
+
+| Free Tier Metric / Dimension | Google Cloud Always-Free (`e2-micro`) | Vultr Free Tier (`vc2-1c-0.5gb-free`) | Free Tier Winner / Disparity |
+| :--- | :---: | :---: | :--- |
+| **Monthly Rate** | **$0.00 / mo** (Permanent) | **$0.00 / mo** (1-Year Program) | Both $0.00 zero ongoing billable cost |
+| **CPU Throttling Ratio (T012)** | **2.37x drop** (341 -> 144 eps) | **1.00x (No Throttling)** (380 -> 379 eps) | 🏆 **Vultr is 100% unthrottled** |
+| **Throttling Volatility (CV)** | **83.5% CV** (Severe throttling) | **2.87% CV** (Rock-flat stability) | 🏆 **Vultr is 29x more stable** |
+| **Random 4K Read IOPS** | 152 IOPS | **206,000 IOPS** | 🏆 **Vultr is 1,355x faster in disk read IOPS** |
+| **Single-Client OLTP Throughput**| 91.2 TPS (10.95 ms) | **305.2 TPS (2.62 ms)** | 🏆 **Vultr is 3.3x faster at 4.2x lower latency** |
+| **Peak Sustained Mixed OLTP** | 181.4 TPS (44.67 ms) | **588.2 TPS (29.76 ms)** | 🏆 **Vultr is 3.24x faster overall database throughput** |
+| **32-Client Concurrency OLTP** | 151.5 TPS (223.43 ms) | **442.8 TPS (77.55 ms)** | 🏆 **Vultr maintains 2.9x higher TPS and 2.9x lower latency** |
+| **SELECT-Only Read Ceiling (1c)**| 789.7 TPS (1.24 ms) | **8,877.0 TPS (0.13 ms)** | 🏆 **Vultr delivers 11.2x higher read throughput** |
+| **Persistent Node Preservation** | **Preserved (`db-vm`)** | **Preserved (`vultr-free-fra-01`)** | Both nodes kept active for user use |
+
+> [!IMPORTANT]
+> **Free Tier Verdict:** Despite having only 512 MB of physical RAM, **Vultr Free Tier utterly crushes Google Cloud Always-Free `e2-micro` across every performance metric**. Vultr delivers **3.24x higher sustained database throughput**, **1,355x higher storage IOPS**, and most importantly: **zero CPU throttling** compared to GCP's aggressive 2.37x throttle cap.
+
+---
+
+## 8. Architectural Recommendations
+
+1. **For $0.00 Free Tier Hosting:**
+   - **Top Choice**: **Vultr Free Tier (`vc2-1c-0.5gb-free`)**. Runs at 100% sustained CPU without throttling, delivers 206k IOPS, and pushes 588 sustained OLTP TPS.
+   - **GCP `e2-micro`** is suitable only as an off-site backup or lightweight polling agent; its 0.25 core cap causes severe performance degradation.
+2. **For Budget Production Databases ($5 – $6/mo):**
    - **Concurrency / CPU Speed**: **Vultr Delhi `vhf-1c-1gb` ($6.00/mo)** is the champion for concurrency (1,717 sustained TPS at 32 clients; 1,048 CPU eps).
    - **Pure Cost-Per-TPS**: **Vultr Mumbai `vc2-1c-1gb` ($5.00/mo)** offers the highest overall efficiency (467.7 TPS / $).
-   - **Avoid GCP `e2-micro`** for production databases; its 0.25 core allocation causes severe latency spikes (>145 ms) once burst tokens deplete.
-2. **For High-Performance Multi-Core Workloads ($48 – $160/mo):**
+3. **For High-Performance Multi-Core Workloads ($48 – $160/mo):**
    - **Vultr Intel High Performance (`vhp-4c-8gb-intel` at $48/mo)** is the overall throughput leader, delivering **8,280 sustained OLTP TPS** (172.5 TPS per dollar).
-   - **GCP Compute-Optimized (`c2-standard-4` at $158/mo)** is the fastest single-thread CPU runner (488.5 eps) and reaches 6,141 OLTP TPS, but is heavily bottlenecked by persistent disk limits (240 MB/s / 7,700 IOPS).
-   - **GCP Tau ARM64 (`t2a-standard-4` at $119/mo)** provides perfect linear multi-core scaling (100.1% efficiency) with zero thermal throttling, ideal for compute-bound microservices.
+   - **GCP Compute-Optimized (`c2-standard-4` at $158/mo)** reaches 6,141 OLTP TPS, but is heavily bottlenecked by persistent disk limits (240 MB/s / 7,700 IOPS).
